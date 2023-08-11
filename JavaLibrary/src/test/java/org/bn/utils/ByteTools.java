@@ -17,7 +17,7 @@
 package org.bn.utils;
 
 import java.io.ByteArrayOutputStream;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ByteTools {
 

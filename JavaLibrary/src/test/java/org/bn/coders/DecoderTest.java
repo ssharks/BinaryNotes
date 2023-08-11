@@ -24,8 +24,8 @@ import org.bn.coders.test_asn.*;
 import org.bn.types.BitString;
 import org.bn.types.ObjectIdentifier;
 import org.bn.utils.ByteTools;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public abstract class DecoderTest {
 
@@ -336,7 +336,7 @@ public abstract class DecoderTest {
         BugList val = decoder.decode(stream, BugList.class);
         //assertEquals(val.getAttrInt(), coderTestUtils.createTestSequenceV12().getAttrInt());        
         assertNotNull(val.getValue());
-        assertTrue("Is not empty", !val.getValue().isEmpty());
+        assertTrue(!val.getValue().isEmpty(), "Is not empty");
     }
 
     @Test
@@ -378,7 +378,7 @@ public abstract class DecoderTest {
         BugList val = decoder.decode(stream, BugList.class);
         //assertEquals(val.getAttrInt(), coderTestUtils.createTestSequenceV12().getAttrInt());        
         assertNotNull(val.getValue());
-        assertTrue("Is not empty", !val.getValue().isEmpty());
+        assertTrue(!val.getValue().isEmpty(), "Is not empty");
     }
 
     @Test

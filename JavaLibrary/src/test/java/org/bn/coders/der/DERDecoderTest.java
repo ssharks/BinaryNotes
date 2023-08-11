@@ -16,14 +16,16 @@
  */
 package org.bn.coders.der;
 
+import org.bn.CoderFactory;
 import org.bn.IDecoder;
-import org.bn.coders.ber.BERCoderTestUtils;
-import org.bn.coders.ber.BERDecoderTest;
+import org.bn.coders.DecoderTest;
 
-public class DERDecoderTest extends BERDecoderTest {
+public class DERDecoderTest extends DecoderTest {
+    
+    private final CoderFactory coderFactory = new CoderFactory();
     
     public DERDecoderTest() {
-        super(new BERCoderTestUtils());
+        super(new DERCoderTestUtils());
     }
 
     @Override

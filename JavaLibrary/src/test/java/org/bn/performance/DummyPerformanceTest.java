@@ -25,8 +25,8 @@ import org.bn.coders.ber.BERCoderTestUtils;
 import org.bn.coders.per.PERAlignedCoderTestUtils;
 import org.bn.coders.per.PERUnalignedCoderTestUtils;
 import org.bn.coders.test_asn.*;
-import static org.junit.Assert.assertNotNull;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
 
 public class DummyPerformanceTest {
     

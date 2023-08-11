@@ -19,8 +19,8 @@ import java.io.ByteArrayOutputStream;
 import org.bn.IEncoder;
 import org.bn.coders.test_asn.*;
 import org.bn.utils.ByteTools;
-import static org.junit.Assert.*;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public abstract class EncoderTest {
     

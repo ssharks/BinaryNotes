@@ -15,10 +15,13 @@
  */
 package org.bn.coders.der;
 
+import org.bn.CoderFactory;
 import org.bn.IEncoder;
-import org.bn.coders.ber.BEREncoderTest;
+import org.bn.coders.EncoderTest;
 
-public class DEREncoderTest extends BEREncoderTest {
+public class DEREncoderTest extends EncoderTest {
+    
+    private final CoderFactory coderFactory = new CoderFactory();
     
     public DEREncoderTest() {
         super(new DERCoderTestUtils());

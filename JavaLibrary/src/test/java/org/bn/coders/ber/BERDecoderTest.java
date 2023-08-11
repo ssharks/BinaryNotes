@@ -18,19 +18,14 @@ package org.bn.coders.ber;
 
 import org.bn.CoderFactory;
 import org.bn.IDecoder;
-import org.bn.coders.CoderTestUtilities;
 import org.bn.coders.DecoderTest;
 
 public class BERDecoderTest extends DecoderTest {
 
-    protected CoderFactory coderFactory = new CoderFactory();
+    private final CoderFactory coderFactory = new CoderFactory();
 
     public BERDecoderTest() {
         super(new BERCoderTestUtils());
-    }
-
-    protected BERDecoderTest(CoderTestUtilities coderUtils) {
-        super(coderUtils);
     }
 
     @Override
