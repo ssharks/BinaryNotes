@@ -277,6 +277,6 @@ public final class ASN1PreparedElementData implements IASN1PreparedElementData {
 
     @Override
     public Object newInstance() throws Exception {
-        return newInstanceConstructor == null ? newInstanceClass.newInstance() : newInstanceConstructor.newInstance();
+        return newInstanceConstructor == null ? newInstanceClass.getDeclaredConstructor().newInstance() : newInstanceConstructor.newInstance();
     }
 }

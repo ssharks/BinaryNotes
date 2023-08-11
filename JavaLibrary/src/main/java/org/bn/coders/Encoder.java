@@ -195,7 +195,7 @@ public abstract class Encoder implements IEncoder, IASN1TypesEncoder {
                 return 0;
             } else if ( CoderUtils.isDefaultField(field, info) ) {
                 // skip the field if the current value equals to the default value (this is optional for BER, but mandatory for DER)
-                Object newSequenceInstance = elementInfo.hasPreparedInfo() ? elementInfo.getPreparedInfo().newInstance() : object.getClass().newInstance();
+                Object newSequenceInstance = elementInfo.hasPreparedInfo() ? elementInfo.getPreparedInfo().newInstance() : object.getClass().getDeclaredConstructor().newInstance();
                 CoderUtils.initDefaultValues(newSequenceInstance);
                 Object defaultFieldValue = invokeGetterMethodForField(field, newSequenceInstance, info);
                 return CoderUtils.equals(defaultFieldValue, invokeObjResult) ? 0 : encodeClassType(invokeObjResult, stream, info);

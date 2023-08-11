@@ -369,7 +369,7 @@ public class PERAlignedEncoder extends Encoder {
                     if (invokeObjResult==null) {
                         ((BitArrayOutputStream) stream).writeBit(false);
                     } else if (CoderUtils.isDefaultField(field, info)) {
-                        Object newSequenceInstance = elementInfo.hasPreparedInfo() ? elementInfo.getPreparedInfo().newInstance() : object.getClass().newInstance();
+                        Object newSequenceInstance = elementInfo.hasPreparedInfo() ? elementInfo.getPreparedInfo().newInstance() : object.getClass().getDeclaredConstructor().newInstance();
                         CoderUtils.initDefaultValues(newSequenceInstance);
                         Object defaultFieldValue = invokeGetterMethodForField(field, newSequenceInstance, info);
                         ((BitArrayOutputStream) stream).writeBit(!CoderUtils.equals(defaultFieldValue, invokeObjResult));

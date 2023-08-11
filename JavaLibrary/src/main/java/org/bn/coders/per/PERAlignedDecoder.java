@@ -413,7 +413,7 @@ public class PERAlignedDecoder extends Decoder {
     public <T> DecodedObject<T> decodeNull(DecodedObject<Integer> decodedTag, Class<T> objectClass,
             ElementInfo elementInfo, InputStream stream) throws Exception {
         
-        return new DecodedObject<>(objectClass.newInstance());
+        return new DecodedObject<>(objectClass.getDeclaredConstructor().newInstance());
     }
 
     @Override

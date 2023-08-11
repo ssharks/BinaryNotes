@@ -256,10 +256,10 @@ AsnOidComponent oidcmp; AsnDefinedValue defval; }
 obj_id_component returns [AsnOidComponent oidcmp ]
 {oidcmp = new AsnOidComponent(); AsnDefinedValue defval;
 String s,n =""; }
-	: 	((num:NUMBER {s=num.getText();oidcmp.num = new Integer(s); oidcmp.numberForm=true;})
+	: 	((num:NUMBER {s=num.getText();oidcmp.num = Integer.valueOf(s); oidcmp.numberForm=true;})
 	|	(LOWER (L_PAREN NUMBER R_PAREN)?)=>((lid:LOWER {oidcmp.name = lid.getText();oidcmp.nameForm=true;}) 
 		( L_PAREN 
-		 (num1:NUMBER {n=num1.getText(); oidcmp.num = new Integer(n);oidcmp.nameAndNumberForm=true;})
+		 (num1:NUMBER {n=num1.getText(); oidcmp.num = Integer.valueOf(n);oidcmp.nameAndNumberForm=true;})
 		R_PAREN ) ? )
 	|	(defined_value)=>(defval = defined_value {oidcmp.isDefinedValue=true;oidcmp.defval=defval;}))
 	;
@@ -731,7 +731,7 @@ clazz returns [String s]
 
 class_NUMBER returns [AsnClassNumber cnum]		
 {cnum = new AsnClassNumber() ; String s; }
-	:	((num:NUMBER {s=num.getText(); cnum.num = new Integer(s);})
+	:	((num:NUMBER {s=num.getText(); cnum.num = Integer.valueOf(s);})
 	|	(lid:LOWER  {s=lid.getText(); cnum.name = s ;}) )
 		
 	;

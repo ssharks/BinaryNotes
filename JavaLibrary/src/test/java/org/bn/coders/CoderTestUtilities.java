@@ -209,7 +209,7 @@ public abstract class CoderTestUtilities {
 
     public TestI createUnboundedTestInteger() {
         TestI value = new TestI();
-        value.setValue(new Long(0xFAFBFC));
+        value.setValue(Long.valueOf(0xFAFBFC));
         return value;
     }
 

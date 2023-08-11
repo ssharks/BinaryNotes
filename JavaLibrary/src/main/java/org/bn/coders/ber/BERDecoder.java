@@ -264,7 +264,7 @@ public class BERDecoder extends Decoder {
             return null;
         }
         stream.read(); // ignore null length
-        return new DecodedObject<>(objectClass.newInstance(), 1);
+        return new DecodedObject<>(objectClass.getDeclaredConstructor().newInstance(), 1);
     }
 
     @Override

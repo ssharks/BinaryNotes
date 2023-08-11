@@ -50,7 +50,7 @@ public abstract class Decoder implements IDecoder, IASN1TypesDecoder {
         ElementInfo elemInfo = new ElementInfo();
         elemInfo.setAnnotatedClass(objectClass);
         
-        T objectInstance = objectClass.newInstance();
+        T objectInstance = objectClass.getDeclaredConstructor().newInstance();
         if (objectInstance instanceof IASN1PreparedElement) {
             elemInfo.setPreparedInstance(objectInstance);
             return (T) decodePreparedElement(decodeTag(stream), objectClass, elemInfo, stream).getValue();
@@ -179,7 +179,7 @@ public abstract class Decoder implements IDecoder, IASN1TypesDecoder {
             }
         }
         if (result == null) {
-            result = objectClass.newInstance();
+            result = objectClass.getDeclaredConstructor().newInstance();
             /*Constructor decl = objectClass.getDeclaredConstructor();
              decl.setAccessible(true);
              result = decl.newInstance();*/
@@ -338,7 +338,7 @@ public abstract class Decoder implements IDecoder, IASN1TypesDecoder {
 
         DecodedObject<Integer> itemValue = decodeEnumItem(decodedTag, field.getType(), enumClass, elementInfo, stream);
         if (itemValue != null) {
-            T result = objectClass.newInstance();
+            T result = objectClass.getDeclaredConstructor().newInstance();
 
             Field param = null;
             for (Field enumItem : enumClass.getDeclaredFields()) {
