@@ -57,6 +57,13 @@
     <build>
         <plugins>
             
+            <!-- avoid using old compiler plugin version when using old Maven (e.g. 3.6.3) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+            
             <!-- adds classpath and main class to the JAR manifest -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
