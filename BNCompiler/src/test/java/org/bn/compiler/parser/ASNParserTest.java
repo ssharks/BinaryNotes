@@ -17,8 +17,8 @@ package org.bn.compiler.parser;
 
 import java.io.File;
 import java.io.InputStream;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
 import org.bn.compiler.parser.model.ASN1Model;
 import org.bn.compiler.parser.model.ASNModule;
 import static org.junit.jupiter.api.Assertions.*;
