@@ -661,7 +661,9 @@ sequenceof_type returns [Object obj]
 {AsnSequenceOf seqof = new AsnSequenceOf();
 AsnConstraint cns; obj = null; Object obj1 ; String s ;}
 	:  ( SEQUENCE_KW {seqof.isSequenceOf = true;}
-	        (SIZE_KW {seqof.isSizeConstraint=true;}(cns = constraint {seqof.constraint = cns ;}))? OF_KW 
+	        ( (SIZE_KW {seqof.isSizeConstraint=true;}(cns = constraint {seqof.constraint = cns ;}))? |
+		    (L_PAREN SIZE_KW {seqof.isSizeConstraint=true;}(cns = constraint {seqof.constraint = cns ;}) R_PAREN)? )
+			 OF_KW
 		( obj1 = type 
 		{	if((AsnDefinedType.class).isInstance(obj1)){
 		  		seqof.isDefinedType=true;
