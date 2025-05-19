@@ -601,7 +601,7 @@ embedded_type returns [Object obj]
 enum_type returns [Object obj]
 {AsnEnum enumtyp = new AsnEnum() ;
 AsnNamedNumberList nnlst; obj = null;}
-	: ( ENUMERATED_KW (nnlst = namedNumber_list { enumtyp.namedNumberList = nnlst;}) )
+	: ( ENUMERATED_KW (nnlst = namedNumberExtensible_list { enumtyp.namedNumberList = nnlst;}) )
 	  {obj = enumtyp ; enumtyp=null;}	
 	;
 		
@@ -863,6 +863,7 @@ elementType_list returns [AsnElementTypeList elelist]
 {elelist = new AsnElementTypeList(); AsnElementType eletyp; }
 	:	(eletyp = elementType {elelist.elements.add(eletyp); }
 	    (COMMA (eletyp = elementType {elelist.elements.add(eletyp);}))*)
+		(COMMA ELLIPSIS {elelist.isExtensible=true;})?
 	;
 
 elementType	returns [AsnElementType eletyp]
@@ -884,7 +885,14 @@ Object obj; AsnTag tg; String s;}
 			}
 		}
 	;
-		
+
+namedNumberExtensible_list returns [AsnNamedNumberList nnlist]
+{nnlist = new AsnNamedNumberList();AsnNamedNumber nnum ; }	
+	: (	L_BRACE (nnum= namedNumber {nnlist.namedNumbers.add(nnum); })
+	   (COMMA ((nnum = namedNumber  {nnlist.namedNumbers.add(nnum); }) | (ELLIPSIS {nnlist.isExtensible=true;})  ) )* 
+	   R_BRACE )
+	;
+
 namedNumber_list returns [AsnNamedNumberList nnlist]
 {nnlist = new AsnNamedNumberList();AsnNamedNumber nnum ; }	
 	: (	L_BRACE (nnum= namedNumber {nnlist.namedNumbers.add(nnum); })

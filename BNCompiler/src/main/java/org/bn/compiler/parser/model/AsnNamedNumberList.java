@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class AsnNamedNumberList {
     
     public ArrayList<AsnNamedNumber> namedNumbers;
+    public boolean isExtensible;
 
     public AsnNamedNumberList() {
         namedNumbers = new ArrayList<>();
