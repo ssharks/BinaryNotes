@@ -613,8 +613,8 @@ external_type returns [Object obj]
 integer_type returns [Object obj]	
 {AsnInteger intgr = new AsnInteger();
 AsnNamedNumberList numlst; AsnConstraint cnstrnt; obj=null;}
-	: (	INTEGER_KW (numlst = namedNumber_list {intgr.namedNumberList = numlst;}
-		| cnstrnt = constraint {intgr.constraint = cnstrnt;})? )
+	: (	INTEGER_KW (numlst = namedNumber_list {intgr.namedNumberList = numlst;})?
+		(cnstrnt = constraint {intgr.constraint = cnstrnt;})? )
 		{obj = intgr ; numlst = null ; cnstrnt = null; intgr = null; }
 	;
 		
