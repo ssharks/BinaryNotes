@@ -17,9 +17,10 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using org.bn.coders.test_asn;
-using org.bn.types;
+using org.bn;
 using org.bn.utils;
 using System.Collections.Generic;
+using org.bn.types;
 
 namespace org.bn.coders
 {
@@ -87,7 +88,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecode()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(
                 (coderTestUtils.createDataSeqBytes()));
             DataSeq seq = decoder.decode<DataSeq>(stream);
@@ -109,7 +110,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testITUDeDecode()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createITUSeqBytes()));
             ITUSequence seq = decoder.decode<ITUSequence>(stream);
             checkITUSeq(seq, coderTestUtils.createITUSeq());
@@ -129,7 +130,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testNullDecode()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createNullSeqBytes()));
             NullSequence seq = decoder.decode<NullSequence>(stream);
             Assert.IsNotNull(seq);
@@ -138,7 +139,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testTaggedNullDecode()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createTaggedNullSeqBytes()));
             TaggedNullSequence seq = decoder.decode<TaggedNullSequence>(stream);
             Assert.IsNotNull(seq);
@@ -147,7 +148,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testSequenceWithNullDecode()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createSeqWithNullBytes()));
             SequenceWithNull seq = decoder.decode<SequenceWithNull>(stream);
             Assert.IsNotNull(seq);
@@ -156,7 +157,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testEnum()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createEnumBytes()));
             ContentSchema enm = decoder.decode<ContentSchema>(stream);
             Assert.IsNotNull(enm);
@@ -171,7 +172,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testSequenceWithEnum()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createSequenceWithEnumBytes()));
             SequenceWithEnum seq = decoder.decode<SequenceWithEnum>(stream);
             Assert.IsNotNull(seq);
@@ -180,7 +181,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testRecursiveDefinition()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createTestRecursiveDefinitionBytes()));
             TestRecursiveDefinetion seq = decoder.decode<TestRecursiveDefinetion>(stream);
             Assert.IsNotNull(seq);
@@ -200,7 +201,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeInteger()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createTestInteger4Bytes()));
 
             TestI32 val = decoder.decode<TestI32>(stream);
@@ -236,7 +237,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeString()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createTestPRNBytes()));
             TestPRN val = decoder.decode<TestPRN>(stream);
             Assert.IsNotNull(val);
@@ -256,7 +257,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeStringArray()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createStringArrayBytes()));
             StringArray val = decoder.decode<StringArray>(stream);
             Assert.IsNotNull(val);
@@ -266,7 +267,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeChoice()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream((coderTestUtils.createDataChoicePlainBytes()));
             Data choice = new Data();
             Data val = decoder.decode<Data>(stream);
@@ -302,7 +303,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeNegativeInteger()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestNIBytes());
             TestNI val = decoder.decode<TestNI>(stream);
             Assert.AreEqual(val.Value, coderTestUtils.createTestNI().Value);
@@ -315,7 +316,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeSet()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createSetBytes());
             SetWithDefault val = decoder.decode<SetWithDefault>(stream);
             Assert.AreEqual(val.Nodefault, coderTestUtils.createSet().Nodefault);
@@ -326,7 +327,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeBitStr()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestBitStrBytes());
             TestBitStr val = decoder.decode<TestBitStr>(stream);
             Assert.AreEqual(val.Value.TrailBitsCnt, coderTestUtils.createTestBitStr().Value.TrailBitsCnt);
@@ -336,7 +337,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeUnicodeStr()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createUnicodeStrBytes());
             TestUnicodeStr val = decoder.decode<TestUnicodeStr>(stream);
             Assert.AreEqual(val.Value, coderTestUtils.createUnicodeStr().Value);
@@ -351,7 +352,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeVersion1_2()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestSequenceV12Bytes());
             TestSequenceV12 val = decoder.decode<TestSequenceV12>(stream);
             Assert.AreEqual(val.AttrStr, coderTestUtils.createTestSequenceV12().AttrStr);
@@ -367,7 +368,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeChoiceInChoice()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createChoiceInChoiceBytes());
             BugValueType val = decoder.decode<BugValueType>(stream);
             Assert.AreEqual(val.isBugPrimitiveSelected(), coderTestUtils.createChoiceInChoice().isBugPrimitiveSelected());
@@ -378,7 +379,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeTaggedSeqInSeq()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTaggedSeqInSeqBytes());
             TaggedSeqInSeq val = decoder.decode<TaggedSeqInSeq>(stream);
             Assert.AreEqual(val.Value.Field.Param_name, coderTestUtils.createTaggedSeqInSeq().Value.Field.Param_name);
@@ -388,7 +389,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeReal()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestReal1_5Bytes());
             TestReal val = decoder.decode<TestReal>(stream);
             Assert.AreEqual(val.Value, coderTestUtils.createTestReal1_5().Value);
@@ -421,7 +422,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeLongTag()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestLongTagBytes());
             TestLongTag val = decoder.decode<TestLongTag>(stream);
             Assert.AreEqual(val.Value, coderTestUtils.createTestLongTag().Value);
@@ -434,7 +435,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeLongTag2()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestLongTag2Bytes());
             TestLongTag2 val = decoder.decode<TestLongTag2>(stream);
             Assert.IsTrue(val.isTestaSelected());
@@ -444,7 +445,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeCSEnum()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createCSEnumBytes());
             CoderTestUtilities.TestCSEnum val = decoder.decode<CoderTestUtilities.TestCSEnum>(stream);
             Assert.AreEqual(val, coderTestUtils.createCSEnum());
@@ -453,7 +454,7 @@ namespace org.bn.coders
         [TestMethod]
         public virtual void testDecodeOID()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             Assert.IsNotNull(decoder);
 
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestOID1Bytes());
@@ -489,7 +490,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeTaggedSet()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             Assert.IsNotNull(decoder);
 
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTaggedSetBytes());
@@ -500,7 +501,7 @@ namespace org.bn.coders
         [TestMethod]
         public void testDecodeTaggedSetInSet()
         {
-            IDecoder decoder = newDecoder();
+            var decoder = newDecoder();
             Assert.IsNotNull(decoder);
 
             System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTaggedSetInSetBytes());
