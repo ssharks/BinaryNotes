@@ -29,5 +29,12 @@ namespace org.bn.attributes
             set { name = value; }
         }
 
+        private bool isExtensible = false;
+
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
+            set { isExtensible = value; }
+        }
     }
 }
