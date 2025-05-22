@@ -887,16 +887,16 @@ Object obj; AsnTag tg; String s;}
 	;
 
 namedNumberExtensible_list returns [AsnNamedNumberList nnlist]
-{nnlist = new AsnNamedNumberList();AsnNamedNumber nnum ; }	
-	: (	L_BRACE (nnum= namedNumber {nnlist.namedNumbers.add(nnum); })
-	   (COMMA ((nnum = namedNumber  {nnlist.namedNumbers.add(nnum); }) | (ELLIPSIS {nnlist.isExtensible=true;})  ) )* 
+{nnlist = new AsnNamedNumberList(true);AsnNamedNumber nnum ; }	
+	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum); })
+	   (COMMA ((nnum = namedNumber  {nnlist.addNamedNumber(nnum); }) | (ELLIPSIS {nnlist.isExtensible=true;})  ) )* 
 	   R_BRACE )
 	;
 
 namedNumber_list returns [AsnNamedNumberList nnlist]
 {nnlist = new AsnNamedNumberList();AsnNamedNumber nnum ; }	
-	: (	L_BRACE (nnum= namedNumber {nnlist.namedNumbers.add(nnum); })
-	   (COMMA (nnum = namedNumber  {nnlist.namedNumbers.add(nnum); }) )*  R_BRACE )
+	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum); })
+	   (COMMA (nnum = namedNumber  {nnlist.addNamedNumber(nnum); }) )*  R_BRACE )
 	;
 
 namedNumber	returns [AsnNamedNumber nnum]

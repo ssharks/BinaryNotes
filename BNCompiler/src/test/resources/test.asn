@@ -46,8 +46,7 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 		intBndType	[7] INTEGER (0 .. 255),
 		stringArray	[8] SEQUENCE OF PrintableString,
 		dataArray	[9] SEQUENCE OF Data,
-		extension	ANY OPTIONAL,
-		...
+		extension	ANY OPTIONAL
 	}	
 
 	DataSeqMO ::= SEQUENCE {
@@ -142,8 +141,13 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 		video_avi						(402), -- extension *.avi
 		video_quicktime						(403), -- extension *.qt;*.mov
 		video_x_msvideo						(404), -- extension *.avi
-		...,
 		application_smil					(500)  -- SMIL
+	}
+
+	MixedEnumType ::= ENUMERATED {
+		high							(101),
+		low								(3),
+		mid								(8)
 	}
 
 	ContentSchema ::= ENUMERATED {

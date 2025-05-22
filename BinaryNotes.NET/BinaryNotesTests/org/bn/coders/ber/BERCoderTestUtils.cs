@@ -60,9 +60,13 @@ namespace org.bn.coders.ber
 		{
 			return new byte[]{(byte) (0x0A), (byte) (0x01), (byte) (0x6F)};
 		}
-		
-		
-		public override byte[] createSequenceWithEnumBytes()
+
+        public override byte[] createMixedEnumBytes()
+        {
+            return new byte[] { (byte)(0x0A), (byte)(0x01), (byte)(0x65) };
+        }
+
+        public override byte[] createSequenceWithEnumBytes()
 		{
 			return new byte[]{(byte) (0x30), (byte) (0x0D), (byte) (0x13), (byte) (0x05), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x0A), (byte) (0x01), (byte) (0x6F), (byte) (0x81), (byte) (0x01), (byte) (0x6F)};
 		}

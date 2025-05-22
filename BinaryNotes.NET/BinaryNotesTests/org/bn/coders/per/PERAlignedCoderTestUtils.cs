@@ -38,8 +38,13 @@ namespace org.bn.coders.per
 		{
 			return new byte[]{(byte) (0x20)};
 		}
-		
-		public override byte[] createITUSeqBytes()
+
+        public override byte[] createMixedEnumBytes()
+        {
+            return new byte[] { (byte)(0x80) };
+        }
+
+        public override byte[] createITUSeqBytes()
 		{
 			return new byte[]{(byte) (0x80), (byte) (0x05), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x61), (byte) (0x05), (byte) (0x62), (byte) (0x62), (byte) (0x62), (byte) (0x62), (byte) (0x62), (byte) (0x05), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x05), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x05), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x63), (byte) (0x05), (byte) (0x64), (byte) (0x64), (byte) (0x64), (byte) (0x64), (byte) (0x64), (byte) (0x05), (byte) (0x65), (byte) (0x65), (byte) (0x65), (byte) (0x65), (byte) (0x65)};
 		}

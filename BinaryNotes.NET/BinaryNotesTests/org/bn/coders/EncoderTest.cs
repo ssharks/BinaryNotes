@@ -146,6 +146,16 @@ namespace org.bn.coders
 		}
 
         [TestMethod]
+        public virtual void testMixedEnum()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            printEncoded("Mixed Enum test", encoder, coderTestUtils.createMixedEnum());
+            checkEncoded(encoder, coderTestUtils.createMixedEnum(), coderTestUtils.createMixedEnumBytes());
+        }
+
+
+        [TestMethod]
 		public virtual void testSequenceWithEnum()
 		{
             IEncoder encoder = newEncoder();

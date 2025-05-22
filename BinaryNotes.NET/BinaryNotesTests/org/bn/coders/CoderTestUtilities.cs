@@ -46,9 +46,16 @@ namespace org.bn.coders
 			return schema;
 		}
 		public abstract byte[] createEnumBytes();
-		
-		
-		public virtual ITUSequence createITUSeq()
+
+        public virtual MixedEnumType createMixedEnum()
+        {
+            MixedEnumType schema = new MixedEnumType();
+            schema.Value = (MixedEnumType.EnumType.high);
+            return schema;
+        }
+        public abstract byte[] createMixedEnumBytes();
+
+        public virtual ITUSequence createITUSeq()
 		{
 			ITUSequence seq = new ITUSequence();
 			seq.Type1 = "aaaaa";
