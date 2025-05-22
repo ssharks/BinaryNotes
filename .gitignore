@@ -8,6 +8,9 @@
 /BinaryNotes.NET/BinaryNotesTests/bin
 /BinaryNotes.NET/BinaryNotesTests/obj
 /BinaryNotes.NET/TestResults
+/BinaryNotes.NET/BinaryNotesTests/bncompiler/*
 /Dist/target/
 nbactions.xml
 nb-configuration.xml
+/.history/*
+/.vscode/*
