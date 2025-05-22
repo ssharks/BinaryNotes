@@ -36,7 +36,7 @@
 <xsl:for-each select="typeReference">
     <xsl:call-template name="typeDecl"><xsl:with-param name="parentElementName" select="$sequenceOfName"/></xsl:call-template>
 </xsl:for-each>
-[ASN1SequenceOf( Name = "<xsl:value-of select='$sequenceOfName'/>", IsExtensible = "<xsl:value-of select='elementTypeList/isExtensible'/>", IsSetOf = <xsl:choose><xsl:when test="typeReference/isSequenceOf = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>  )]
+[ASN1SequenceOf( Name = "<xsl:value-of select='$sequenceOfName'/>", IsExtensible = <xsl:choose><xsl:when test="elementTypeList/isExtensible = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>, IsSetOf = <xsl:choose><xsl:when test="typeReference/isSequenceOf = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>  )]
 
     </xsl:template>
 </xsl:stylesheet>

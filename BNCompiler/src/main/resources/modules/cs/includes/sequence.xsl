@@ -40,7 +40,7 @@
             <xsl:call-template name="header"/>
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "<xsl:value-of select='$sequenceName'/>", IsExtensible = "<xsl:value-of select='elementTypeList/isExtensible'/>", IsSet = <xsl:choose><xsl:when test="isSequence = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>  )]
+    [ASN1Sequence ( Name = "<xsl:value-of select='$sequenceName'/>", IsExtensible = <xsl:choose><xsl:when test="elementTypeList/isExtensible = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>, IsSet = <xsl:choose><xsl:when test="isSequence = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>  )]
     public class <xsl:value-of select="$sequenceName"/> : IASN1PreparedElement {
         <xsl:call-template name="elements"/>
         <xsl:call-template name="sequenceFunctions"/>

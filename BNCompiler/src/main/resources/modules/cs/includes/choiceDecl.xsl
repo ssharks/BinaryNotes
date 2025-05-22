@@ -31,7 +31,7 @@
                 <xsl:for-each select="typeReference">
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "<xsl:value-of select='$elementName'/>", IsExtensible = "<xsl:value-of select='elementTypeList/isExtensible'/>" )]
+    [ASN1Choice ( Name = "<xsl:value-of select='$elementName'/>", IsExtensible = <xsl:choose><xsl:when test="elementTypeList/isExtensible = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose> )]
     public class <xsl:value-of select='$choiceName'/> : IASN1PreparedElement  {
         <xsl:call-template name="elements"><xsl:with-param name="isChoice">true</xsl:with-param></xsl:call-template>
         <xsl:call-template name="choiceFunctions"/>
