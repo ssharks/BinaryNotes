@@ -310,9 +310,9 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 
 	TestChild3 ::= SEQUENCE {
 		COMPONENTS OF TestTParent,
-		field5	[4] UTF8String,
+		field6	[4] UTF8String,
 		COMPONENTS OF SEQUENCE {
-			field6 [5] INTEGER DEFAULT 0
+			field7 [5] INTEGER DEFAULT 0
 		}
 	}
 
