@@ -207,9 +207,9 @@ namespace org.bn.coders.per
 				* encoded as a non-negative-binary-integer into a 6-bit bit-field.
 				*/
 				stream.writeBit(0);
-				for (int i = 0; i < 6; i++)
+				for (int i = 5; i >= 0; i--)
 				{
-					int bitValue = (val >> 6 - i) & 0x1;
+					int bitValue = (val >> i) & 0x1;
 					stream.writeBit(bitValue);
 				}
 				result = 1;
@@ -403,11 +403,28 @@ namespace org.bn.coders.per
             return resultSize;
         }
 
-        public virtual int encodeSequencePreamble(object obj, PropertyInfo[] fields, System.IO.Stream stream, ElementInfo elementInfo)
-		{
-			int resultBitSize = 0;
-            ElementInfo info = new ElementInfo();
+        public class ASN1SequenceFieldPresence {
+            public List<bool> PreampleVector = new();
+            public List<bool> ExtensionVector = new();
+            public bool IsExtensible = false;
+            public int MaxExtensionLength = 0;
+            public int NumRootElements = 0;
+        }
+
+        public ASN1SequenceFieldPresence estimateFieldPresense(object obj, PropertyInfo[] fields, ElementInfo elementInfo)
+        {
             int fieldIdx = 0;
+            ElementInfo info = new ElementInfo();
+            ASN1SequenceFieldPresence presence = new();
+
+            var seqMeta = (ASN1SequenceMetadata)(((IASN1PreparedElement)(elementInfo.PreparedInstance)).PreparedData.TypeMetadata);
+            presence.NumRootElements = fields.Length;
+            if ((seqMeta != null) && (seqMeta.IsExtensible))
+            {
+                presence.NumRootElements = seqMeta.NumRootElements;
+                presence.IsExtensible = seqMeta.IsExtensible;
+            }
+
             foreach (PropertyInfo field in fields)
             {
                 if (elementInfo.hasPreparedInfo())
@@ -415,39 +432,113 @@ namespace org.bn.coders.per
                     info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
                 }
 
-                if(CoderUtils.isOptionalField(field,info))
-				{
-					object invokeObjResult = invokeGetterMethodForField(field, obj, info);
+                bool isExtendeField = ((presence.NumRootElements >= 0) && (fieldIdx >= presence.NumRootElements));
+
+                if (CoderUtils.isOptionalField(field, info) || isExtendeField)
+                {
+                    bool fieldResult = false;
+                    object invokeObjResult = invokeGetterMethodForField(field, obj, info);
                     if (invokeObjResult == null)
                     {
-                        ((BitArrayOutputStream)stream).writeBit(false);
+                        fieldResult = false;
                     }
                     else if (CoderUtils.isDefaultField(field, info))
                     {
                         object newSequenceInstance = Activator.CreateInstance(obj.GetType());
                         CoderUtils.initDefaultValues(newSequenceInstance);
                         object defaultFieldValue = invokeGetterMethodForField(field, newSequenceInstance, info);
-                        ((BitArrayOutputStream)stream).writeBit(!CoderUtils.AreEqual(defaultFieldValue, invokeObjResult));
+                        fieldResult = !CoderUtils.AreEqual(defaultFieldValue, invokeObjResult);
                     }
                     else
                     {
-                        ((BitArrayOutputStream)stream).writeBit(true);
+                        fieldResult = true;
                     }
-					resultBitSize += 1;
-				}
+
+                    // store the results  
+                    if (isExtendeField)
+                    {
+                        presence.ExtensionVector.Add(fieldResult);
+                        if (fieldResult)
+                        {
+                            presence.MaxExtensionLength = (fieldIdx - presence.NumRootElements + 1);
+                        }
+                    }
+                    else
+                    {
+                        presence.PreampleVector.Add(fieldResult);
+                    }
+                }
                 fieldIdx++;
-			}
+            }
+            return presence;
+        }
+
+        public virtual int encodeSequencePreamble(ASN1SequenceFieldPresence presence, System.IO.Stream stream)
+		{
+			int resultBitSize = 0;
+
+            foreach (var bit in presence.PreampleVector)
+            {
+                ((BitArrayOutputStream)stream).writeBit(bit);
+                resultBitSize += 1;
+            }
 			doAlign(stream);
 			return (resultBitSize / 8) + (resultBitSize % 8 > 0?1:0);
 		}
+
+        public override int encodeSequenceLimited(object obj, System.IO.Stream stream, int minIdx, int maxIdx, ElementInfo elementInfo, bool extended)
+        {
+            int resultSize = 0;
+            PropertyInfo[] fields = elementInfo.getProperties(obj.GetType());
+            int fieldIdx = 0;
+            foreach (PropertyInfo field in fields)
+            {
+                if ((fieldIdx >= minIdx) && (fieldIdx <= maxIdx))
+                {
+                    if (extended) {
+                        BitArrayOutputStream extendedStream = new();
+                        resultSize += encodeSequenceField(obj, fieldIdx, field, extendedStream, elementInfo);
+                        if (extendedStream.Length > 0)
+                        {
+                            resultSize += encodeLengthDeterminant((int)extendedStream.Length, (BitArrayOutputStream)stream);
+                            stream.Write(extendedStream.ToArray(), 0, (int)extendedStream.Length);
+                        }
+                    } else
+                    {
+                        resultSize += encodeSequenceField(obj, fieldIdx, field, stream, elementInfo);
+                    }
+
+                }
+                fieldIdx++;
+
+            }
+            return resultSize;
+        }
 
         public override int encodeSequence(object obj, System.IO.Stream stream, ElementInfo elementInfo)
 		{
 			int resultSize = 0;
             if(!CoderUtils.isSequenceSet(elementInfo))
             {
-                resultSize += encodeSequencePreamble(obj, elementInfo.getProperties(obj.GetType()), stream, elementInfo);
-                resultSize += base.encodeSequence(obj, stream, elementInfo);
+                var presence = estimateFieldPresense(obj, elementInfo.getProperties(obj.GetType()), elementInfo);
+                if (presence.IsExtensible)
+                {
+                    ((BitArrayOutputStream)stream).writeBit((presence.MaxExtensionLength > 0));
+                }
+
+                resultSize += encodeSequencePreamble(presence, stream);
+                resultSize += encodeSequenceLimited(obj, stream, 0, presence.NumRootElements-1, elementInfo, false);
+
+                if ((presence.IsExtensible) && (presence.MaxExtensionLength > 0))
+                {
+                    resultSize += encodeNormallySmallNumber(presence.MaxExtensionLength-1, (BitArrayOutputStream)stream);
+                    // write the extension preamble
+                    for (int extIdx=0; extIdx<presence.MaxExtensionLength; extIdx++)
+                    {
+                        ((BitArrayOutputStream)stream).writeBit(presence.ExtensionVector[extIdx]);
+                    }
+                    resultSize += encodeSequenceLimited(obj, stream, presence.NumRootElements, presence.MaxExtensionLength + presence.NumRootElements-1, elementInfo, true);
+                }
             }
             else
             {
@@ -651,8 +742,10 @@ namespace org.bn.coders.per
                 fields = new PropertyInfo[fieldOrder.Count];
                 fieldOrder.Values.CopyTo(fields, 0);
             }
-            
-            resultSize += encodeSequencePreamble(obj, fields, stream, elementInfo);
+
+            ASN1SequenceFieldPresence presence = estimateFieldPresense(obj, fields, elementInfo);
+
+            resultSize += encodeSequencePreamble(presence, stream);
             int fieldIdx = 0;
             foreach (PropertyInfo field in fields)
             {

@@ -326,5 +326,23 @@ namespace org.bn.coders.per
         {
             return new byte[] { 0x80, 0x19 };
         }
+
+        public override byte[] createTestExtendedSeq1Bytes()
+        {
+            // 1 1 8 1 7 2 8 6 = 34 bits
+            return new byte[] { 0x91, 0x60, 0x50, 0x30, 0x01, 0x68, 0x00 };
+        }
+
+        public override byte[] createTestExtendedSeq2Bytes()
+        {
+            //SimpleInt = 0x45,
+            //SimpleBool = true,
+            //OptBool = true,
+            //ExtendedInt1 = 0x11,
+            //ExtendedInt2 = 0x2D
+
+            // 1 1 8 1 1 7 2 8 6 8 6 = 49 bits
+            return new byte[] { 0xd1, 0x70, 0x38, 0x0a, 0x20, 0x18, 0x00, 0xb4, 0x00 };
+        }
     }
 }

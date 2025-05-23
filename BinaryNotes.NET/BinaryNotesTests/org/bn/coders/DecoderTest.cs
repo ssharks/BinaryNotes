@@ -534,5 +534,42 @@ namespace org.bn.coders
             Assert.AreEqual(extendedEnumSeq.Prot.Value, coderTestUtils.createTestExtendedEnum2().Prot.Value);
             Assert.AreEqual(extendedEnumSeq.Tail, coderTestUtils.createTestExtendedEnum2().Tail);
         }
+
+        [TestMethod]
+        public void testEncodeExtendedSeq1()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder) { 
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedSeq1Bytes());
+                var got = decoder.decode<DataSeqExtensible>(stream);
+                var exp = coderTestUtils.createTestExtendedSeq1();
+                Assert.AreEqual(got.SimpleInt, exp.SimpleInt);
+                Assert.AreEqual(got.SimpleBool, exp.SimpleBool);
+                Assert.AreEqual(got.OptBool, exp.OptBool);
+                Assert.AreEqual(got.ExtendedInt1, exp.ExtendedInt1);
+                Assert.AreEqual(got.ExtendedInt2, exp.ExtendedInt2);
+            }
+        }
+
+        [TestMethod]
+        public void testEncodeExtendedSeq2()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedSeq2Bytes());
+                var got = decoder.decode<DataSeqExtensible>(stream);
+                var exp = coderTestUtils.createTestExtendedSeq2();
+                Assert.AreEqual(got.SimpleInt, exp.SimpleInt);
+                Assert.AreEqual(got.SimpleBool, exp.SimpleBool);
+                Assert.AreEqual(got.OptBool, exp.OptBool);
+                Assert.AreEqual(got.ExtendedInt1, exp.ExtendedInt1);
+                Assert.AreEqual(got.ExtendedInt2, exp.ExtendedInt2);
+            }
+        }
     }
 }

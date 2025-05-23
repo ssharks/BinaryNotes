@@ -471,5 +471,29 @@ namespace org.bn.coders
             printEncoded("TestExtendedEnum test", encoder, coderTestUtils.createTestExtendedEnum2());
             checkEncoded(encoder, coderTestUtils.createTestExtendedEnum2(), coderTestUtils.createTestExtendedEnum2Bytes());
         }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedSeq1()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if ((encoder is org.bn.coders.per.PERUnalignedEncoder) || (encoder is org.bn.coders.per.PERAlignedEncoder))
+            {
+                printEncoded("TestExtendedSeq test1", encoder, coderTestUtils.createTestExtendedSeq1());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedSeq1(), coderTestUtils.createTestExtendedSeq1Bytes());
+            }
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedSeq2()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if ((encoder is org.bn.coders.per.PERUnalignedEncoder) || (encoder is org.bn.coders.per.PERAlignedEncoder))
+            {
+                printEncoded("TestExtendedSeq test2", encoder, coderTestUtils.createTestExtendedSeq2());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedSeq2(), coderTestUtils.createTestExtendedSeq2Bytes());
+            }
+        }
     }
 }

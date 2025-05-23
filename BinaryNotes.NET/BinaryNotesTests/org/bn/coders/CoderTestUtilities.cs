@@ -652,5 +652,33 @@ namespace org.bn.coders
         }
 
         public abstract byte[] createTestExtendedEnum2Bytes();
+
+        public DataSeqExtensible createTestExtendedSeq1()
+        {
+            DataSeqExtensible seq = new()
+            {
+                SimpleInt = 0x45,
+                SimpleBool = true,
+                ExtendedInt2 = 0x2D
+            };
+            return seq;
+        }
+
+        public abstract byte[] createTestExtendedSeq1Bytes();
+
+        public DataSeqExtensible createTestExtendedSeq2()
+        {
+            DataSeqExtensible seq = new()
+            {
+                SimpleInt = 0x45,
+                SimpleBool = true,
+                OptBool = true,
+                ExtendedInt1 = 0x11,
+                ExtendedInt2 = 0x2D
+            };
+            return seq;
+        }
+
+        public abstract byte[] createTestExtendedSeq2Bytes();
 	}
 }

@@ -25,10 +25,14 @@ namespace org.bn.metadata
     public class ASN1SequenceMetadata: ASN1TypeMetadata
     {
         private bool isSet;
+        bool isExtensible = false;
+        int numRootElements = 0;
 
         public ASN1SequenceMetadata(ASN1Sequence annotation)
             : this(annotation.Name, annotation.IsSet)
         {
+            isExtensible = annotation.IsExtensible;
+            numRootElements = annotation.NumRootElements;
         }
 
         public ASN1SequenceMetadata(String  name,
@@ -40,6 +44,16 @@ namespace org.bn.metadata
         public bool IsSet
         {
             get { return isSet; }
+        }
+
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
+        }
+
+        public int NumRootElements
+        {
+            get { return numRootElements; }
         }
 
         public override int encode(IASN1TypesEncoder encoder, object obj, Stream stream, ElementInfo elementInfo)

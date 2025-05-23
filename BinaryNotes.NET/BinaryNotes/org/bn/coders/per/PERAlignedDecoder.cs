@@ -328,34 +328,60 @@ namespace org.bn.coders.per
 			else
 				return new DecodedObject<object>(choice);
 		}
-		
-		
-		protected virtual int getSequencePreambleBitLen(Type objectClass, ElementInfo elementInfo)
+
+        public class ASN1SequenceFieldParsingInfo
+        {
+            public int PreambleLen = 0;
+            public bool IsExtensible = false;            
+            public int NumRootElements = 0;
+        }
+
+        protected virtual ASN1SequenceFieldParsingInfo getSequencePreambleBitLen(Type objectClass, ElementInfo elementInfo)
 		{
-			int preambleLen = 0;
             ElementInfo info = new ElementInfo();
             int fieldIdx = 0;
-            foreach (PropertyInfo field in elementInfo.getProperties(objectClass)) 
+
+			var parsingInfo = new ASN1SequenceFieldParsingInfo();
+
+            var fields = elementInfo.getProperties(objectClass);
+
+            var seqMeta = (ASN1SequenceMetadata)(((IASN1PreparedElement)(elementInfo.PreparedInstance)).PreparedData.TypeMetadata);
+            parsingInfo.NumRootElements = fields.Length;
+            if ((seqMeta != null) && (seqMeta.IsExtensible))
+            {
+                parsingInfo.NumRootElements = seqMeta.NumRootElements;
+                parsingInfo.IsExtensible = seqMeta.IsExtensible;
+            }
+
+            foreach (PropertyInfo field in fields) 
             {
                 if (elementInfo.hasPreparedInfo())
                     info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
 
-				if (CoderUtils.isOptionalField(field,info))
+                bool isExtendeField = ((parsingInfo.NumRootElements >= 0) && (fieldIdx >= parsingInfo.NumRootElements));
+
+                if ((!isExtendeField) && CoderUtils.isOptionalField(field,info))
 				{
-					preambleLen++;
+                    parsingInfo.PreambleLen++;
 				}
                 fieldIdx++;
 			}
 			
-			return preambleLen;
+			return parsingInfo;
 		}
 
         public override DecodedObject<object> decodeSequence(DecodedObject<object> decodedTag, System.Type objectClass, ElementInfo elementInfo, System.IO.Stream stream)
 		{
             BitArrayInputStream bitStream = (BitArrayInputStream)stream;
-            int preambleLen = getSequencePreambleBitLen(objectClass, elementInfo);
-            int preamble = bitStream.readBits(preambleLen);
-            int preambleCurrentBit = 32 - preambleLen;
+            var parsingInfo = getSequencePreambleBitLen(objectClass, elementInfo);
+			bool isExtended = false;
+			if (parsingInfo.IsExtensible)
+			{
+                isExtended = bitStream.readBit() == 1;
+            }
+
+            int preamble = bitStream.readBits(parsingInfo.PreambleLen);
+            int preambleCurrentBit = 32 - parsingInfo.PreambleLen;
             skipAlignedBits(stream);
             object sequence = createInstanceForElement(objectClass, elementInfo);
             CoderUtils.initDefaultValues(sequence);
@@ -393,7 +419,50 @@ namespace org.bn.coders.per
                     decodeSequenceField(null, sequence, idx, field, stream, elementInfo, true);
                 }
                 idx++;
+
+                // stop when the decoder reaches the exended part of the sequence
+                if (parsingInfo.IsExtensible && (idx >= parsingInfo.NumRootElements))
+				{
+					break;
+				}
             }
+
+			if (parsingInfo.IsExtensible && isExtended)
+			{
+				// read the extension length
+				var extensionLength = decodeNormallySmallNumber(bitStream) + 1;
+
+                // read the extension bitmask
+                int extBitMask = bitStream.readBits(extensionLength);
+
+				for (int extIdx = 0; extIdx < extensionLength; extIdx++)
+                {
+                    int bitMask = 0x1 << (extensionLength - extIdx - 1);
+                    if ((extBitMask & bitMask) != 0)
+                    {
+                        // decoded length field
+                        int fieldLength = decodeLengthDeterminant(bitStream);
+                        // read the corresponding data
+						var sequenceBuffer = new byte[fieldLength];
+                        bitStream.ReadExactly(sequenceBuffer, 0, fieldLength);
+
+						int fieldIdx = extIdx + parsingInfo.NumRootElements;
+                        // try to fined the corresponding field, if so decode it
+                        if (fieldIdx < fields.Length)
+                        {
+                            PropertyInfo field = fields[fieldIdx];
+                            if (elementInfo.hasPreparedInfo())
+                            {
+                                info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
+                            }
+
+                            BitArrayInputStream sequenceStream = new BitArrayInputStream(new MemoryStream(sequenceBuffer));
+                            decodeSequenceField(null, sequence, fieldIdx, field, sequenceStream, elementInfo, true);
+                        }
+                    }
+                }
+            }
+
             return new DecodedObject<object>(sequence);
 /*            }
             else

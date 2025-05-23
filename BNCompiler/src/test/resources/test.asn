@@ -412,4 +412,26 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 		tail      INTEGER (0..255)
 	}
 
+	DataSeqExtensible   ::= SEQUENCE {
+		simpleInt		[0] INTEGER (0 .. 255),
+		simpleBool  	[1] BOOLEAN,
+		optBool			[2] BOOLEAN OPTIONAL,
+		...,
+		extendedInt1	[3] INTEGER (0..63),
+		extendedInt2	[4] INTEGER (0..100000)
+	}
+
+	ChoiceType ::= CHOICE {
+		field10	[0] INTEGER,
+		field20	[1] OCTET STRING,
+		...,
+		field30	[2] UTF8String,
+		field40	[3] INTEGER
+	}
+
+	ExtendedChoiceSeq ::= SEQUENCE {
+		choi      ChoiceType,
+		tail      INTEGER (0..255)
+	}
+
 END

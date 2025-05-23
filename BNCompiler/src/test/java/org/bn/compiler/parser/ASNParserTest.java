@@ -59,7 +59,7 @@ public class ASNParserTest {
         ASN1Model model = createFromStream();
 
         assertEquals("TEST_ASN", model.module.moduleIdentifier.name);
-        assertEquals(21, model.module.asnTypes.sequenceSets.size());
+        assertEquals(23, model.module.asnTypes.sequenceSets.size());
         assertEquals(4, model.module.asnTypes.enums.size());
         assertEquals(8, model.module.asnTypes.characterStrings.size());
         assertEquals(1, model.module.asnTypes.octetStrings.size());

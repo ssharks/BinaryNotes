@@ -861,9 +861,10 @@ typeorvalue returns [Object obj]
 
 elementType_list returns [AsnElementTypeList elelist]
 {elelist = new AsnElementTypeList(); AsnElementType eletyp; }
-	:	(eletyp = elementType {elelist.elements.add(eletyp); }
-	    (COMMA (eletyp = elementType {elelist.elements.add(eletyp);}))*)
-		(COMMA ELLIPSIS {elelist.isExtensible=true;})?
+	:	(eletyp = elementType {elelist.addElement(eletyp, false); }
+	    (COMMA (eletyp = elementType {elelist.addElement(eletyp, false);}))*
+		(COMMA ELLIPSIS {elelist.isExtensible=true;}
+		(COMMA (eletyp = elementType {eletyp.isOptional=true; elelist.addElement(eletyp, true);}))* )? )
 	;
 
 elementType	returns [AsnElementType eletyp]

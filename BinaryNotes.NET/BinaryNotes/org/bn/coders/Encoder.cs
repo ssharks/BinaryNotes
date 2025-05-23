@@ -251,16 +251,26 @@ namespace org.bn.coders
                 return (bool)method.Invoke(obj, null);
             }
 		}
-		
-		public virtual int encodeSequence(object obj, System.IO.Stream stream, ElementInfo elementInfo)
+
+        public virtual int encodeSequence(object obj, System.IO.Stream stream, ElementInfo elementInfo)
+        {
+            return encodeSequenceLimited(obj, stream, 0, elementInfo.getProperties(obj.GetType()).Length - 1, elementInfo, false);
+        }
+
+        public virtual int encodeSequenceLimited(object obj, System.IO.Stream stream, int minIdx, int maxIdx, ElementInfo elementInfo, bool extended)
 		{
 			int resultSize = 0;
             PropertyInfo[] fields = elementInfo.getProperties(obj.GetType());
             int fieldIdx = 0;
             foreach (PropertyInfo field in fields)
 			{
-				resultSize += encodeSequenceField(obj, fieldIdx++, field, stream, elementInfo);
-			}
+                if ((fieldIdx >= minIdx) && (fieldIdx <= maxIdx))
+                {
+                    resultSize += encodeSequenceField(obj, fieldIdx, field, stream, elementInfo);
+                }
+                fieldIdx++;
+
+            }
 			return resultSize;
 		}
 
@@ -356,7 +366,7 @@ namespace org.bn.coders
 			PropertyInfo field = obj.GetType().GetProperty("Value");
 			object result = invokeGetterMethodForField(field, obj, null);
             Type enumClass = null;
-			
+
 			foreach(MemberInfo member in obj.GetType().GetMembers())
 			{
 				if (member is System.Type)
@@ -377,8 +387,8 @@ namespace org.bn.coders
 					    }
 					    break;
                     }
-				}
-			}
+                }
+            }
 			resultSize += encodeEnumItem(result, enumClass, stream, elementInfo);
 			return resultSize;
 		}
