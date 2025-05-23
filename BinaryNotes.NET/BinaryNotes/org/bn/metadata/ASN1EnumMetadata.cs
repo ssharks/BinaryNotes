@@ -25,6 +25,9 @@ namespace org.bn.metadata
 {
     public class ASN1EnumMetadata : ASN1TypeMetadata
     {
+        bool isExtensible = false;
+        int numRootElements = 0;
+
         public ASN1EnumMetadata(String name): base(name)
         {
         }
@@ -32,6 +35,18 @@ namespace org.bn.metadata
         public ASN1EnumMetadata(ASN1Enum annotation)
             : this(annotation.Name) 
         {
+            isExtensible = annotation.IsExtensible;
+            numRootElements = annotation.NumRootElements;
+        }
+
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
+        }
+
+        public int NumRootElements
+        {
+            get { return numRootElements; }
         }
 
         public override int encode(IASN1TypesEncoder encoder, object obj, Stream stream, ElementInfo elementInfo) 

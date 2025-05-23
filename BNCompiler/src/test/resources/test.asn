@@ -400,4 +400,16 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 	Set7 ::= [APPLICATION 90] IMPLICIT SET {
 		set6 Set6
 	}
+
+	ProtectedZoneType ::= ENUMERATED {
+		permanentCenDsrcTolling(0),
+		...,
+		temporaryCenDsrcTolling(1)
+	}
+
+	ExtendedEnumSeq ::= SEQUENCE {
+		prot      ProtectedZoneType,
+		tail      INTEGER (0..255)
+	}
+
 END

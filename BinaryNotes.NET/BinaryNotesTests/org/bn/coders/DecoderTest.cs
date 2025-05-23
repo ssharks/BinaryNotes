@@ -510,5 +510,29 @@ namespace org.bn.coders
             stream = new System.IO.MemoryStream(coderTestUtils.createSet7Bytes());
             Set7 set7 = decoder.decode<Set7>(stream);
         }
+
+        [TestMethod]
+        public void testEncodeExtendedEnum1()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+
+            System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedEnum1Bytes());
+            ExtendedEnumSeq extendedEnumSeq = decoder.decode<ExtendedEnumSeq>(stream);
+            Assert.AreEqual(extendedEnumSeq.Prot.Value, coderTestUtils.createTestExtendedEnum1().Prot.Value);
+            Assert.AreEqual(extendedEnumSeq.Tail, coderTestUtils.createTestExtendedEnum1().Tail);
+        }
+
+        [TestMethod]
+        public void testEncodeExtendedEnum2()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+
+            System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedEnum2Bytes());
+            ExtendedEnumSeq extendedEnumSeq = decoder.decode<ExtendedEnumSeq>(stream);
+            Assert.AreEqual(extendedEnumSeq.Prot.Value, coderTestUtils.createTestExtendedEnum2().Prot.Value);
+            Assert.AreEqual(extendedEnumSeq.Tail, coderTestUtils.createTestExtendedEnum2().Tail);
+        }
     }
 }

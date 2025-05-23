@@ -888,15 +888,17 @@ Object obj; AsnTag tg; String s;}
 
 namedNumberExtensible_list returns [AsnNamedNumberList nnlist]
 {nnlist = new AsnNamedNumberList(true);AsnNamedNumber nnum ; }	
-	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum); })
-	   (COMMA ((nnum = namedNumber  {nnlist.addNamedNumber(nnum); }) | (ELLIPSIS {nnlist.isExtensible=true;})  ) )* 
+	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum, false); })   // first element
+	   (COMMA (nnum = namedNumber  {nnlist.addNamedNumber(nnum, false); }))* // more elements
+	   ((COMMA (ELLIPSIS {nnlist.isExtensible=true;}) )					     // extension marker
+	   (COMMA (nnum = namedNumber  {nnlist.addNamedNumber(nnum, true); }))*)?  // extended elements
 	   R_BRACE )
 	;
 
 namedNumber_list returns [AsnNamedNumberList nnlist]
 {nnlist = new AsnNamedNumberList();AsnNamedNumber nnum ; }	
-	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum); })
-	   (COMMA (nnum = namedNumber  {nnlist.addNamedNumber(nnum); }) )*  R_BRACE )
+	: (	L_BRACE (nnum= namedNumber {nnlist.addNamedNumber(nnum, false); })
+	   (COMMA (nnum = namedNumber  {nnlist.addNamedNumber(nnum, false); }) )*  R_BRACE )
 	;
 
 namedNumber	returns [AsnNamedNumber nnum]

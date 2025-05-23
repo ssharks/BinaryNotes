@@ -416,7 +416,26 @@ namespace org.bn.coders.per
             if (max <= 0)
                 throw new Exception("Unable to present any enum item!");
 
-			int enumItemIdx = (int)decodeConstraintNumber(min, max - 1, (BitArrayInputStream) stream);
+            var enumMeta = (ASN1EnumMetadata)(((IASN1PreparedElement)(elementInfo.PreparedInstance)).PreparedData.TypeMetadata);
+			int enumItemIdx;
+			if (enumMeta.IsExtensible)
+			{
+                // read the extension bit
+                int isExtended = ((BitArrayInputStream)stream).readBit();
+				if (isExtended == 0)
+				{
+					// not extend, read the remainder as a constraint number
+                    enumItemIdx = (int)decodeConstraintNumber(min, enumMeta.NumRootElements-1, (BitArrayInputStream)stream);
+                } else
+				{
+                    // extend, read the remainder as a normal small number
+                    enumItemIdx = (int)decodeNormallySmallNumber((BitArrayInputStream)stream) + enumMeta.NumRootElements;
+                }
+            }
+			else
+			{
+				enumItemIdx = (int)decodeConstraintNumber(min, max - 1, (BitArrayInputStream)stream);
+			}
 			DecodedObject<object> result = new DecodedObject<object>();
 			int idx = 0;
             foreach (FieldInfo enumItem in enumClass.GetFields())

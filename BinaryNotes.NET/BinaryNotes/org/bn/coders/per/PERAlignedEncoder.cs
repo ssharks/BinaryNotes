@@ -199,7 +199,7 @@ namespace org.bn.coders.per
 		protected virtual int encodeNormallySmallNumber(int val, BitArrayOutputStream stream)
 		{
 			int result = 0;
-			if (val > 0 && val < 64)
+			if (val >= 0 && val < 64)
 			{
 				/* 10.6.1 If the non-negative whole number, "n", is less than 
 				* or equal to 63, then a single-bit bit-field shall be appended
@@ -513,25 +513,48 @@ namespace org.bn.coders.per
 		}
 
         public override int encodeEnumItem(object enumConstant, System.Type enumClass, System.IO.Stream stream, ElementInfo elementInfo)
-		{
-			ASN1EnumItem enumObj = elementInfo.getAttribute<ASN1EnumItem>();
-			//int min = 0, max = enumClass.GetFields().Length, val = 0;
+        {
+            ASN1EnumItem enumObj = elementInfo.getAttribute<ASN1EnumItem>();
+            int result = 0;
             int min = 0, max = 0, val = 0;
+
             foreach (FieldInfo enumItem in enumClass.GetFields())
-		    {                
+            {
                 if (CoderUtils.isAttributePresent<ASN1EnumItem>(enumItem))
-			    {                    
-					ASN1EnumItem enumItemObj = CoderUtils.getAttribute<ASN1EnumItem>(enumItem);
-					if (enumItemObj.Tag == enumObj.Tag)
+                {
+                    ASN1EnumItem enumItemObj = CoderUtils.getAttribute<ASN1EnumItem>(enumItem);
+                    if (enumItemObj.Tag == enumObj.Tag)
                         val = max;
-                    max++; //val++;
-				}
-			}
-            if (max > 0)
-			    return encodeConstraintNumber(val, min, max, (BitArrayOutputStream) stream);
-            else
+                    max++;
+                }
+            }
+
+            if (max < 0)
+            {
                 throw new Exception("Unable to present any enum item!");
-		}
+            }
+
+            var enumMeta = (ASN1EnumMetadata)(((IASN1PreparedElement)(elementInfo.PreparedInstance)).PreparedData.TypeMetadata);
+
+            if (enumMeta.IsExtensible)
+            {
+                result = 1;
+                if (val >= enumMeta.NumRootElements)
+                {
+                    ((BitArrayOutputStream)stream).writeBit(true);
+                    return result + encodeNormallySmallNumber(val - enumMeta.NumRootElements, (BitArrayOutputStream)stream);
+                }
+                else
+                {
+                    ((BitArrayOutputStream)stream).writeBit(false);
+                    return result + encodeConstraintNumber(val, min, enumMeta.NumRootElements-1, (BitArrayOutputStream)stream);
+                }
+            }
+            else
+            {
+                return encodeConstraintNumber(val, min, max, (BitArrayOutputStream)stream);
+            }
+        }
 
         public override int encodeBoolean(object obj, System.IO.Stream stream, ElementInfo elementInfo)
 		{

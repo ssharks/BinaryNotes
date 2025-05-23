@@ -36,5 +36,13 @@ namespace org.bn.attributes
             get { return isExtensible; }
             set { isExtensible = value; }
         }
+
+        private int numRootElements;
+
+        public int NumRootElements
+        {
+            get { return numRootElements; }
+            set { numRootElements = value; }
+        }
     }
 }

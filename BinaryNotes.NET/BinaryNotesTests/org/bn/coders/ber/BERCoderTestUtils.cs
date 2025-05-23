@@ -339,5 +339,14 @@ namespace org.bn.coders.ber
             return new byte[] { 0x5F,0x81,0x00,0x01,0x0A };
         }
 
-	}
+        public override byte[] createTestExtendedEnum1Bytes()
+        {
+            return new byte[] { 0x30, 0x06, 0x0a, 0x01, 0x00, 0x02, 0x01, 0x19 };
+        }
+
+        public override byte[] createTestExtendedEnum2Bytes()
+        {
+            return new byte[] { 0x30, 0x06, 0x0a, 0x01, 0x01, 0x02, 0x01, 0x19 };
+        }
+    }
 }

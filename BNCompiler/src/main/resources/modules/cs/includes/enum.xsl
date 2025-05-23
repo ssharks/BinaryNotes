@@ -37,7 +37,7 @@
             <xsl:call-template name="header"/>
 
     [ASN1PreparedElement]
-    [ASN1Enum ( Name = "<xsl:value-of select='$enumName'/>", IsExtensible = <xsl:choose><xsl:when test="elementTypeList/isExtensible = 'false'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>)]
+    [ASN1Enum ( Name = "<xsl:value-of select='$enumName'/>", IsExtensible = <xsl:choose><xsl:when test="namedNumberList/isExtensible = 'true'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>, NumRootElements = <xsl:value-of select='namedNumberList/numRootElements'/>)]
     public class <xsl:value-of select='$enumName'/> : IASN1PreparedElement {        
         public enum EnumType {
             <xsl:call-template name="enumItems"/>

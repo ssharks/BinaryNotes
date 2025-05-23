@@ -631,5 +631,26 @@ namespace org.bn.coders
 
         public abstract byte[] createTest128TagBytes();
 
+        public ExtendedEnumSeq createTestExtendedEnum1()
+        {
+            ExtendedEnumSeq seq = new ExtendedEnumSeq();
+            seq.Prot = new();
+            seq.Prot.Value = ProtectedZoneType.EnumType.permanentCenDsrcTolling;
+            seq.Tail = 0x19;
+            return seq;
+        }
+
+        public abstract byte[] createTestExtendedEnum1Bytes();
+
+        public ExtendedEnumSeq createTestExtendedEnum2()
+        {
+            ExtendedEnumSeq seq = new ExtendedEnumSeq();
+            seq.Prot = new();
+            seq.Prot.Value = ProtectedZoneType.EnumType.temporaryCenDsrcTolling;
+            seq.Tail = 0x19;
+            return seq;
+        }
+
+        public abstract byte[] createTestExtendedEnum2Bytes();
 	}
 }

@@ -293,6 +293,14 @@ namespace org.bn.coders
             checkEncoded(encoder, coderTestUtils.createTestBitStrSmall(), coderTestUtils.createTestBitStrSmallBytes());
         }
 
+        //public virtual void testEncodeBitStringNamed()
+        //{
+        //    IEncoder encoder = newEncoder();
+        //    Assert.IsNotNull(encoder);
+        //    printEncoded("TestBitStrNamed test", encoder, coderTestUtils.createTestBitStrNamed());
+        //    checkEncoded(encoder, coderTestUtils.createTestBitStrNamed(), coderTestUtils.createTestBitStrNamedBytes());
+        //}
+
         [TestMethod]
         public virtual void testEncodeUnicodeString() {
             IEncoder encoder = newEncoder();
@@ -444,6 +452,24 @@ namespace org.bn.coders
             Set7 set7 = coderTestUtils.createSet7();
             printEncoded("Set7", encoder, set7);
             checkEncoded(encoder, coderTestUtils.createSet7(), coderTestUtils.createSet7Bytes());
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedEnum1()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            printEncoded("TestExtendedEnum test", encoder, coderTestUtils.createTestExtendedEnum1());
+            checkEncoded(encoder, coderTestUtils.createTestExtendedEnum1(), coderTestUtils.createTestExtendedEnum1Bytes());
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedEnum2()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            printEncoded("TestExtendedEnum test", encoder, coderTestUtils.createTestExtendedEnum2());
+            checkEncoded(encoder, coderTestUtils.createTestExtendedEnum2(), coderTestUtils.createTestExtendedEnum2Bytes());
         }
     }
 }
