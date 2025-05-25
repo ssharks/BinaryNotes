@@ -863,8 +863,12 @@ elementType_list returns [AsnElementTypeList elelist]
 {elelist = new AsnElementTypeList(); AsnElementType eletyp; }
 	:	(eletyp = elementType {elelist.addElement(eletyp, false); }
 	    (COMMA (eletyp = elementType {elelist.addElement(eletyp, false);}))*
-		(COMMA ELLIPSIS {elelist.isExtensible=true;}
-		(COMMA (eletyp = elementType {eletyp.isOptional=true; elelist.addElement(eletyp, true);}))* )? )
+		( 
+			(COMMA ELLIPSIS {elelist.isExtensible=true;}
+			(COMMA (eletyp = elementType {elelist.addElement(eletyp, true);}))* )?
+			(COMMA ELLIPSIS {elelist.isExtensible=true;} 
+			(COMMA (eletyp = elementType {elelist.addElement(eletyp, false);}))*)? 
+	 	) )
 	;
 
 elementType	returns [AsnElementType eletyp]

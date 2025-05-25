@@ -32,6 +32,11 @@ namespace org.bn.metadata
             get { return isOptional; }
         }
 
+        private bool isExtended = true;
+        public bool IsExtended
+        {
+            get { return isExtended; }
+        }
 
         private bool hasTag = false;
 
@@ -68,6 +73,7 @@ namespace org.bn.metadata
             this(
                 annotation.Name,
                 annotation.IsOptional,
+                annotation.IsExtended,
                 annotation.HasTag,
                 annotation.IsImplicitTag,
                 annotation.TagClass,
@@ -79,6 +85,7 @@ namespace org.bn.metadata
 
         public ASN1ElementMetadata(String name,
                                    bool isOptional,
+                                   bool isExtended,
                                    bool hasTag,
                                    bool isImplicitTag,
                                    int tagClass,
@@ -87,6 +94,7 @@ namespace org.bn.metadata
             : base(name)
         {
             this.isOptional = isOptional;
+            this.isExtended = isExtended;
             this.hasTag = hasTag;
             this.isImplicitTag = isImplicitTag;
             this.tagClass = tagClass;

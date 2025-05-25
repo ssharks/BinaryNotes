@@ -254,22 +254,18 @@ namespace org.bn.coders
 
         public virtual int encodeSequence(object obj, System.IO.Stream stream, ElementInfo elementInfo)
         {
-            return encodeSequenceLimited(obj, stream, 0, elementInfo.getProperties(obj.GetType()).Length - 1, elementInfo, false);
+            return encodeSequenceLimited(obj, stream, elementInfo, false);
         }
 
-        public virtual int encodeSequenceLimited(object obj, System.IO.Stream stream, int minIdx, int maxIdx, ElementInfo elementInfo, bool extended)
+        public virtual int encodeSequenceLimited(object obj, System.IO.Stream stream, ElementInfo elementInfo, bool extended)
 		{
 			int resultSize = 0;
             PropertyInfo[] fields = elementInfo.getProperties(obj.GetType());
             int fieldIdx = 0;
             foreach (PropertyInfo field in fields)
 			{
-                if ((fieldIdx >= minIdx) && (fieldIdx <= maxIdx))
-                {
-                    resultSize += encodeSequenceField(obj, fieldIdx, field, stream, elementInfo);
-                }
+                resultSize += encodeSequenceField(obj, fieldIdx, field, stream, elementInfo);
                 fieldIdx++;
-
             }
 			return resultSize;
 		}

@@ -37,6 +37,15 @@ namespace org.bn.attributes
             get { return isOptional; }
             set { isOptional = value; }
         }
+
+        private bool isExtended = false;
+
+        public bool IsExtended
+        {
+            get { return isExtended; }
+            set { isExtended = value; }
+        }
+
         bool hasTag = false;
 
         public bool HasTag

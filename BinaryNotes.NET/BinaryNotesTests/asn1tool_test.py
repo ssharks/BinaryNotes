@@ -23,9 +23,22 @@ DataSeqExtensible   ::= SEQUENCE {
 		simpleBool  	[1] BOOLEAN,
 		optBool			[2] BOOLEAN OPTIONAL,
 		...,
-		extendedInt1	[3] INTEGER (0..63),
-		extendedInt2	[4] INTEGER (0..63)
-	}	
+		extendedInt1	[3] INTEGER (0..63) OPTIONAL,
+		extendedInt2	[4] INTEGER (0..100000)
+	}
+
+ChoiceType ::= CHOICE {
+    field10	[0] INTEGER,
+    field20	[1] OCTET STRING,
+    ...,
+    field30	[2] UTF8String,
+    field40	[3] INTEGER
+}
+
+ExtendedChoiceSeq ::= SEQUENCE {
+    choi      ChoiceType,
+    tail      INTEGER (0..255)
+}
 
 END
 """
@@ -40,7 +53,9 @@ class Compiler:
     def compile(self, entry, data):
         # Compile the ASN.1 specification
         print(f"{entry}: {data}")
-        print("UPER: " + self.uper_compiler.encode(entry, data).hex())
+        uper_encoded = self.uper_compiler.encode(entry, data)
+        print("UPER: " + uper_encoded.hex())
+        print("UPER decoded" + self.uper_compiler.decode(entry, uper_encoded).__str__())
         print("PER: " + self.per_compiler.encode(entry, data).hex())
         print("BER: " + self.ber_compiler.encode(entry, data).hex())
         
@@ -77,3 +92,17 @@ data4 = {
 
 compiler.compile('DataSeqExtensible', data3)
 compiler.compile('DataSeqExtensible', data4)
+
+data5 = {
+    "choi" : ('field10', 0x12 ),
+    'tail': 0x19
+}
+# encoding 1 + 1 + 8 + 8 = 18 bits
+
+data6 = {
+    "choi" : ('field40', 0x12 ),
+    'tail': 0x19
+}
+
+compiler.compile('ExtendedChoiceSeq', data5)
+compiler.compile('ExtendedChoiceSeq', data6)

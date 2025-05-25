@@ -417,7 +417,7 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 		simpleBool  	[1] BOOLEAN,
 		optBool			[2] BOOLEAN OPTIONAL,
 		...,
-		extendedInt1	[3] INTEGER (0..63),
+		extendedInt1	[3] INTEGER (0..63) OPTIONAL,
 		extendedInt2	[4] INTEGER (0..100000)
 	}
 

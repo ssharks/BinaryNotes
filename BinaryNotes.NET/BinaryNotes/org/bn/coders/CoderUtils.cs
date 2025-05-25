@@ -347,6 +347,22 @@ namespace org.bn.coders
             }
         }
 
+        public static bool isExtendedField(ICustomAttributeProvider field, ElementInfo elementInfo)
+        {
+            if (elementInfo.hasPreparedInfo())
+            {
+                return elementInfo.hasPreparedASN1ElementInfo() && elementInfo.PreparedASN1ElementInfo.IsExtended;
+            }
+            else if (isAttributePresent<ASN1Element>(field))
+            {
+                return getAttribute<ASN1Element>(field).IsExtended;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public static bool isOptional(ElementInfo elementInfo)
         {
             bool result = false;

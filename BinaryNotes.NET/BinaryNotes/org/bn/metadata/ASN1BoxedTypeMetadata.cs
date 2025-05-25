@@ -63,6 +63,7 @@ namespace org.bn.metadata
                     ASN1ElementMetadata elData = new ASN1ElementMetadata(
                         saveInfo.Name,
                         saveInfo.IsOptional,
+                        saveInfo.IsExtended,
                         elementInfo.PreparedASN1ElementInfo.HasTag,
                         elementInfo.PreparedASN1ElementInfo.IsImplicitTag,
                         elementInfo.PreparedASN1ElementInfo.TagClass,
@@ -92,6 +93,7 @@ namespace org.bn.metadata
                     ASN1ElementMetadata elData = new ASN1ElementMetadata(
                         saveElemInfo.Name,
                         saveElemInfo.IsOptional,
+                        saveElemInfo.IsExtended,
                         elementInfo.PreparedASN1ElementInfo.HasTag,
                         elementInfo.PreparedASN1ElementInfo.IsImplicitTag,
                         elementInfo.PreparedASN1ElementInfo.TagClass,

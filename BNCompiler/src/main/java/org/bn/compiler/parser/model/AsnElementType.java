@@ -6,6 +6,7 @@ public class AsnElementType {
     public boolean  isDefault;
     public boolean  isDefinedType;    // Element type       is defined Type
     public boolean  isOptional;
+    public boolean  isExtended;
     public boolean  isTag;
     public boolean  isTagDefault;
     public String   name;             // type

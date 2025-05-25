@@ -26,19 +26,17 @@ namespace org.bn.metadata
     {
         private bool isSet;
         bool isExtensible = false;
-        int numRootElements = 0;
 
         public ASN1SequenceMetadata(ASN1Sequence annotation)
-            : this(annotation.Name, annotation.IsSet)
+            : this(annotation.Name, annotation.IsSet, annotation.IsExtensible)
         {
-            isExtensible = annotation.IsExtensible;
-            numRootElements = annotation.NumRootElements;
         }
 
         public ASN1SequenceMetadata(String  name,
-                                    bool isSet): base(name)
+                                    bool isSet, bool isExtensible): base(name)
         {            
             this.isSet = isSet;
+            this.isExtensible = isExtensible;
         }
 
         public bool IsSet
@@ -49,11 +47,6 @@ namespace org.bn.metadata
         public bool IsExtensible
         {
             get { return isExtensible; }
-        }
-
-        public int NumRootElements
-        {
-            get { return numRootElements; }
         }
 
         public override int encode(IASN1TypesEncoder encoder, object obj, Stream stream, ElementInfo elementInfo)
