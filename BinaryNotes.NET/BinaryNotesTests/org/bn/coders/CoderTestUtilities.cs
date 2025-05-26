@@ -361,6 +361,14 @@ namespace org.bn.coders
         }
         public abstract byte[] createTestBitStrSmallBytes();
 
+        //public TestBitStrNamed createTestBitStrNamed()
+        //{
+        //    TestBitStrNamed result = new TestBitStrNamed();
+        //    result.Value = new BitString(new byte[] { (byte)0xAA, (byte)0xB0 }, 4);
+        //    return result;
+        //}
+        //public abstract byte[] createTestBitStrNamedBytes();
+
         public TestUnicodeStr createUnicodeStr()
         {
             TestUnicodeStr result = new TestUnicodeStr();
@@ -721,5 +729,29 @@ namespace org.bn.coders
         }
 
         public abstract byte[] createTestExtendedInteger2Bytes();
-	}
+
+        public ExtensibleSize createTestExtensibleSize1()
+        {
+            ExtensibleSize extInt = new();
+            extInt.Value = new List<SubInteger>();
+            extInt.Value.Add(new SubInteger(0x23));
+            extInt.Value.Add(new SubInteger(0x35));
+            return extInt;
+        }
+
+        public abstract byte[] createTestExtensibleSize1Bytes();
+
+        public ExtensibleSize createTestExtensibleSize2()
+        {
+            ExtensibleSize extInt = new();
+            extInt.Value = new List<SubInteger>();
+            extInt.Value.Add(new SubInteger(0x23));
+            extInt.Value.Add(new SubInteger(0x35));
+            extInt.Value.Add(new SubInteger(0x11));
+            extInt.Value.Add(new SubInteger(0x05));
+            return extInt;
+        }
+
+        public abstract byte[] createTestExtensibleSize2Bytes();
+    }
 }
