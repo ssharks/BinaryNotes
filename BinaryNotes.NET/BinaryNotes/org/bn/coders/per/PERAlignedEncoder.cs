@@ -554,9 +554,9 @@ namespace org.bn.coders.per
 			return resultSize;
 		}
 
-        public virtual int encodeChoicePreamble(object obj, System.IO.Stream stream, int elementIndex, ElementInfo elementInfo)
+        public virtual int encodeChoicePreamble(object obj, System.IO.Stream stream, int elementIndex, int numOfRootElements, ElementInfo elementInfo)
 		{
-            return encodeConstraintNumber(elementIndex, 1, elementInfo.getProperties(obj.GetType()).Length, (BitArrayOutputStream)stream);
+            return encodeConstraintNumber(elementIndex, 0, numOfRootElements-1, (BitArrayOutputStream)stream);
 		}
 		
 		/// <summary> Encoding of the choice structure
@@ -577,16 +577,29 @@ namespace org.bn.coders.per
 		{
 			int resultSize = 0;
 			doAlign(stream);
-            ElementInfo info = null;
+            bool isExtensible = false;
 
-			int elementIndex = 0;
+            var choiceMeta = (ASN1ChoiceMetadata)( ((ASN1PreparedElementData)elementInfo.PreparedInfo) .TypeMetadata);
+            if (choiceMeta != null)
+            {
+                isExtensible = choiceMeta.IsExtensible;
+            }
+
+            bool isExtended = false;
+            int rootIndex = 0;
+            int extendedIndex = 0;
+            ElementInfo? foundInfo = null;
+            int foundIndex = -1;
+            int foundEncodingIndex = -1;
             int fieldIdx = 0;
-			foreach(PropertyInfo field in elementInfo.getProperties(obj.GetType()))
+            int numOfRootElements = 0;
+            var fields = elementInfo.getProperties(obj.GetType());
+            int[] relIndex = new int[fields.Length];
+            foreach (PropertyInfo field in fields)
 			{
-                info = new ElementInfo();
+                var info = new ElementInfo();
                 info.AnnotatedClass = field;
 
-				elementIndex++;
                 if (elementInfo.hasPreparedInfo())
                     info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
                 else
@@ -594,19 +607,57 @@ namespace org.bn.coders.per
 
                 if (invokeSelectedMethodForField(field, obj, info))
                 {
-                    break;
+                    // the right index is found, log it
+                    foundIndex = fieldIdx;
+                    foundInfo = info;
+                    if (CoderUtils.isExtendedField(field, info))
+                    {
+                        foundEncodingIndex = extendedIndex;
+                    } else
+                    {
+                        foundEncodingIndex = rootIndex;
+                    }
                 }
-                else
-                    info = null;
+
+                if (CoderUtils.isExtendedField(field, info))
+                {
+                    extendedIndex++;
+                } else {
+                    rootIndex++;
+                    numOfRootElements++;
+                }
+
                 fieldIdx++;
 			}
-			if (info == null)
+			if (foundInfo == null)
 			{
 				throw new System.ArgumentException("The choice '" + obj.ToString() + "' does not have a selected item!");
 			}
-			object invokeObjResult = invokeGetterMethodForField((System.Reflection.PropertyInfo)info.AnnotatedClass, obj,info);
-			resultSize += encodeChoicePreamble(obj, stream, elementIndex, elementInfo);
-			resultSize += encodeClassType(invokeObjResult, stream, info);
+            object invokeObjResult = invokeGetterMethodForField((System.Reflection.PropertyInfo)foundInfo.AnnotatedClass, obj, foundInfo);
+            
+            if (isExtensible)
+            {
+                isExtended = CoderUtils.isExtendedField(fields[foundIndex], foundInfo);
+                ((BitArrayOutputStream)stream).writeBit(isExtended);
+            }
+
+            if (isExtensible && isExtended)
+            {
+                // encode a number for the index
+                resultSize += encodeNormallySmallNumber(foundEncodingIndex, (BitArrayOutputStream)stream);
+
+                BitArrayOutputStream extendedStream = new();
+                resultSize += encodeClassType(invokeObjResult, extendedStream, foundInfo);
+                // encode the length of the stream
+                resultSize += encodeLengthDeterminant((int)extendedStream.Length, (BitArrayOutputStream)stream);
+                // ad the encoding to the stream itself
+                stream.Write(extendedStream.ToArray(), 0, (int)extendedStream.Length);
+            }
+            else
+            {
+                resultSize += encodeChoicePreamble(obj, stream, foundIndex, numOfRootElements, elementInfo);
+                resultSize += encodeClassType(invokeObjResult, stream, foundInfo);
+            }
 			return resultSize;
 		}
 

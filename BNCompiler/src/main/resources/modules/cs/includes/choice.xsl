@@ -38,7 +38,7 @@
             <xsl:call-template name="header"/>
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "<xsl:value-of select='$choiceName'/>") ]
+    [ASN1Choice ( Name = "<xsl:value-of select='$choiceName'/>", IsExtensible = <xsl:choose><xsl:when test="elementTypeList/isExtensible = 'true'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>) ]
     public class <xsl:value-of select="$choiceName"/> : IASN1PreparedElement {
             <xsl:call-template name="elements"><xsl:with-param name="isChoice">true</xsl:with-param></xsl:call-template>
             <xsl:call-template name="choiceFunctions"/>

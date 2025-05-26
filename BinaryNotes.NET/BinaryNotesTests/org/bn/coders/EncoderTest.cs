@@ -495,5 +495,30 @@ namespace org.bn.coders
                 checkEncoded(encoder, coderTestUtils.createTestExtendedSeq2(), coderTestUtils.createTestExtendedSeq2Bytes());
             }
         }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedChoice1()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            //if ((encoder is org.bn.coders.per.PERUnalignedEncoder) || (encoder is org.bn.coders.per.PERAlignedEncoder))
+            if (encoder is org.bn.coders.per.PERUnalignedEncoder)
+            {
+                printEncoded("TestExtendedChoice test1", encoder, coderTestUtils.createTestExtendedChoiceSeq1());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedChoiceSeq1(), coderTestUtils.createTestExtendedChoiceSeq1Bytes());
+            }
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedChoice2()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if ((encoder is org.bn.coders.per.PERUnalignedEncoder) || (encoder is org.bn.coders.per.PERAlignedEncoder))
+            {
+                printEncoded("TestExtendedChoice test2", encoder, coderTestUtils.createTestExtendedChoiceSeq2());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedChoiceSeq2(), coderTestUtils.createTestExtendedChoiceSeq2Bytes());
+            }
+        }
     }
 }

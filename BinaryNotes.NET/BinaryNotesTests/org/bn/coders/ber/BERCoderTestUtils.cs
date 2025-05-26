@@ -358,5 +358,15 @@ namespace org.bn.coders.ber
         {
             return new byte[] { };
         }
+
+        public override byte[] createTestExtendedChoiceSeq1Bytes()
+        {
+            return new byte[] { 0x30, 0x08, 0xa0, 0x03, 0x80, 0x01, 0x12, 0x81, 0x01, 0x19 };
+        }
+
+        public override byte[] createTestExtendedChoiceSeq2Bytes()
+        {
+            return new byte[] { 0x30, 0x08, 0xa0, 0x03, 0x83, 0x01, 0x12, 0x81, 0x01, 0x19 };
+        }
     }
 }

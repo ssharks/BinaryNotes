@@ -344,5 +344,15 @@ namespace org.bn.coders.per
             // 1 1 8 1 1 7 2 8 6 8 6 = 49 bits
             return new byte[] { 0xd1, 0x70, 0x38, 0x0a, 0x20, 0x18, 0x00, 0xb4, 0x00 };
         }
+
+        public override byte[] createTestExtendedChoiceSeq1Bytes()
+        {
+            return new byte[] { 0x00, 0x44, 0x86, 0x40 };
+        }
+
+        public override byte[] createTestExtendedChoiceSeq2Bytes()
+        {
+            return new byte[] { 0x81, 0x02, 0x01, 0x12, 0x19 };
+        }
     }
 }

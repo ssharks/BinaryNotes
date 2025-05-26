@@ -336,5 +336,16 @@ namespace org.bn.coders.per
         {
             return new byte[] { 0xc0, 0x45, 0xc0, 0xe0, 0x01, 0x44, 0x02, 0x00, 0x2d };
         }
+
+        public override byte[] createTestExtendedChoiceSeq1Bytes()
+        {
+            // might be wrong
+            return new byte[] { 0x00, 0x01, 0x12, 0x19 };
+        }
+
+        public override byte[] createTestExtendedChoiceSeq2Bytes()
+        {
+            return new byte[] { 0x81, 0x02, 0x01, 0x12, 0x19 };
+        }
     }
 }

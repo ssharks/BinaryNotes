@@ -512,7 +512,7 @@ namespace org.bn.coders
         }
 
         [TestMethod]
-        public void testEncodeExtendedEnum1()
+        public void testDecodeExtendedEnum1()
         {
             var decoder = newDecoder();
             Assert.IsNotNull(decoder);
@@ -524,7 +524,7 @@ namespace org.bn.coders
         }
 
         [TestMethod]
-        public void testEncodeExtendedEnum2()
+        public void testDecodeExtendedEnum2()
         {
             var decoder = newDecoder();
             Assert.IsNotNull(decoder);
@@ -536,7 +536,7 @@ namespace org.bn.coders
         }
 
         [TestMethod]
-        public void testEncodeExtendedSeq1()
+        public void testDecodeExtendedSeq1()
         {
             var decoder = newDecoder();
             Assert.IsNotNull(decoder);
@@ -554,7 +554,7 @@ namespace org.bn.coders
         }
 
         [TestMethod]
-        public void testEncodeExtendedSeq2()
+        public void testDecodeExtendedSeq2()
         {
             var decoder = newDecoder();
             Assert.IsNotNull(decoder);
@@ -569,6 +569,39 @@ namespace org.bn.coders
                 Assert.AreEqual(got.OptBool, exp.OptBool);
                 Assert.AreEqual(got.ExtendedInt1, exp.ExtendedInt1);
                 Assert.AreEqual(got.ExtendedInt2, exp.ExtendedInt2);
+            }
+        }
+
+        [TestMethod]
+        public virtual void testDecodeExtendedChoice1()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedChoiceSeq1Bytes());
+                var got = decoder.decode<ExtendedChoiceSeq>(stream);
+                var exp = coderTestUtils.createTestExtendedChoiceSeq1();
+
+                Assert.AreEqual(got.Choi.Field10, exp.Choi.Field10);
+                Assert.AreEqual(got.Tail, exp.Tail);
+            }
+        }
+
+        [TestMethod]
+        public virtual void testDecodeExtendedChoice2()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+
+            if (decoder is not org.bn.coders.ber.BERDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedChoiceSeq2Bytes());
+                var got = decoder.decode<ExtendedChoiceSeq>(stream);
+                var exp = coderTestUtils.createTestExtendedChoiceSeq2();
+
+                Assert.AreEqual(got.Choi.Field40, exp.Choi.Field40);
+                Assert.AreEqual(got.Tail, exp.Tail);
             }
         }
     }

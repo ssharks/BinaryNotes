@@ -20,13 +20,11 @@ using org.bn.metadata;
 using org.bn.metadata.constraints;
 using org.bn.types;
 using org.bn.utils;
-using System;
-using System.Collections.Generic;
 using System.Reflection;
 
 namespace org.bn.coders.per
 {
-	public class PERAlignedDecoder:Decoder
+    public class PERAlignedDecoder:Decoder
 	{
 		public override T decode<T>(System.IO.Stream stream)
 		{
@@ -295,32 +293,108 @@ namespace org.bn.coders.per
             return result;
         }
 
+        public class ASN1ChoiseFieldParsingInfo
+        {
+            public int PreambleLen = 0;
+            public bool IsExtensible = false;
+            public List<int> RootFields = new List<int>();
+            public List<int> ExtendedFields = new List<int>();
+        }
+
+        protected virtual ASN1ChoiseFieldParsingInfo getChoiseParsingInfo(Type objectClass, ElementInfo elementInfo)
+        {
+            ElementInfo info = new ElementInfo();
+            int fieldIdx = 0;
+
+            var parsingInfo = new ASN1ChoiseFieldParsingInfo();
+
+            var fields = elementInfo.getProperties(objectClass);
+
+            var choiceMeta = (ASN1ChoiceMetadata)(((ASN1PreparedElementData)elementInfo.PreparedInfo).TypeMetadata);
+            if (choiceMeta != null)
+            {
+                parsingInfo.IsExtensible = choiceMeta.IsExtensible;
+            }
+
+            foreach (PropertyInfo field in fields)
+            {
+                if (elementInfo.hasPreparedInfo())
+                    info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
+
+                bool isExtendeField = CoderUtils.isExtendedField(field, info);
+
+                if (isExtendeField)
+                {
+                    parsingInfo.ExtendedFields.Add(fieldIdx);
+                }
+                else
+                {
+                    parsingInfo.RootFields.Add(fieldIdx);
+                }
+                fieldIdx++;
+            }
+
+            return parsingInfo;
+        }
+
         public override DecodedObject<object> decodeChoice(DecodedObject<object> decodedTag, System.Type objectClass, ElementInfo elementInfo, System.IO.Stream stream)
 		{
             object choice = createInstanceForElement(objectClass, elementInfo); 
 			skipAlignedBits(stream);
-			PropertyInfo[] fields = elementInfo.getProperties(objectClass);
-			int elementIndex = (int)decodeConstraintNumber(1, fields.Length, (BitArrayInputStream) stream);
-			DecodedObject<object> val = null;
-			for (int i = 0; i < elementIndex && i < fields.Length; i++)
+
+            bool isExtended = false;
+            var parsingInfo = getChoiseParsingInfo(objectClass, elementInfo);
+
+            if (parsingInfo.IsExtensible)
+            {
+                isExtended = ((BitArrayInputStream)stream).readBit() == 1;
+            }
+
+            int fieldIdx = -1;
+            PropertyInfo[] fields = elementInfo.getProperties(objectClass);
+            var bitStream = (BitArrayInputStream)stream;
+            if (isExtended && parsingInfo.IsExtensible)
 			{
-				if (i + 1 == elementIndex)
-				{
-					System.Reflection.PropertyInfo field = fields[i];
-					ElementInfo info = new ElementInfo();
-                    info.AnnotatedClass = field;
-                    if(elementInfo.hasPreparedInfo()) {
-                        info.PreparedInfo  = elementInfo.PreparedInfo.getPropertyMetadata(i);
-                    }
-                    else
-                        info.ASN1ElementInfo = CoderUtils.getAttribute<ASN1Element>(field);
-                    val = decodeClassType(decodedTag, field.PropertyType, info, stream);
-                    if(val != null)
-					    invokeSelectMethodForField(field, choice, val.Value, info);
-					break;
-				}
-				;
-			}
+                int extendedIndex = (int)decodeNormallySmallNumber(bitStream);
+                if (extendedIndex < parsingInfo.ExtendedFields.Count)
+                {
+                    fieldIdx = parsingInfo.ExtendedFields[extendedIndex];
+                }
+                // decoded length field
+                int fieldLength = decodeLengthDeterminant(bitStream);
+                // read the corresponding data
+                var choiceBuffer = new byte[fieldLength];
+                bitStream.ReadExactly(choiceBuffer, 0, fieldLength);
+
+                // point to the newly aquired bitstream
+                bitStream = new BitArrayInputStream(new MemoryStream(choiceBuffer));
+
+            } else {
+                int rootIndex = (int)decodeConstraintNumber(0, parsingInfo.RootFields.Count-1, (BitArrayInputStream)stream);
+                if (rootIndex < parsingInfo.RootFields.Count)
+                {
+                    fieldIdx = parsingInfo.RootFields[rootIndex];
+                }
+            }
+
+            DecodedObject<object>? val = null;
+            if (fieldIdx >= 0)
+            {
+                System.Reflection.PropertyInfo field = fields[fieldIdx];
+                ElementInfo info = new ElementInfo();
+                info.AnnotatedClass = field;
+                if (elementInfo.hasPreparedInfo())
+                {
+                    info.PreparedInfo = elementInfo.PreparedInfo.getPropertyMetadata(fieldIdx);
+                }
+                else
+                    info.ASN1ElementInfo = CoderUtils.getAttribute<ASN1Element>(field);
+                val = decodeClassType(decodedTag, field.PropertyType, info, bitStream);
+                if (val != null)
+                    invokeSelectMethodForField(field, choice, val.Value, info);
+
+            }
+
             if (val == null && !CoderUtils.isOptional(elementInfo))
             {
 				throw new System.ArgumentException("The choice '" + objectClass.ToString() + "' does not have a selected item!");

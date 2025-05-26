@@ -26,13 +26,20 @@ namespace org.bn.metadata
 
     public class ASN1ChoiceMetadata : ASN1TypeMetadata
     {
-        public ASN1ChoiceMetadata(String name) : base(name)
+        bool isExtensible = false;
+
+        public ASN1ChoiceMetadata(String name, bool isExtensible) : base(name)
         {
+            this.isExtensible = isExtensible;
         }
 
         public ASN1ChoiceMetadata(ASN1Choice annotation)
-            : this(annotation.Name)
+            : this(annotation.Name, annotation.IsExtensible)
         {
+        }
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
         }
 
         public override int encode(IASN1TypesEncoder encoder, object obj, Stream stream, ElementInfo elementInfo)

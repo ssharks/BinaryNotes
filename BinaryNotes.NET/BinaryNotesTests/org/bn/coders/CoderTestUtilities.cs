@@ -680,5 +680,28 @@ namespace org.bn.coders
         }
 
         public abstract byte[] createTestExtendedSeq2Bytes();
+
+        public ExtendedChoiceSeq createTestExtendedChoiceSeq1()
+        {
+            ExtendedChoiceSeq seq = new();
+            seq.Choi = new ChoiceType();
+            seq.Choi.Field10 = 0x12;
+            seq.Tail = 0x19;
+
+            return seq;
+        }
+
+        public abstract byte[] createTestExtendedChoiceSeq1Bytes();
+
+        public ExtendedChoiceSeq createTestExtendedChoiceSeq2()
+        {
+            ExtendedChoiceSeq seq = new();
+            seq.Choi = new ChoiceType();
+            seq.Choi.Field40 = 0x12;
+            seq.Tail = 0x19;
+
+            return seq;
+        }
+        public abstract byte[] createTestExtendedChoiceSeq2Bytes();
 	}
 }
