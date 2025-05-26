@@ -372,6 +372,10 @@ namespace org.bn.coders.per
             if (isExtended && parsingInfo.IsExtensible)
 			{
                 int extendedIndex = (int)decodeNormallySmallNumber(bitStream);
+                if (extendedIndex < 0)
+                {
+                    throw new System.ArgumentException("The extended index is negative: " + extendedIndex);
+                }
                 if (extendedIndex < parsingInfo.ExtendedFields.Count)
                 {
                     fieldIdx = parsingInfo.ExtendedFields[extendedIndex];
