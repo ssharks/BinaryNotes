@@ -15,6 +15,7 @@
  limitations under the License.
  */
 using System;
+using its.cam;
 using org.bn;
 using org.bn.coders;
 using org.bn.coders.test_asn;
@@ -373,6 +374,99 @@ namespace org.bn.coders.per
         public override byte[] createTestExtensibleSize2Bytes()
         {
             return new byte[] { 0x82, 0x47, 0xaa, 0x22, 0x80 };
+        }
+
+        public static CAM createCam()
+        {
+            CAM cam = new();
+            cam.Header = new();
+            cam.Header.ProtocolVersion = 1;
+            cam.Header.MessageID = 2;
+            cam.Header.StationID = new StationID(0);
+            cam.Cam = new();
+            cam.Cam.GenerationDeltaTime = new(1);
+            cam.Cam.CamParameters = new();
+            cam.Cam.CamParameters.BasicContainer = new();
+            cam.Cam.CamParameters.BasicContainer.StationType = new StationType(0);
+            cam.Cam.CamParameters.BasicContainer.ReferencePosition = new();
+            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Latitude = new(10);
+            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Longitude = new(10);
+            cam.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse = new()
+            {
+                SemiMajorConfidence = new(1),
+                SemiMinorConfidence = new(1),
+                SemiMajorOrientation = new(0)
+            };
+            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude = new()
+            {
+                AltitudeValue = new(0),
+                AltitudeConfidence = new()
+                {
+                    Value = AltitudeConfidence.EnumType.alt_000_01
+                }
+            };
+            cam.Cam.CamParameters.HighFrequencyContainer = new()
+            {
+                BasicVehicleContainerHighFrequency = new()
+                {
+                    Heading = new()
+                    {
+                        HeadingValue = new(0),
+                        HeadingConfidence = new(1)
+                    },
+                    Speed = new()
+                    {
+                        SpeedValue = new(0),
+                        SpeedConfidence = new(1)
+                    },
+                    DriveDirection = new()
+                    {
+                        Value = DriveDirection.EnumType.forward
+                    },
+                    VehicleLength = new()
+                    {
+                        VehicleLengthValue = new(1),
+                        VehicleLengthConfidenceIndication =
+                            new()
+                            {
+                                Value = VehicleLengthConfidenceIndication.EnumType.noTrailerPresent
+                            }
+                    },
+                    VehicleWidth = new(1),
+                    LongitudinalAcceleration = new()
+                    {
+                        LongitudinalAccelerationValue = new(1),
+                        LongitudinalAccelerationConfidence = new(1)
+                    },
+                    Curvature = new()
+                    {
+                        CurvatureValue = new(0),
+                        CurvatureConfidence = new()
+                        {
+                            Value = CurvatureConfidence.EnumType.onePerMeter_0_00002
+                        }
+                    },
+                    CurvatureCalculationMode = new()
+                    {
+                        Value = CurvatureCalculationMode.EnumType.yawRateUsed
+                    },
+                    YawRate = new()
+                    {
+                        YawRateValue = new(0),
+                        YawRateConfidence = new()
+                        {
+                            Value = YawRateConfidence.EnumType.degSec_000_01
+                        }
+                    }
+                }
+            };
+
+            return cam;
+        }
+
+        public static byte[] createCamBytes()
+        {
+            return System.IO.File.ReadAllBytes("org/bn/coders/per/sample_cam.uper");
         }
     }
 }

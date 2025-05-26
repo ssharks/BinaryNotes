@@ -24,6 +24,13 @@
     <Using Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
 	  <ProjectCapability Include="Test" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="org\bn\coders\per\sample_cam.uper">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 		
 
 </Project>

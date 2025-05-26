@@ -42,5 +42,17 @@ namespace org.bn.coders.per
 		{
 			// PER does not encode NULL value        
 		}
+
+        [TestMethod]
+        public void testCAMEncoding()
+		{   
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if (encoder is org.bn.coders.per.PERUnalignedEncoder)
+            {
+                printEncoded("TestCAM", encoder, PERUnalignedCoderTestUtils.createCam());
+                checkEncoded(encoder, PERUnalignedCoderTestUtils.createCam(), PERUnalignedCoderTestUtils.createCamBytes());
+            }
+		}
 	}
 }
