@@ -29,7 +29,7 @@
 
     <xsl:template name="valueRangeConstraint">
         <xsl:if test= "elemSetSpec/intersectionList/cnsElemList/lEndValue">
-            <xsl:if test= "elemSetSpec/intersectionList/cnsElemList/uEndValue">[ASN1ValueRangeConstraint ( <xsl:for-each select="elemSetSpec/intersectionList/cnsElemList/lEndValue">Min = <xsl:call-template name="doDeterminateEndValue"/>L, </xsl:for-each><xsl:for-each select="elemSetSpec/intersectionList/cnsElemList/uEndValue">Max = <xsl:call-template name="doDeterminateEndValue"/>L </xsl:for-each>) ]
+            <xsl:if test= "elemSetSpec/intersectionList/cnsElemList/uEndValue">[ASN1ValueRangeConstraint ( <xsl:for-each select="elemSetSpec/intersectionList/cnsElemList/lEndValue">Min = <xsl:call-template name="doDeterminateEndValue"/>L, </xsl:for-each><xsl:for-each select="elemSetSpec/intersectionList/cnsElemList/uEndValue">Max = <xsl:call-template name="doDeterminateEndValue"/>L</xsl:for-each>, IsExtensible = <xsl:choose><xsl:when test="isExtensible = 'true'">true</xsl:when><xsl:otherwise>false</xsl:otherwise></xsl:choose>) ]
 	    </xsl:if>
         </xsl:if>
     </xsl:template>

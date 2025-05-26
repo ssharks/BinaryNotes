@@ -347,5 +347,25 @@ namespace org.bn.coders.per
         {
             return new byte[] { 0x81, 0x02, 0x01, 0x12, 0x19 };
         }
+
+        public override byte[] createTestExtendedInteger1Bytes()
+        {
+            return new byte[] { 0x46 };
+        }
+
+        public override byte[] createTestExtendedInteger2Bytes()
+        {
+            return new byte[] { 0x80, 0x01, 0x73 };
+        }
+
+        public override byte[] createTestExtensibleSize1Bytes()
+        {
+            return new byte[] { 0x31, 0xea };
+        }
+
+        public override byte[] createTestExtensibleSize2Bytes()
+        {
+            return new byte[] { 0x82, 0x47, 0xaa, 0x22, 0x80 };
+        }
     }
 }

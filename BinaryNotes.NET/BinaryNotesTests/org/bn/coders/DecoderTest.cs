@@ -604,5 +604,77 @@ namespace org.bn.coders
                 Assert.AreEqual(got.Tail, exp.Tail);
             }
         }
+
+        [TestMethod]
+        public virtual void testDecodeExtendedInteger1()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedInteger1Bytes());
+                var got = decoder.decode<ExtensibleInteger>(stream);
+                var exp = coderTestUtils.createTestExtendedInteger1();
+
+                Assert.AreEqual(got.Value, exp.Value);
+            }
+        }
+
+        [TestMethod]
+        public virtual void testDecodeExtendedInteger2()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+            if (decoder is not org.bn.coders.ber.BERDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtendedInteger2Bytes());
+                var got = decoder.decode<ExtensibleInteger>(stream);
+                var exp = coderTestUtils.createTestExtendedInteger2();
+
+                Assert.AreEqual(got.Value, exp.Value);
+            }
+        }
+
+        [TestMethod]
+        public virtual void testDecodeExtensibleSize1()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtensibleSize1Bytes());
+                var got = decoder.decode<ExtensibleSize>(stream);
+                var exp = coderTestUtils.createTestExtensibleSize1();
+
+                Assert.AreEqual(got.Value.Count, exp.Value.Count);
+                var gotArray = got.Value.ToArray();
+                var expArray = exp.Value.ToArray();
+                for (int i= 0; i < got.Value.Count; i++)
+                {
+                    Assert.AreEqual(gotArray[i].Value, expArray[i].Value);
+                }
+            }
+        }
+
+        [TestMethod]
+        public virtual void testDecodeExtensibleSize2()
+        {
+            var decoder = newDecoder();
+            Assert.IsNotNull(decoder);
+            if (decoder is org.bn.coders.per.PERUnalignedDecoder)
+            {
+                System.IO.MemoryStream stream = new System.IO.MemoryStream(coderTestUtils.createTestExtensibleSize2Bytes());
+                var got = decoder.decode<ExtensibleSize>(stream);
+                var exp = coderTestUtils.createTestExtensibleSize2();
+
+                Assert.AreEqual(got.Value.Count, exp.Value.Count);
+                var gotArray = got.Value.ToArray();
+                var expArray = exp.Value.ToArray();
+                for (int i = 0; i < got.Value.Count; i++)
+                {
+                    Assert.AreEqual(gotArray[i].Value, expArray[i].Value);
+                }
+            }
+        }
     }
 }

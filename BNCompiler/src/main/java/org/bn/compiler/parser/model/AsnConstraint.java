@@ -7,7 +7,7 @@ public class AsnConstraint {
     public ElementSetSpec  elemSetSpec;
     public boolean         isAdditionalElementSpec;
     public boolean         isColonValue;
-    public boolean         isCommaDotDot;
+    public boolean         isExtensible;
     public boolean         isDefinedValue;
     public boolean         isElementSetSpecs;
     public boolean         isExceptionSpec;

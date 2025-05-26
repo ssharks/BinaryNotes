@@ -72,9 +72,19 @@ namespace org.bn.coders.per
 		/// ITU-T X.691. 10.9. General rules for encoding a length determinant
 		/// 
 		/// </summary>
-		protected virtual int decodeConstraintLengthDeterminant(int min, int max, BitArrayInputStream stream)
+		protected virtual int decodeConstraintLengthDeterminant(ASN1ValueRangeConstraintMetadata constraint, BitArrayInputStream stream)
 		{
-			if (max <= 0xFFFF)
+
+            int min = (int)constraint.Min;
+            int max = (int)constraint.Max;
+            bool isExtended = false;
+
+            if (constraint.IsExtensible)
+            {
+                isExtended = stream.readBit() == 1;
+            }
+
+            if (((max-min) <= 0xFFFF) && !isExtended)
 			{
 				// 10.9. NOTE 2 – (Tutorial) In the case of the ALIGNED variant 
 				// if the length count is bounded above by an upper bound that is 
@@ -161,7 +171,7 @@ namespace org.bn.coders.per
 			}
 			else
 			{
-				/*
+                /*
 				* 4. Where the range is greater than 64K, the range is ignored 
 				* and the value encodes into an  octet-aligned bit-field 
 				* which is the minimum number of octets for the value. 
@@ -171,7 +181,14 @@ namespace org.bn.coders.per
 				* of the encoding is independent of the value being encoded, 
 				* and is not explicitly encoded.
 				*/
-				int intLen = decodeConstraintLengthDeterminant(1, CoderUtils.getPositiveIntegerLength(valueRange), stream);
+                ASN1ValueRangeConstraint valueRangeConstraint = new()
+                {
+                    Min = 1,
+                    Max = CoderUtils.getPositiveIntegerLength(valueRange),
+                    IsExtensible = false
+                };
+
+                int intLen = decodeConstraintLengthDeterminant(new ASN1ValueRangeConstraintMetadata(valueRangeConstraint), stream);
 				skipAlignedBits(stream);
 				result = (int)decodeIntegerValueAsBytes(intLen, stream);
 				result += min;
@@ -262,8 +279,7 @@ namespace org.bn.coders.per
                     IASN1ConstraintMetadata constraint = elementInfo.PreparedInfo.Constraint;
                     if(constraint is ASN1ValueRangeConstraintMetadata) {
                         result = decodeConstraintLengthDeterminant(
-                            (int)((ASN1ValueRangeConstraintMetadata)constraint).Min,
-                            (int)((ASN1ValueRangeConstraintMetadata)constraint).Max,
+                            (ASN1ValueRangeConstraintMetadata)constraint,
                             bitStream
                         );
                     }
@@ -279,7 +295,7 @@ namespace org.bn.coders.per
             if (elementInfo.isAttributePresent<ASN1ValueRangeConstraint>())
             {
                 ASN1ValueRangeConstraint constraint = elementInfo.getAttribute<ASN1ValueRangeConstraint>();
-                result = decodeConstraintLengthDeterminant((int)constraint.Min, (int)constraint.Max, bitStream);
+                result = decodeConstraintLengthDeterminant(new ASN1ValueRangeConstraintMetadata(constraint), bitStream);
             }
             else
             if (elementInfo.isAttributePresent<ASN1SizeConstraint>())
@@ -618,8 +634,10 @@ namespace org.bn.coders.per
 		{
             bool hasConstraint = false;
             long min = 0, max = 0;
+            bool isExtensible = false;
+            bool isExtended = false;
 
-            if(elementInfo.hasPreparedInfo()) 
+            if (elementInfo.hasPreparedInfo()) 
             {
                 if(elementInfo.PreparedInfo.hasConstraint() 
                     && elementInfo.PreparedInfo.Constraint is ASN1ValueRangeConstraintMetadata) 
@@ -628,6 +646,7 @@ namespace org.bn.coders.per
                     hasConstraint  = true;
                     min = ((ASN1ValueRangeConstraintMetadata)constraint).Min;
                     max = ((ASN1ValueRangeConstraintMetadata)constraint).Max;
+                    isExtensible = ((ASN1ValueRangeConstraintMetadata)constraint).IsExtensible;
                 }
             }
             else
@@ -637,12 +656,19 @@ namespace org.bn.coders.per
                 ASN1ValueRangeConstraint constraint = elementInfo.getAttribute<ASN1ValueRangeConstraint>();
                 min = constraint.Min;
                 max = constraint.Max;
+                isExtensible = constraint.IsExtensible;
             }
 
-			DecodedObject<object> result = new DecodedObject<object>();
+            // read the extension marker bit when present
+            if (isExtensible)
+            {
+                isExtended = ((BitArrayInputStream)stream).readBit() == 1;
+            }
+
+            DecodedObject<object> result = new DecodedObject<object>();
 			BitArrayInputStream bitStream = (BitArrayInputStream) stream;
 			int val = 0;
-            if (hasConstraint)
+            if (hasConstraint && !isExtended)
             {
                 ASN1ValueRangeConstraint constraint = elementInfo.getAttribute<ASN1ValueRangeConstraint>();
                 val = (int)decodeConstraintNumber(min, max, bitStream);
@@ -755,7 +781,7 @@ namespace org.bn.coders.per
             if (elementInfo.isAttributePresent<ASN1ValueRangeConstraint>())
             {
                 ASN1ValueRangeConstraint constraint = elementInfo.getAttribute<ASN1ValueRangeConstraint>();
-                resultSize = decodeConstraintLengthDeterminant((int)constraint.Min, (int)constraint.Max, bitStream);
+                resultSize = decodeConstraintLengthDeterminant(new ASN1ValueRangeConstraintMetadata(constraint), bitStream);
 			}
 			else
 				resultSize = decodeLengthDeterminant(bitStream);

@@ -27,11 +27,13 @@ namespace org.bn.metadata.constraints
     public class ASN1ValueRangeConstraintMetadata : IASN1ConstraintMetadata 
     {
         private long minValue, maxValue;
-        
+        private bool isExtensible = false;
+
         public ASN1ValueRangeConstraintMetadata(ASN1ValueRangeConstraint annotation) 
         {
             this.minValue = annotation.Min;
             this.maxValue = annotation.Max;
+            this.isExtensible = annotation.IsExtensible;
         }
         
         public long Min {
@@ -41,10 +43,20 @@ namespace org.bn.metadata.constraints
         public long Max {
             get { return maxValue; }
         }
-        
+
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
+        }
+
+        public bool checkIsExtended(long value)
+        {
+            return (value > maxValue || value < minValue);
+        }
+
         public bool checkValue(long value) 
         {
-            return value<= maxValue && value>= minValue;
+            return isExtensible || !checkIsExtended(value);
         }
     }
 }

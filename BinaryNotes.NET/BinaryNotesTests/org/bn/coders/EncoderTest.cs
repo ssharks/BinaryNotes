@@ -520,5 +520,53 @@ namespace org.bn.coders
                 checkEncoded(encoder, coderTestUtils.createTestExtendedChoiceSeq2(), coderTestUtils.createTestExtendedChoiceSeq2Bytes());
             }
         }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedInteger1()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if (encoder is org.bn.coders.per.PERUnalignedEncoder)
+            {
+                printEncoded("TestExtendedInteger test1", encoder, coderTestUtils.createTestExtendedInteger1());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedInteger1(), coderTestUtils.createTestExtendedInteger1Bytes());
+            }
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtendedInteger2()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if ((encoder is org.bn.coders.per.PERUnalignedEncoder) || (encoder is org.bn.coders.per.PERAlignedEncoder))
+            {
+                printEncoded("TestExtendedInteger test2", encoder, coderTestUtils.createTestExtendedInteger2());
+                checkEncoded(encoder, coderTestUtils.createTestExtendedInteger2(), coderTestUtils.createTestExtendedInteger2Bytes());
+            }
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtensibleSize1()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if (encoder is org.bn.coders.per.PERUnalignedEncoder)
+            {
+                printEncoded("TestExtendedInteger test1", encoder, coderTestUtils.createTestExtensibleSize1());
+                checkEncoded(encoder, coderTestUtils.createTestExtensibleSize1(), coderTestUtils.createTestExtensibleSize1Bytes());
+            }
+        }
+
+        [TestMethod]
+        public virtual void testEncodeExtensibleSize2()
+        {
+            IEncoder encoder = newEncoder();
+            Assert.IsNotNull(encoder);
+            if (encoder is org.bn.coders.per.PERUnalignedEncoder)
+            {
+                printEncoded("TestExtendedInteger test1", encoder, coderTestUtils.createTestExtensibleSize2());
+                checkEncoded(encoder, coderTestUtils.createTestExtensibleSize2(), coderTestUtils.createTestExtensibleSize2Bytes());
+            }
+        }
     }
 }

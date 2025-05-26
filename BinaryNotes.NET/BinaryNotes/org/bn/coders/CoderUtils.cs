@@ -18,6 +18,7 @@
 using org.bn.attributes;
 using org.bn.attributes.constraints;
 using org.bn.metadata;
+using org.bn.metadata.constraints;
 using org.bn.types;
 using System;
 using System.Collections;
@@ -262,7 +263,7 @@ namespace org.bn.coders
                 if (elementInfo.isAttributePresent<ASN1ValueRangeConstraint>())
                 {
                     ASN1ValueRangeConstraint constraint = elementInfo.getAttribute<ASN1ValueRangeConstraint>();
-                    if (val > constraint.Max || val < constraint.Min)
+                    if ((new ASN1ValueRangeConstraintMetadata(constraint)).checkValue(val))
                         throw new Exception("Length of '" + elementInfo.AnnotatedClass.ToString() + "' out of bound");
                 }
                 else

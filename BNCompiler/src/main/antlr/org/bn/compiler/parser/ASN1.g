@@ -939,7 +939,7 @@ element_set_specs[AsnConstraint cnstrnt]
 	:	(elemspec=element_set_spec { 
 				cnstrnt.elemSetSpec=elemspec; // TODO - need list.add() func
 		}
-		(COMMA ELLIPSIS {cnstrnt.isCommaDotDot=true;})? 
+		(COMMA ELLIPSIS {cnstrnt.isExtensible=true;})? 
 		(COMMA elemspec=element_set_spec {cnstrnt.addElemSetSpec=elemspec;cnstrnt.isAdditionalElementSpec=true;})?)
 	;
 

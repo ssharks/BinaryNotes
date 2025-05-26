@@ -434,4 +434,8 @@ EXPORTS TestOCT,TestPRN,TestIA5,TestI32,TestI16,TestI8,ContentType,ValueWithPara
 		tail      INTEGER (0..255)
 	}
 
+	SubInteger ::= INTEGER (0..63)
+
+	ExtensibleSize ::= SEQUENCE (SIZE(1..3,...)) OF SubInteger
+	ExtensibleInteger ::= INTEGER(0..63,...)
 END

@@ -40,6 +40,9 @@ ExtendedChoiceSeq ::= SEQUENCE {
     tail      INTEGER (0..255)
 }
 
+ExtensibleSize ::= SEQUENCE (SIZE(1..3,...)) OF INTEGER(0..63)
+ExtensibleInteger ::= INTEGER(0..63,...)
+
 END
 """
 
@@ -106,3 +109,10 @@ data6 = {
 
 compiler.compile('ExtendedChoiceSeq', data5)
 compiler.compile('ExtendedChoiceSeq', data6)
+
+data7 = 0x23
+
+data8 = 0x73
+
+compiler.compile('ExtensibleInteger', data7)
+compiler.compile('ExtensibleInteger', data8)

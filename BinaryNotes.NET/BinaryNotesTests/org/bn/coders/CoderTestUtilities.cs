@@ -703,5 +703,23 @@ namespace org.bn.coders
             return seq;
         }
         public abstract byte[] createTestExtendedChoiceSeq2Bytes();
+
+        public ExtensibleInteger createTestExtendedInteger1()
+        {
+            ExtensibleInteger extInt = new();
+            extInt.Value = 0x23;
+            return extInt;
+        }
+
+        public abstract byte[] createTestExtendedInteger1Bytes();
+
+        public ExtensibleInteger createTestExtendedInteger2()
+        {
+            ExtensibleInteger extInt = new();
+            extInt.Value = 0x73;
+            return extInt;
+        }
+
+        public abstract byte[] createTestExtendedInteger2Bytes();
 	}
 }

@@ -21,6 +21,7 @@ namespace org.bn.attributes.constraints
     public class ASN1ValueRangeConstraint : Attribute
     {
         private long min, max;
+        private bool isExtensible = false;
 
         public long Max
         {
@@ -32,6 +33,12 @@ namespace org.bn.attributes.constraints
         {
             get { return min; }
             set { min = value; }
+        }
+
+        public bool IsExtensible
+        {
+            get { return isExtensible; }
+            set { isExtensible = value; }
         }
     }
 }
