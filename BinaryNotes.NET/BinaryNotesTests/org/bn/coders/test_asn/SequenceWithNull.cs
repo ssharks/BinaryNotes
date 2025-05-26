@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "SequenceWithNull", IsSet = false  )]
+    [ASN1Sequence ( Name = "SequenceWithNull", IsExtensible = false, IsSet = false)]
     public class SequenceWithNull : IASN1PreparedElement {
-                    
+                
 	private string test_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "test", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "test", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Test
         {
@@ -36,7 +36,7 @@ namespace org.bn.coders.test_asn {
 	
         [ASN1Null ( Name = "nullVal" )]
     
-        [ASN1Element ( Name = "nullVal", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "nullVal", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public NullObject NullVal
         {
@@ -49,7 +49,7 @@ namespace org.bn.coders.test_asn {
 	private string test2_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "test2", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "test2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public string Test2
         {
@@ -61,16 +61,15 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithNull));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithNull));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

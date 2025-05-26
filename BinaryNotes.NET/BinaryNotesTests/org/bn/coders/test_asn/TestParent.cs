@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestParent", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestParent", IsExtensible = false, IsSet = false)]
     public class TestParent : IASN1PreparedElement {
-                    
+                
 	private long field1_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field1", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long Field1
         {
@@ -37,7 +37,7 @@ namespace org.bn.coders.test_asn {
         private bool  field2_present = false ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "field2", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public byte[] Field2
         {
@@ -50,7 +50,7 @@ namespace org.bn.coders.test_asn {
 	private string field3_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field3", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "field3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
     
         public string Field3
         {
@@ -63,12 +63,26 @@ namespace org.bn.coders.test_asn {
 	private long field4_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field4", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field4", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public long Field4
         {
             get { return field4_; }
             set { field4_ = value;  }
+        }
+        
+                
+          
+	private int field5_ ;
+	[ASN1Integer( Name = "" )]
+    [ASN1ValueRangeConstraint ( Min = -4L, Max = 251L, IsExtensible = false) ]
+	    
+        [ASN1Element ( Name = "field5", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+    
+        public int Field5
+        {
+            get { return field5_; }
+            set { field5_ = value;  }
         }
         
                 
@@ -79,19 +93,18 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	string param_Field3 =         
+            string param_Field3 =         
             "Sssdsd";
         Field3 = param_Field3;
     
-            }
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestParent));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestParent));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-            
     }
             
 }

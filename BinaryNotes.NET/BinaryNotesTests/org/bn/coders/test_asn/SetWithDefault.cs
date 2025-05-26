@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "SetWithDefault", IsSet = true  )]
+    [ASN1Sequence ( Name = "SetWithDefault", IsExtensible = false, IsSet = true)]
     public class SetWithDefault : IASN1PreparedElement {
-                    
+                
 	private long nodefault_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "nodefault", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "nodefault", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public long Nodefault
         {
@@ -34,7 +34,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestPRN nodefault2_ ;
 	
-        [ASN1Element ( Name = "nodefault2", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "nodefault2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public TestPRN Nodefault2
         {
@@ -47,7 +47,7 @@ namespace org.bn.coders.test_asn {
 	private string default3_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "default3", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "default3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  true )  ]
     
         public string Default3
         {
@@ -59,19 +59,18 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	string param_Default3 =         
+            string param_Default3 =         
             "DDDdd";
         Default3 = param_Default3;
     
-            }
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SetWithDefault));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SetWithDefault));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-            
     }
             
 }

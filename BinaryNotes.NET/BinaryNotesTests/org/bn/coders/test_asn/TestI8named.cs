@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1BoxedType ( Name = "TestI8" )]
-    public class TestI8: IASN1PreparedElement {
+    [ASN1BoxedType ( Name = "TestI8named" )]
+    public class TestI8named: IASN1PreparedElement {
     
             private int val;
             
-            [ASN1Integer( Name = "TestI8" )]
-            [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
+            [ASN1Integer( Name = "TestI8named" )]
+            [ASN1ValueRangeConstraint ( Min = 0L, Max = 253L, IsExtensible = false) ]
 	    
             public int Value
             {
@@ -30,10 +30,10 @@ namespace org.bn.coders.test_asn {
                 set { val = value; }
             }
             
-            public TestI8() {
+            public TestI8named() {
             }
 
-            public TestI8(int value) {
+            public TestI8named(int value) {
                 this.Value = value;
             }            
 
@@ -42,7 +42,7 @@ namespace org.bn.coders.test_asn {
 	    }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestI8));
+            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestI8named));
             public IASN1PreparedElementData PreparedData {
             	get { return preparedData; }
             }

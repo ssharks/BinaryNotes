@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "ITUSequence", IsSet = false  )]
+    [ASN1Sequence ( Name = "ITUSequence", IsExtensible = false, IsSet = false)]
     public class ITUSequence : IASN1PreparedElement {
-                    
+                
 	private string type1_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.VisibleString , IsUCS = false )]
-        [ASN1Element ( Name = "type1", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type1", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Type1
         {
@@ -34,7 +34,7 @@ namespace org.bn.coders.test_asn {
           
 	private ITUType1 type2_ ;
 	
-        [ASN1Element ( Name = "type2", IsOptional =  false , HasTag =  true, Tag = 3, 
+        [ASN1Element ( Name = "type2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public ITUType1 Type2
@@ -47,7 +47,7 @@ namespace org.bn.coders.test_asn {
           
 	private ITUType2 type3_ ;
 	
-        [ASN1Element ( Name = "type3", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public ITUType2 Type3
         {
@@ -59,7 +59,7 @@ namespace org.bn.coders.test_asn {
           
 	private ITUType3 type4_ ;
 	
-        [ASN1Element ( Name = "type4", IsOptional =  false , HasTag =  true, Tag = 7, 
+        [ASN1Element ( Name = "type4", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public ITUType3 Type4
@@ -74,7 +74,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  type5_present = false ;
 	
-        [ASN1Element ( Name = "type5", IsOptional =  true , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type5", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public ITUType2 Type5
         {
@@ -87,7 +87,7 @@ namespace org.bn.coders.test_asn {
 	private string type6_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.VisibleString , IsUCS = false )]
-        [ASN1Element ( Name = "type6", IsOptional =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type6", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public string Type6
         {
@@ -99,7 +99,7 @@ namespace org.bn.coders.test_asn {
           
 	private ITUType6 type7_ ;
 	
-        [ASN1Element ( Name = "type7", IsOptional =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type7", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
     
         public ITUType6 Type7
         {
@@ -115,16 +115,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ITUSequence));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ITUSequence));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

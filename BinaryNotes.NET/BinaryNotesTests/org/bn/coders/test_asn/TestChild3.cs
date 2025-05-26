@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestChild3", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestChild3", IsExtensible = false, IsSet = false)]
     public class TestChild3 : IASN1PreparedElement {
-                    
+                
 	private long field1_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field1", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long Field1
         {
@@ -37,7 +37,7 @@ namespace org.bn.coders.test_asn {
         private bool  field2_present = false ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "field2", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public byte[] Field2
         {
@@ -50,7 +50,7 @@ namespace org.bn.coders.test_asn {
 	private string field3_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field3", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "field3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
     
         public string Field3
         {
@@ -63,7 +63,7 @@ namespace org.bn.coders.test_asn {
 	private long field4_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field4", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field4", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public long Field4
         {
@@ -72,55 +72,68 @@ namespace org.bn.coders.test_asn {
         }
         
                 
-  
-        public bool isField2Present () {
-            return this.field2_present == true;
-        }
-                
-	private string field5_ ;
-	[ASN1String( Name = "", 
-        StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field5", IsOptional =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
+          
+	private int field5_ ;
+	[ASN1Integer( Name = "" )]
+    [ASN1ValueRangeConstraint ( Min = -4L, Max = 251L, IsExtensible = false) ]
+	    
+        [ASN1Element ( Name = "field5", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
-        public string Field5
+        public int Field5
         {
             get { return field5_; }
             set { field5_ = value;  }
         }
         
                 
-          
-	private long field6_ ;
-	[ASN1Integer( Name = "" )]
+  
+        public bool isField2Present () {
+            return this.field2_present == true;
+        }
+                
+	private string field6_ ;
+	[ASN1String( Name = "", 
+        StringType =  UniversalTags.UTF8String , IsUCS = false )]
+        [ASN1Element ( Name = "field6", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
     
-        [ASN1Element ( Name = "field6", IsOptional =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
-    
-        public long Field6
+        public string Field6
         {
             get { return field6_; }
             set { field6_ = value;  }
         }
         
                 
+          
+	private long field7_ ;
+	[ASN1Integer( Name = "" )]
+    
+        [ASN1Element ( Name = "field7", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
+    
+        public long Field7
+        {
+            get { return field7_; }
+            set { field7_ = value;  }
+        }
+        
+                
   
 
             public void initWithDefaults() {
-            	string param_Field3 =         
+            string param_Field3 =         
             "Sssdsd";
         Field3 = param_Field3;
-    long param_Field6 =         
+    long param_Field7 =         
             0;
-        Field6 = param_Field6;
+        Field7 = param_Field7;
     
-            }
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestChild3));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestChild3));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-            
     }
             
 }

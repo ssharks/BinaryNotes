@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "SequenceWithEnum", IsSet = false  )]
+    [ASN1Sequence ( Name = "SequenceWithEnum", IsExtensible = false, IsSet = false)]
     public class SequenceWithEnum : IASN1PreparedElement {
-                    
+                
 	private string item_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "item", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "item", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Item
         {
@@ -34,7 +34,7 @@ namespace org.bn.coders.test_asn {
           
 	private ContentSchema enval_ ;
 	
-        [ASN1Element ( Name = "enval", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "enval", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public ContentSchema Enval
         {
@@ -46,7 +46,7 @@ namespace org.bn.coders.test_asn {
           
 	private ContentSchema taggedEnval_ ;
 	
-        [ASN1Element ( Name = "taggedEnval", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "taggedEnval", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public ContentSchema TaggedEnval
         {
@@ -58,16 +58,15 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithEnum));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithEnum));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

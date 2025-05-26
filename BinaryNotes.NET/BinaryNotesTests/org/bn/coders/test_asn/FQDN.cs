@@ -23,13 +23,7 @@ namespace org.bn.coders.test_asn {
     
             [ASN1String( Name = "FQDN", 
         StringType =  UniversalTags.VisibleString , IsUCS = false) ]
-            [ASN1ValueRangeConstraint ( 
-		
-		Min = 1L, 
-		
-		Max = 255L 
-		
-		) ]
+            [ASN1ValueRangeConstraint ( Min = 1L, Max = 255L, IsExtensible = false) ]
 	    
             public String Value
             {

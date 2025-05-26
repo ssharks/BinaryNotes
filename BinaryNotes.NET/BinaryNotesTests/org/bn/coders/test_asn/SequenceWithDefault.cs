@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "SequenceWithDefault", IsSet = false  )]
+    [ASN1Sequence ( Name = "SequenceWithDefault", IsExtensible = false, IsSet = false)]
     public class SequenceWithDefault : IASN1PreparedElement {
-                    
+                
 	private long nodefault_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "nodefault", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "nodefault", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long Nodefault
         {
@@ -35,7 +35,7 @@ namespace org.bn.coders.test_asn {
 	private string withDefault_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "withDefault", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withDefault", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  true )  ]
     
         public string WithDefault
         {
@@ -48,7 +48,7 @@ namespace org.bn.coders.test_asn {
 	private long withIntDef_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "withIntDef", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withIntDef", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  true )  ]
     
         public long WithIntDef
         {
@@ -67,7 +67,7 @@ namespace org.bn.coders.test_asn {
 	private string name_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "name", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "name", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Name
         {
@@ -80,7 +80,7 @@ namespace org.bn.coders.test_asn {
 	private string email_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "email", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "email", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Email
         {
@@ -103,7 +103,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "withSeqDef", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withSeqDef", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  true )  ]
     
         public WithSeqDefSequenceType WithSeqDef
         {
@@ -115,7 +115,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestOCT withOctDef_ ;
 	
-        [ASN1Element ( Name = "withOctDef", IsOptional =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withOctDef", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  true )  ]
     
         public TestOCT WithOctDef
         {
@@ -128,7 +128,7 @@ namespace org.bn.coders.test_asn {
 	private byte[] withOctDef2_ ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "withOctDef2", IsOptional =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withOctDef2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
     
         public byte[] WithOctDef2
         {
@@ -141,10 +141,10 @@ namespace org.bn.coders.test_asn {
 	private System.Collections.Generic.ICollection<string> withSeqOf_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-[ASN1SequenceOf( Name = "withSeqOf", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "withSeqOf", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "withSeqOf", IsOptional =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withSeqOf", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  true )  ]
     
         public System.Collections.Generic.ICollection<string> WithSeqOf
         {
@@ -156,10 +156,10 @@ namespace org.bn.coders.test_asn {
           
 	private System.Collections.Generic.ICollection<TestPRN> withSeqOf2_ ;
 	
-[ASN1SequenceOf( Name = "withSeqOf2", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "withSeqOf2", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "withSeqOf2", IsOptional =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withSeqOf2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  true )  ]
     
         public System.Collections.Generic.ICollection<TestPRN> WithSeqOf2
         {
@@ -171,7 +171,7 @@ namespace org.bn.coders.test_asn {
           
 	private StringArray withSeqOf3_ ;
 	
-        [ASN1Element ( Name = "withSeqOf3", IsOptional =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withSeqOf3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  true )  ]
     
         public StringArray WithSeqOf3
         {
@@ -195,7 +195,7 @@ namespace org.bn.coders.test_asn {
             [ASN1EnumItem ( Name = "two", HasTag = true , Tag = 2 )]
             two , 
             [ASN1EnumItem ( Name = "three", HasTag = true , Tag = 3 )]
-            three
+            three , 
         }
         
         private EnumType val;
@@ -220,7 +220,7 @@ namespace org.bn.coders.test_asn {
     }
 
                 
-        [ASN1Element ( Name = "withEnumDef", IsOptional =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "withEnumDef", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  true )  ]
     
         public WithEnumDefEnumType WithEnumDef
         {
@@ -232,7 +232,7 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	string param_WithDefault =         
+            string param_WithDefault =         
             "dd";
         WithDefault = param_WithDefault;
     long param_WithIntDef =         
@@ -322,15 +322,14 @@ namespace org.bn.coders.test_asn {
 				param_WithEnumDef.Value = WithEnumDefEnumType.EnumType.two;
         WithEnumDef = param_WithEnumDef;
     
-            }
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithDefault));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(SequenceWithDefault));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-            
     }
             
 }

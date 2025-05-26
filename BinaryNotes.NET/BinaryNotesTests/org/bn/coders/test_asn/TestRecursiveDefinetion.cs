@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestRecursiveDefinetion", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestRecursiveDefinetion", IsExtensible = false, IsSet = false)]
     public class TestRecursiveDefinetion : IASN1PreparedElement {
-                    
+                
 	private string name_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "name", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "name", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public string Name
         {
@@ -36,7 +36,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  value_present = false ;
 	
-        [ASN1Element ( Name = "value", IsOptional =  true , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "value", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public TestRecursiveDefinetion Value
         {
@@ -52,16 +52,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestRecursiveDefinetion));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestRecursiveDefinetion));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

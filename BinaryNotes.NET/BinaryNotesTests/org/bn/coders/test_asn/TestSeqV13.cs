@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestSeqV13", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestSeqV13", IsExtensible = false, IsSet = false)]
     public class TestSeqV13 : IASN1PreparedElement {
-                    
+                
 	private double field1_ ;
 	[ASN1Real( Name = "" )]
     
-        [ASN1Element ( Name = "field1", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public double Field1
         {
@@ -35,7 +35,7 @@ namespace org.bn.coders.test_asn {
 	private long fieldI_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "fieldI", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "fieldI", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public long FieldI
         {
@@ -47,7 +47,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestReal field2_ ;
 	
-        [ASN1Element ( Name = "field2", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field2", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public TestReal Field2
         {
@@ -62,7 +62,7 @@ namespace org.bn.coders.test_asn {
         private bool  field3_present = false ;
 	[ASN1Real( Name = "" )]
     
-        [ASN1Element ( Name = "field3", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field3", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public double Field3
         {
@@ -75,7 +75,7 @@ namespace org.bn.coders.test_asn {
 	private double field4_ ;
 	[ASN1Real( Name = "" )]
     
-        [ASN1Element ( Name = "field4", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field4", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public double Field4
         {
@@ -88,7 +88,7 @@ namespace org.bn.coders.test_asn {
 	private string field5_ ;
 	[ASN1String( Name = "", 
         StringType = UniversalTags.GeneralizedTime , IsUCS = false )]
-        [ASN1Element ( Name = "field5", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field5", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Field5
         {
@@ -101,7 +101,7 @@ namespace org.bn.coders.test_asn {
 	private string field6_ ;
 	[ASN1String( Name = "", 
         StringType = UniversalTags.UTCTime , IsUCS = false )]
-        [ASN1Element ( Name = "field6", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field6", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public string Field6
         {
@@ -113,7 +113,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestLong field7_ ;
 	
-        [ASN1Element ( Name = "field7", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field7", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public TestLong Field7
         {
@@ -129,16 +129,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSeqV13));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSeqV13));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

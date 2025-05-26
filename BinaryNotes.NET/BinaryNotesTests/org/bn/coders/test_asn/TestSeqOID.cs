@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestSeqOID", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestSeqOID", IsExtensible = false, IsSet = false)]
     public class TestSeqOID : IASN1PreparedElement {
-                    
+                
 	private ObjectIdentifier field1_ ;
 	[ASN1ObjectIdentifier( Name = "" )]
     
-        [ASN1Element ( Name = "field1", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public ObjectIdentifier Field1
         {
@@ -37,7 +37,7 @@ namespace org.bn.coders.test_asn {
         private bool  field2_present = false ;
 	[ASN1ObjectIdentifier( Name = "" )]
     
-        [ASN1Element ( Name = "field2", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public ObjectIdentifier Field2
         {
@@ -50,7 +50,7 @@ namespace org.bn.coders.test_asn {
 	private long field3_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field3", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public long Field3
         {
@@ -66,16 +66,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSeqOID));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSeqOID));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

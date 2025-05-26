@@ -24,7 +24,7 @@ namespace org.bn.coders.test_asn {
 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.VisibleString , IsUCS = false )]
-        [ASN1Element ( Name = "ITUType6", IsOptional =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "ITUType6", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
     
         public string Value
         {

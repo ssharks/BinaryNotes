@@ -23,10 +23,10 @@ namespace org.bn.coders.test_asn {
         private System.Collections.Generic.ICollection<Set3>  val;
 
         
-[ASN1SequenceOf( Name = "Set5", IsSetOf = true  )]
+[ASN1SequenceOf( Name = "Set5", IsExtensible = false, IsSetOf = true  )]
 
     
-        [ASN1Element ( Name = "Set5", IsOptional =  false , HasTag =  true, Tag = 127, 
+        [ASN1Element ( Name = "Set5", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 127, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<Set3> Value

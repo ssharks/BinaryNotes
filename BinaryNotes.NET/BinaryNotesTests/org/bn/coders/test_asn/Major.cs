@@ -24,7 +24,7 @@ namespace org.bn.coders.test_asn {
 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "Major", IsOptional =  false , HasTag =  true, Tag = 106, 
+        [ASN1Element ( Name = "Major", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 106, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public long Value

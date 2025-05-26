@@ -30,7 +30,7 @@ namespace org.bn.coders.test_asn {
 	private long set1ID_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "set1ID", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "set1ID", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public long Set1ID
         {
@@ -53,7 +53,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "Set1", IsOptional =  false , HasTag =  true, Tag = 55, 
+        [ASN1Element ( Name = "Set1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 55, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public Set1SequenceType Value

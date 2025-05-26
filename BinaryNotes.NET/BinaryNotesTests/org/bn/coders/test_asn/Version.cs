@@ -31,7 +31,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  minor_present = false ;
 	
-        [ASN1Element ( Name = "minor", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "minor", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Minor Minor
         {
@@ -45,7 +45,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  major_present = false ;
 	
-        [ASN1Element ( Name = "major", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "major", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Major Major
         {
@@ -76,7 +76,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "Version", IsOptional =  false , HasTag =  true, Tag = 74, 
+        [ASN1Element ( Name = "Version", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 74, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public VersionSequenceType Value

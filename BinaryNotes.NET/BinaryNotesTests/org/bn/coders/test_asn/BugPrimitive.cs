@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "BugPrimitive") ]
+    [ASN1Choice ( Name = "BugPrimitive", IsExtensible = false) ]
     public class BugPrimitive : IASN1PreparedElement {
                     
         
@@ -26,7 +26,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "bugBoolean", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "bugBoolean", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public bool BugBoolean
         {
@@ -43,7 +43,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "bugInteger", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "bugInteger", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public long BugInteger
         {

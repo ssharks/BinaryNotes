@@ -29,7 +29,7 @@ namespace org.bn.coders.test_asn {
                         
 	private PlainParamsMap field_ ;
 	
-        [ASN1Element ( Name = "field", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public PlainParamsMap Field
         {
@@ -52,7 +52,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "TaggedSeqInSeq", IsOptional =  false , HasTag =  true, Tag = 4, 
+        [ASN1Element ( Name = "TaggedSeqInSeq", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 4, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public TaggedSeqInSeqSequenceType Value

@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "BugSequenceType", IsSet = false  )]
+    [ASN1Sequence ( Name = "BugSequenceType", IsExtensible = false, IsSet = false)]
     public class BugSequenceType : IASN1PreparedElement {
-                    
+                
 	private bool booleanField_ ;
 	[ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "booleanField", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "booleanField", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public bool BooleanField
         {
@@ -35,7 +35,7 @@ namespace org.bn.coders.test_asn {
 	private long integerField_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "integerField", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "integerField", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long IntegerField
         {
@@ -47,16 +47,15 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(BugSequenceType));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(BugSequenceType));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

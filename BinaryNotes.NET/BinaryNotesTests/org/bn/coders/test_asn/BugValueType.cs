@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "BugValueType") ]
+    [ASN1Choice ( Name = "BugValueType", IsExtensible = false) ]
     public class BugValueType : IASN1PreparedElement {
                     
         
@@ -25,7 +25,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "bugPrimitive", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "bugPrimitive", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public BugPrimitive BugPrimitive
         {
@@ -41,7 +41,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "bugEnum", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "bugEnum", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public BugEnum BugEnum
         {
@@ -57,7 +57,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "bugSequence", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "bugSequence", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public BugSequenceType BugSequence
         {

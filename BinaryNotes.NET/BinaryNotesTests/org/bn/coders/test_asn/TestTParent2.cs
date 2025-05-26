@@ -23,7 +23,7 @@ namespace org.bn.coders.test_asn {
         private TestParent2  val;
 
         
-        [ASN1Element ( Name = "TestTParent2", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "TestTParent2", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public TestParent2 Value
         {

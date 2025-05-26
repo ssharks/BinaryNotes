@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "Data") ]
+    [ASN1Choice ( Name = "Data", IsExtensible = false) ]
     public class Data : IASN1PreparedElement {
                     
         
@@ -25,7 +25,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "plain", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "plain", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public TestPRN Plain
         {
@@ -41,7 +41,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "unicode", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "unicode", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public TestOCT Unicode
         {
@@ -57,7 +57,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "binary", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "binary", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public TestOCT Binary
         {
@@ -74,7 +74,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "simpleType", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public string SimpleType
         {
@@ -91,7 +91,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
     
         public byte[] SimpleOctType
         {
@@ -108,7 +108,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "booleanType", IsOptional =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "booleanType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
     
         public bool BooleanType
         {
@@ -125,7 +125,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "intType", IsOptional =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
     
         public long IntType
         {
@@ -141,15 +141,9 @@ namespace org.bn.coders.test_asn {
         
                 
         [ASN1Integer( Name = "" )]
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 0L, 
-		
-		Max = 255L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "intBndType", IsOptional =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intBndType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public int IntBndType
         {

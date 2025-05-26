@@ -16,12 +16,12 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "DataSeq", IsSet = false  )]
+    [ASN1Sequence ( Name = "DataSeq", IsExtensible = false, IsSet = false)]
     public class DataSeq : IASN1PreparedElement {
-                    
+                
 	private TestPRN plain_ ;
 	
-        [ASN1Element ( Name = "plain", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "plain", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public TestPRN Plain
         {
@@ -35,7 +35,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  unicode_present = false ;
 	
-        [ASN1Element ( Name = "unicode", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "unicode", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public TestOCT Unicode
         {
@@ -47,7 +47,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestOCT binary_ ;
 	
-        [ASN1Element ( Name = "binary", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "binary", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public TestOCT Binary
         {
@@ -60,7 +60,7 @@ namespace org.bn.coders.test_asn {
 	private string simpleType_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "simpleType", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public string SimpleType
         {
@@ -73,7 +73,7 @@ namespace org.bn.coders.test_asn {
 	private byte[] simpleOctType_ ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public byte[] SimpleOctType
         {
@@ -86,7 +86,7 @@ namespace org.bn.coders.test_asn {
 	private bool booleanType_ ;
 	[ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "booleanType", IsOptional =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "booleanType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
     
         public bool BooleanType
         {
@@ -99,7 +99,7 @@ namespace org.bn.coders.test_asn {
 	private long intType_ ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "intType", IsOptional =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
     
         public long IntType
         {
@@ -111,15 +111,9 @@ namespace org.bn.coders.test_asn {
           
 	private int intBndType_ ;
 	[ASN1Integer( Name = "" )]
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 0L, 
-		
-		Max = 255L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "intBndType", IsOptional =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intBndType", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public int IntBndType
         {
@@ -132,10 +126,10 @@ namespace org.bn.coders.test_asn {
 	private System.Collections.Generic.ICollection<string> stringArray_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-[ASN1SequenceOf( Name = "stringArray", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "stringArray", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "stringArray", IsOptional =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "stringArray", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<string> StringArray
         {
@@ -147,10 +141,10 @@ namespace org.bn.coders.test_asn {
           
 	private System.Collections.Generic.ICollection<Data> dataArray_ ;
 	
-[ASN1SequenceOf( Name = "dataArray", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "dataArray", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "dataArray", IsOptional =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "dataArray", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<Data> DataArray
         {
@@ -165,7 +159,7 @@ namespace org.bn.coders.test_asn {
         private bool  extension_present = false ;
 	[ASN1Any( Name = "" )]
     
-        [ASN1Element ( Name = "extension", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "extension", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public byte[] Extension
         {
@@ -185,16 +179,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(DataSeq));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(DataSeq));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

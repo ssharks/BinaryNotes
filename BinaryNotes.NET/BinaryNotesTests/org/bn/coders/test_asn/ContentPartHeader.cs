@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "ContentPartHeader", IsSet = false  )]
+    [ASN1Sequence ( Name = "ContentPartHeader", IsExtensible = false, IsSet = false)]
     public class ContentPartHeader : IASN1PreparedElement {
-                    
+                
 	private string name_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "name", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "name", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public string Name
         {
@@ -34,10 +34,10 @@ namespace org.bn.coders.test_asn {
           
 	private System.Collections.Generic.ICollection<ValueWithParams> values_ ;
 	
-[ASN1SequenceOf( Name = "values", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "values", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "values", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "values", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<ValueWithParams> Values
         {
@@ -49,16 +49,15 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ContentPartHeader));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ContentPartHeader));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

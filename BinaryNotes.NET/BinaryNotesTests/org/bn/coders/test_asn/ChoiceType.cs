@@ -16,8 +16,8 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "TestParent2", IsExtensible = false) ]
-    public class TestParent2 : IASN1PreparedElement {
+    [ASN1Choice ( Name = "ChoiceType", IsExtensible = true) ]
+    public class ChoiceType : IASN1PreparedElement {
                     
         
 	private long field10_ ;
@@ -60,7 +60,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field30", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field30", IsOptional =  false , IsExtended =  true , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public string Field30
         {
@@ -77,7 +77,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field40", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field40", IsOptional =  false , IsExtended =  true , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public long Field40
         {
@@ -176,7 +176,7 @@ namespace org.bn.coders.test_asn {
 	    {
 	    }
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestParent2));
+            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ChoiceType));
             public IASN1PreparedElementData PreparedData {
             	get { return preparedData; }
             }

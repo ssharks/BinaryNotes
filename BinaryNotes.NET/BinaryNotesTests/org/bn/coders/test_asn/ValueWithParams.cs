@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "ValueWithParams", IsSet = false  )]
+    [ASN1Sequence ( Name = "ValueWithParams", IsExtensible = false, IsSet = false)]
     public class ValueWithParams : IASN1PreparedElement {
-                    
+                
 	private string value_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "value", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "value", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public string Value
         {
@@ -36,10 +36,10 @@ namespace org.bn.coders.test_asn {
 	
         private bool  params_present = false ;
 	
-[ASN1SequenceOf( Name = "params", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "params", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "params", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "params", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<PlainParamsMap> Params
         {
@@ -55,16 +55,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ValueWithParams));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ValueWithParams));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

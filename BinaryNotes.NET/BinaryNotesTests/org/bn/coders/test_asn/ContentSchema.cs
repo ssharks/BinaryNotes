@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Enum ( Name = "ContentSchema")]
+    [ASN1Enum ( Name = "ContentSchema", IsExtensible = false, NumRootElements = 6)]
     public class ContentSchema : IASN1PreparedElement {        
         public enum EnumType {
             
@@ -40,19 +40,19 @@ namespace org.bn.coders.test_asn {
         {
             get { return val; }
             set { val = value; }
-        }        
+        }
 
-            public void initWithDefaults()
-	    {
-	    }
+        public void initWithDefaults()
+        {
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ContentSchema));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ContentSchema));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-                
+
     }
             
 }

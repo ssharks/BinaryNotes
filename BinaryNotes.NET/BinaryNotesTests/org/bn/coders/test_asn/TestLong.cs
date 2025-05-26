@@ -22,13 +22,7 @@ namespace org.bn.coders.test_asn {
             private long val;
             
             [ASN1Integer( Name = "TestLong" )]
-            [ASN1ValueRangeConstraint ( 
-		
-		Min = 1L, 
-		
-		Max = 2247483648L 
-		
-		) ]
+            [ASN1ValueRangeConstraint ( Min = 1L, Max = 2247483648L, IsExtensible = false) ]
 	    
             public long Value
             {

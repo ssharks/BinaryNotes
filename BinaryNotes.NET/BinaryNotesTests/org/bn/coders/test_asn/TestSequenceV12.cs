@@ -16,13 +16,13 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestSequenceV12", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestSequenceV12", IsExtensible = false, IsSet = false)]
     public class TestSequenceV12 : IASN1PreparedElement {
-                    
+                
 	private string attrSimple_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "attrSimple", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrSimple", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public string AttrSimple
         {
@@ -34,15 +34,9 @@ namespace org.bn.coders.test_asn {
           
 	private string attrStr_ ;
 	[ASN1String( Name = "", 
-        StringType =  UniversalTags.PrintableString , IsUCS = false )][ASN1ValueRangeConstraint ( 
-		
-		Min = 1L, 
-		
-		Max = 4L 
-		
-		) ]
+        StringType =  UniversalTags.PrintableString , IsUCS = false )][ASN1ValueRangeConstraint ( Min = 1L, Max = 4L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "attrStr", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrStr", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public string AttrStr
         {
@@ -54,7 +48,7 @@ namespace org.bn.coders.test_asn {
           
 	private TestPRN attrStr2_ ;
 	
-        [ASN1Element ( Name = "attrStr2", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrStr2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public TestPRN AttrStr2
         {
@@ -67,17 +61,11 @@ namespace org.bn.coders.test_asn {
 	private System.Collections.Generic.ICollection<string> attrArr_ ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-[ASN1SequenceOf( Name = "attrArr", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "attrArr", IsExtensible = false, IsSetOf = false  )]
 
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 1L, 
-		
-		Max = 5L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 1L, Max = 5L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "attrArr", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrArr", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<string> AttrArr
         {
@@ -92,7 +80,7 @@ namespace org.bn.coders.test_asn {
         private bool  attrBitStr_present = false ;
 	[ASN1BitString( Name = "" )]
     
-        [ASN1Element ( Name = "attrBitStr", IsOptional =  true , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrBitStr", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
     
         public BitString AttrBitStr
         {
@@ -105,7 +93,7 @@ namespace org.bn.coders.test_asn {
 	private BitString attrBitStrDef_ ;
 	[ASN1BitString( Name = "" )]
     
-        [ASN1Element ( Name = "attrBitStrDef", IsOptional =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
+        [ASN1Element ( Name = "attrBitStrDef", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  true )  ]
     
         public BitString AttrBitStrDef
         {
@@ -119,15 +107,9 @@ namespace org.bn.coders.test_asn {
 	
         private bool  attrBitStrBnd_present = false ;
 	[ASN1BitString( Name = "" )]
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 1L, 
-		
-		Max = 36L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 1L, Max = 36L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "attrBitStrBnd", IsOptional =  true , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrBitStrBnd", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
     
         public BitString AttrBitStrBnd
         {
@@ -141,7 +123,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  attrBoxBitStr_present = false ;
 	
-        [ASN1Element ( Name = "attrBoxBitStr", IsOptional =  true , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrBoxBitStr", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public TestBitStrBnd AttrBoxBitStr
         {
@@ -156,7 +138,7 @@ namespace org.bn.coders.test_asn {
     
             [ASN1SizeConstraint ( Max = 4L )]
         
-        [ASN1Element ( Name = "attrStrict", IsOptional =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "attrStrict", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
     
         public byte[] AttrStrict
         {
@@ -180,19 +162,18 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	BitString param_AttrBitStrDef =         
+            BitString param_AttrBitStrDef =         
             new BitString (CoderUtils.defStringToOctetString("'011'B"));
         AttrBitStrDef = param_AttrBitStrDef;
     
-            }
+        }
 
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSequenceV12));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSequenceV12));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
-            
     }
             
 }

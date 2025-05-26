@@ -32,13 +32,15 @@ java_options = ['-Dsun.misc.URLClassPath.disableJarChecking=true',
 cmd = [java]
 cmd.extend(java_options)
 
+output_path = os.path.join(path, 'org/bn/coders/test_asn')
+
 # add the specific options for the bncompiler
 bn_compiler_args = [
     '-classpath', jar_path,
     'org.bn.compiler.Main',
     '-m', 'cs',
     '-ns', namespace, 
-    '-o', os.path.join(path, 'org/bn/coders/test_asn'),
+    '-o', output_path,
     "-f", os.path.join(path, test_asn_path)
 ]
 cmd.extend(bn_compiler_args)
@@ -46,3 +48,12 @@ cmd.extend(bn_compiler_args)
 result = subprocess.run(cmd, capture_output=True, text=True)
 print(result.stdout)
 print(result.stderr)
+
+for root, _, files in os.walk(output_path):
+    for file in files:
+        file_path = os.path.join(root, file)
+        with open(file_path, 'rb') as f:
+            content = f.read()
+        content = content.replace(b'\r\n', b'\n')
+        with open(file_path, 'wb') as f:
+            f.write(content)

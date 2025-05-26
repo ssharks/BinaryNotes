@@ -29,7 +29,7 @@ namespace org.bn.coders.test_asn {
                         
 	private Config config1_ ;
 	
-        [ASN1Element ( Name = "config1", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "config1", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Config Config1
         {
@@ -41,7 +41,7 @@ namespace org.bn.coders.test_asn {
           
 	private Config2 config2_ ;
 	
-        [ASN1Element ( Name = "config2", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "config2", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Config2 Config2
         {
@@ -64,7 +64,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "TestTaggedSetInSet", IsOptional =  false , HasTag =  true, Tag = 77, 
+        [ASN1Element ( Name = "TestTaggedSetInSet", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 77, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public TestTaggedSetInSetSequenceType Value

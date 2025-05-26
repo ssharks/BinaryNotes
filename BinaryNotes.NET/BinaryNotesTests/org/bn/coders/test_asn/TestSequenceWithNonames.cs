@@ -16,9 +16,9 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "TestSequenceWithNonames", IsSet = false  )]
+    [ASN1Sequence ( Name = "TestSequenceWithNonames", IsExtensible = false, IsSet = false)]
     public class TestSequenceWithNonames : IASN1PreparedElement {
-                    
+                
 	private SeqSequenceType seq_ ;
 	
        [ASN1PreparedElement]
@@ -30,7 +30,7 @@ namespace org.bn.coders.test_asn {
         private bool  it1_present = false ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "it1", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "it1", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public long It1
         {
@@ -57,7 +57,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "seq", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "seq", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public SeqSequenceType Seq
         {
@@ -70,10 +70,10 @@ namespace org.bn.coders.test_asn {
 	private ChChoiceType ch_ ;
 	
 
-    [ASN1PreparedElement]    
-    [ASN1Choice ( Name = "ch" )]
+    [ASN1PreparedElement]
+    [ASN1Choice ( Name = "ch", IsExtensible = false )]
     public class ChChoiceType : IASN1PreparedElement  {
-	            
+                
         
 	private long it1_ ;
         private bool  it1_selected = false ;
@@ -81,7 +81,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "it1", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "it1", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long It1
         {
@@ -98,7 +98,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "it2", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "it2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public byte[] It2
         {
@@ -143,18 +143,18 @@ namespace org.bn.coders.test_asn {
         
   
 
-            public void initWithDefaults()
-	    {
-	    }
+        public void initWithDefaults()
+        {
+        }
 
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ChChoiceType));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(ChChoiceType));
             public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
+            get { return preparedData; }
+        }
 
     }
                 
-        [ASN1Element ( Name = "ch", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "ch", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public ChChoiceType Ch
         {
@@ -175,7 +175,7 @@ namespace org.bn.coders.test_asn {
         private bool  it1_present = false ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "it1", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "it1", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public long It1
         {
@@ -202,10 +202,10 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-[ASN1SequenceOf( Name = "seqf", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "seqf", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "seqf", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "seqf", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<SeqfSequenceType> Seqf
         {
@@ -217,16 +217,15 @@ namespace org.bn.coders.test_asn {
   
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSequenceWithNonames));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(TestSequenceWithNonames));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

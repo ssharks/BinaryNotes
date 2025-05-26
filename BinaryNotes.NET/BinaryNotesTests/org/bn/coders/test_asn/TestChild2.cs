@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "TestChild2") ]
+    [ASN1Choice ( Name = "TestChild2", IsExtensible = false) ]
     public class TestChild2 : IASN1PreparedElement {
                     
         
@@ -26,7 +26,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field10", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field10", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public long Field10
         {
@@ -43,7 +43,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "field20", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field20", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public byte[] Field20
         {
@@ -60,7 +60,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field30", IsOptional =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field30", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public string Field30
         {
@@ -77,7 +77,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "field40", IsOptional =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field40", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public long Field40
         {
@@ -178,7 +178,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field5", IsOptional =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field5", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 4 , HasDefaultValue =  false )  ]
     
         public string Field5
         {
@@ -195,7 +195,7 @@ namespace org.bn.coders.test_asn {
                 
         [ASN1String( Name = "", 
         StringType =  UniversalTags.UTF8String , IsUCS = false )]
-        [ASN1Element ( Name = "field6", IsOptional =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "field6", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public string Field6
         {

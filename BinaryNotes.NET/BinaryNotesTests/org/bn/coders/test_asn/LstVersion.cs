@@ -23,10 +23,10 @@ namespace org.bn.coders.test_asn {
         private System.Collections.Generic.ICollection<Version>  val;
 
         
-[ASN1SequenceOf( Name = "LstVersion", IsSetOf = true  )]
+[ASN1SequenceOf( Name = "LstVersion", IsExtensible = false, IsSetOf = true  )]
 
     
-        [ASN1Element ( Name = "LstVersion", IsOptional =  false , HasTag =  true, Tag = 75, 
+        [ASN1Element ( Name = "LstVersion", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 75, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<Version> Value

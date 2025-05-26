@@ -16,12 +16,12 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Sequence ( Name = "DataSeqMO", IsSet = false  )]
+    [ASN1Sequence ( Name = "DataSeqMO", IsExtensible = false, IsSet = false)]
     public class DataSeqMO : IASN1PreparedElement {
-                    
+                
 	private TestPRN plain_ ;
 	
-        [ASN1Element ( Name = "plain", IsOptional =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "plain", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 0 , HasDefaultValue =  false )  ]
     
         public TestPRN Plain
         {
@@ -35,7 +35,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  unicode_present = false ;
 	
-        [ASN1Element ( Name = "unicode", IsOptional =  true , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "unicode", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public TestOCT Unicode
         {
@@ -49,7 +49,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  binary_present = false ;
 	
-        [ASN1Element ( Name = "binary", IsOptional =  true , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "binary", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 2 , HasDefaultValue =  false )  ]
     
         public TestOCT Binary
         {
@@ -64,7 +64,7 @@ namespace org.bn.coders.test_asn {
         private bool  simpleType_present = false ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "simpleType", IsOptional =  true , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleType", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 3 , HasDefaultValue =  false )  ]
     
         public string SimpleType
         {
@@ -77,7 +77,7 @@ namespace org.bn.coders.test_asn {
 	private byte[] simpleOctType_ ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleOctType", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public byte[] SimpleOctType
         {
@@ -92,7 +92,7 @@ namespace org.bn.coders.test_asn {
         private bool  booleanType_present = false ;
 	[ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "booleanType", IsOptional =  true , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "booleanType", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 5 , HasDefaultValue =  false )  ]
     
         public bool BooleanType
         {
@@ -107,7 +107,7 @@ namespace org.bn.coders.test_asn {
         private bool  intType_present = false ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "intType", IsOptional =  true , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intType", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 6 , HasDefaultValue =  false )  ]
     
         public long IntType
         {
@@ -121,15 +121,9 @@ namespace org.bn.coders.test_asn {
 	
         private bool  intBndType_present = false ;
 	[ASN1Integer( Name = "" )]
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 0L, 
-		
-		Max = 255L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "intBndType", IsOptional =  true , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intBndType", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public int IntBndType
         {
@@ -144,10 +138,10 @@ namespace org.bn.coders.test_asn {
         private bool  stringArray_present = false ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-[ASN1SequenceOf( Name = "stringArray", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "stringArray", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "stringArray", IsOptional =  true , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "stringArray", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 8 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<string> StringArray
         {
@@ -161,10 +155,10 @@ namespace org.bn.coders.test_asn {
 	
         private bool  dataArray_present = false ;
 	
-[ASN1SequenceOf( Name = "dataArray", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "dataArray", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "dataArray", IsOptional =  true , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "dataArray", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 9 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<Data> DataArray
         {
@@ -178,7 +172,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  plain2_present = false ;
 	
-        [ASN1Element ( Name = "plain2", IsOptional =  true , HasTag =  true, Tag = 10 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "plain2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 10 , HasDefaultValue =  false )  ]
     
         public TestPRN Plain2
         {
@@ -192,7 +186,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  unicode2_present = false ;
 	
-        [ASN1Element ( Name = "unicode2", IsOptional =  true , HasTag =  true, Tag = 18 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "unicode2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 18 , HasDefaultValue =  false )  ]
     
         public TestOCT Unicode2
         {
@@ -206,7 +200,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  binary2_present = false ;
 	
-        [ASN1Element ( Name = "binary2", IsOptional =  true , HasTag =  true, Tag = 11 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "binary2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 11 , HasDefaultValue =  false )  ]
     
         public TestOCT Binary2
         {
@@ -221,7 +215,7 @@ namespace org.bn.coders.test_asn {
         private bool  simpleType2_present = false ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-        [ASN1Element ( Name = "simpleType2", IsOptional =  true , HasTag =  true, Tag = 12 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleType2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 12 , HasDefaultValue =  false )  ]
     
         public string SimpleType2
         {
@@ -236,7 +230,7 @@ namespace org.bn.coders.test_asn {
         private bool  simpleOctType2_present = false ;
 	[ASN1OctetString( Name = "" )]
     
-        [ASN1Element ( Name = "simpleOctType2", IsOptional =  true , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "simpleOctType2", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public byte[] SimpleOctType2
         {
@@ -251,7 +245,7 @@ namespace org.bn.coders.test_asn {
         private bool  booleanType2_present = false ;
 	[ASN1Boolean( Name = "" )]
     
-        [ASN1Element ( Name = "booleanType2", IsOptional =  true , HasTag =  true, Tag = 13 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "booleanType2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 13 , HasDefaultValue =  false )  ]
     
         public bool BooleanType2
         {
@@ -266,7 +260,7 @@ namespace org.bn.coders.test_asn {
         private bool  intType2_present = false ;
 	[ASN1Integer( Name = "" )]
     
-        [ASN1Element ( Name = "intType2", IsOptional =  true , HasTag =  true, Tag = 19 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intType2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 19 , HasDefaultValue =  false )  ]
     
         public long IntType2
         {
@@ -280,15 +274,9 @@ namespace org.bn.coders.test_asn {
 	
         private bool  intBndType2_present = false ;
 	[ASN1Integer( Name = "" )]
-    [ASN1ValueRangeConstraint ( 
-		
-		Min = 0L, 
-		
-		Max = 255L 
-		
-		) ]
+    [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    
-        [ASN1Element ( Name = "intBndType2", IsOptional =  true , HasTag =  true, Tag = 14 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "intBndType2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 14 , HasDefaultValue =  false )  ]
     
         public int IntBndType2
         {
@@ -303,10 +291,10 @@ namespace org.bn.coders.test_asn {
         private bool  stringArray2_present = false ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.PrintableString , IsUCS = false )]
-[ASN1SequenceOf( Name = "stringArray2", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "stringArray2", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "stringArray2", IsOptional =  true , HasTag =  true, Tag = 15 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "stringArray2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 15 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<string> StringArray2
         {
@@ -320,10 +308,10 @@ namespace org.bn.coders.test_asn {
 	
         private bool  dataArray2_present = false ;
 	
-[ASN1SequenceOf( Name = "dataArray2", IsSetOf = false  )]
+[ASN1SequenceOf( Name = "dataArray2", IsExtensible = false, IsSetOf = false  )]
 
     
-        [ASN1Element ( Name = "dataArray2", IsOptional =  true , HasTag =  true, Tag = 16 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "dataArray2", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 16 , HasDefaultValue =  false )  ]
     
         public System.Collections.Generic.ICollection<Data> DataArray2
         {
@@ -337,7 +325,7 @@ namespace org.bn.coders.test_asn {
 	
         private bool  plain3_present = false ;
 	
-        [ASN1Element ( Name = "plain3", IsOptional =  true , HasTag =  true, Tag = 17 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "plain3", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 17 , HasDefaultValue =  false )  ]
     
         public TestPRN Plain3
         {
@@ -425,16 +413,15 @@ namespace org.bn.coders.test_asn {
         
 
             public void initWithDefaults() {
-            	
-            }
-
-
-            private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(DataSeqMO));
-            public IASN1PreparedElementData PreparedData {
-            	get { return preparedData; }
-            }
-
             
+        }
+
+
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(DataSeqMO));
+            public IASN1PreparedElementData PreparedData {
+            get { return preparedData; }
+        }
+
     }
             
 }

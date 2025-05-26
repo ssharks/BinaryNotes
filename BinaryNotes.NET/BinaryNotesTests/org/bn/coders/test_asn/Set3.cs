@@ -29,7 +29,7 @@ namespace org.bn.coders.test_asn {
                         
 	private Set2 set2_ ;
 	
-        [ASN1Element ( Name = "set2", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "set2", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Set2 Set2
         {
@@ -52,7 +52,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "Set3", IsOptional =  false , HasTag =  true, Tag = 124, 
+        [ASN1Element ( Name = "Set3", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 124, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public Set3SequenceType Value

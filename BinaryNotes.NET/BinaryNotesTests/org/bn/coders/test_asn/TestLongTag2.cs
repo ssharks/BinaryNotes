@@ -16,7 +16,7 @@ namespace org.bn.coders.test_asn {
 
 
     [ASN1PreparedElement]
-    [ASN1Choice ( Name = "TestLongTag2") ]
+    [ASN1Choice ( Name = "TestLongTag2", IsExtensible = false) ]
     public class TestLongTag2 : IASN1PreparedElement {
                     
         
@@ -25,7 +25,7 @@ namespace org.bn.coders.test_asn {
         
                 
         
-        [ASN1Element ( Name = "testa", IsOptional =  false , HasTag =  true, Tag = 33 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "testa", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 33 , HasDefaultValue =  false )  ]
     
         public TestLongTag2Choice Testa
         {

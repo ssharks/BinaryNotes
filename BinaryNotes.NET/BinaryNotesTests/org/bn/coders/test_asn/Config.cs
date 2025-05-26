@@ -29,7 +29,7 @@ namespace org.bn.coders.test_asn {
                         
 	private LstVersion lstVersion_ ;
 	
-        [ASN1Element ( Name = "lstVersion", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "lstVersion", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public LstVersion LstVersion
         {
@@ -41,7 +41,7 @@ namespace org.bn.coders.test_asn {
           
 	private Major major_config_ ;
 	
-        [ASN1Element ( Name = "major_config", IsOptional =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "major_config", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
         public Major Major_config
         {
@@ -64,7 +64,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "Config", IsOptional =  false , HasTag =  true, Tag = 76, 
+        [ASN1Element ( Name = "Config", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 76, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public ConfigSequenceType Value

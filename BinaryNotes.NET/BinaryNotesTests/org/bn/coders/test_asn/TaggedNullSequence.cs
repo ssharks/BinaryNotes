@@ -25,7 +25,7 @@ namespace org.bn.coders.test_asn {
         
         [ASN1Null ( Name = "TaggedNullSequence" )]
     
-        [ASN1Element ( Name = "TaggedNullSequence", IsOptional =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "TaggedNullSequence", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 1 , HasDefaultValue =  false )  ]
     
         public NullObject Value
         {

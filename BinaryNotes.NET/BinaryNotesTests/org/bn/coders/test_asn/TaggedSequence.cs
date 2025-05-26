@@ -32,7 +32,7 @@ namespace org.bn.coders.test_asn {
         private bool  type1_present = false ;
 	[ASN1String( Name = "", 
         StringType =  UniversalTags.VisibleString , IsUCS = false )]
-        [ASN1Element ( Name = "type1", IsOptional =  true , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "type1", IsOptional =  true , IsExtended =  false , HasTag =  true, Tag = 7 , HasDefaultValue =  false )  ]
     
         public string Type1
         {
@@ -59,7 +59,7 @@ namespace org.bn.coders.test_asn {
                 
        }
                 
-        [ASN1Element ( Name = "TaggedSequence", IsOptional =  false , HasTag =  true, Tag = 8, 
+        [ASN1Element ( Name = "TaggedSequence", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 8, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public TaggedSequenceSequenceType Value

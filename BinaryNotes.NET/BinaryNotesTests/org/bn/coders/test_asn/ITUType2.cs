@@ -23,7 +23,7 @@ namespace org.bn.coders.test_asn {
         private ITUType1  val;
 
         
-        [ASN1Element ( Name = "ITUType2", IsOptional =  false , HasTag =  true, Tag = 3, 
+        [ASN1Element ( Name = "ITUType2", IsOptional =  false , IsExtended =  false , HasTag =  true, Tag = 3, 
         TagClass =  TagClasses.Application  , HasDefaultValue =  false )  ]
     
         public ITUType1 Value
