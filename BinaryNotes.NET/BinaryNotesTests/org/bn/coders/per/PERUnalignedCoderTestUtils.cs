@@ -386,25 +386,35 @@ namespace org.bn.coders.per
             cam.Cam = new();
             cam.Cam.GenerationDeltaTime = new(1);
             cam.Cam.CamParameters = new();
-            cam.Cam.CamParameters.BasicContainer = new();
+            cam.Cam.CamParameters.BasicContainer = new()
             cam.Cam.CamParameters.BasicContainer.StationType = new StationType(0);
             cam.Cam.CamParameters.BasicContainer.ReferencePosition = new();
             cam.Cam.CamParameters.BasicContainer.ReferencePosition.Latitude = new(10);
             cam.Cam.CamParameters.BasicContainer.ReferencePosition.Longitude = new(10);
             cam.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse = new()
             {
+                StationType = new StationType(0),
+                ReferencePosition = new()
+                {
+                    Latitude = new(10),
+                    Longitude = new(10),
+                    PositionConfidenceEllipse = new()
+                    {
                 SemiMajorConfidence = new(1),
                 SemiMinorConfidence = new(1),
                 SemiMajorOrientation = new(0)
-            };
-            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude = new()
+                    },
+                    Altitude = new()
             {
                 AltitudeValue = new(0),
                 AltitudeConfidence = new()
                 {
                     Value = AltitudeConfidence.EnumType.alt_000_01
                 }
+                    }
+                }
             };
+            
             cam.Cam.CamParameters.HighFrequencyContainer = new()
             {
                 BasicVehicleContainerHighFrequency = new()

@@ -45,22 +45,21 @@ namespace org.bn.coders.per
             Assert.AreEqual(got.Header.MessageID, exp.Header.MessageID);
             Assert.AreEqual(got.Header.StationID.Value, exp.Header.StationID.Value);
             Assert.AreEqual(got.Cam.GenerationDeltaTime.Value, exp.Cam.GenerationDeltaTime.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.StationType.Value,
-                        exp.Cam.CamParameters.BasicContainer.StationType.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.Latitude.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.Latitude.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.Longitude.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.Longitude.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMajorConfidence.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMajorConfidence.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMinorConfidence.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMinorConfidence.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMajorOrientation.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse.SemiMajorOrientation.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude.AltitudeValue.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude.AltitudeValue.Value);
-            Assert.AreEqual(got.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude.AltitudeConfidence.Value,
-                        exp.Cam.CamParameters.BasicContainer.ReferencePosition.Altitude.AltitudeConfidence.Value);
+
+            var gotBasic = got.Cam.CamParameters.BasicContainer;
+            var expBasic = exp.Cam.CamParameters.BasicContainer;
+            Assert.AreEqual(gotBasic.StationType.Value, expBasic.StationType.Value);
+            Assert.AreEqual(gotBasic.ReferencePosition.Latitude.Value, expBasic.ReferencePosition.Latitude.Value);
+            Assert.AreEqual(gotBasic.ReferencePosition.Longitude.Value, expBasic.ReferencePosition.Longitude.Value);
+            
+            var gotPosEclipse = gotBasic.ReferencePosition.PositionConfidenceEllipse;
+            var expPosEclipse = expBasic.ReferencePosition.PositionConfidenceEllipse;
+            Assert.AreEqual(gotPosEclipse.SemiMajorConfidence.Value, expBasic.ReferencePosition.PositionConfidenceEllipse.SemiMajorConfidence.Value);
+            Assert.AreEqual(gotPosEclipse.SemiMinorConfidence.Value, expPosEclipse.SemiMinorConfidence.Value);
+            Assert.AreEqual(gotPosEclipse.SemiMajorOrientation.Value, expPosEclipse.SemiMajorOrientation.Value);
+            Assert.AreEqual(gotBasic.ReferencePosition.Altitude.AltitudeValue.Value, expBasic.ReferencePosition.Altitude.AltitudeValue.Value);
+            Assert.AreEqual(gotBasic.ReferencePosition.Altitude.AltitudeConfidence.Value, expBasic.ReferencePosition.Altitude.AltitudeConfidence.Value);
+            
             var gotHighFreq = got.Cam.CamParameters.HighFrequencyContainer.BasicVehicleContainerHighFrequency;
             var expHighFreq = exp.Cam.CamParameters.HighFrequencyContainer.BasicVehicleContainerHighFrequency;
             Assert.AreEqual(gotHighFreq.Heading.HeadingValue.Value,
