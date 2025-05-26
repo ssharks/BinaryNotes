@@ -116,3 +116,10 @@ data8 = 0x73
 
 compiler.compile('ExtensibleInteger', data7)
 compiler.compile('ExtensibleInteger', data8)
+
+data9 = [ 0x23, 0x35 ]
+
+data10 = [ 0x23, 0x35, 0x11, 0x05 ] 
+
+compiler.compile('ExtensibleSize', data9)
+compiler.compile('ExtensibleSize', data10)
