@@ -738,7 +738,7 @@ namespace org.bn.coders.per
             }
             else
             {
-                return encodeConstraintNumber(val, min, max, (BitArrayOutputStream)stream);
+                return encodeConstraintNumber(val, min, max-1, (BitArrayOutputStream)stream);
             }
         }
 
