@@ -27,14 +27,14 @@
     <xsl:template name="componentTypeName">
 	<xsl:param name="typeName"/>
 	<xsl:variable name="found">
-    		<xsl:for-each select="//module/asnTypes/sequenceSets">
+    		<xsl:for-each select="//modules/asnTypes/sequenceSets">
 			<xsl:variable name="dName"><xsl:call-template name="doMangleIdent"><xsl:with-param name='input' select="name"/></xsl:call-template></xsl:variable>
 			<xsl:if test="$dName = $typeName">
             			<xsl:call-template name="elements"/>            
             			<xsl:call-template name="sequenceFunctions"/>
 			</xsl:if>
 	    	</xsl:for-each>
-    		<xsl:for-each select="//module/asnTypes/choices">
+    		<xsl:for-each select="//modules/asnTypes/choices">
 			<xsl:variable name="dName"><xsl:call-template name="doMangleIdent"><xsl:with-param name='input' select="name"/></xsl:call-template></xsl:variable>
 			<xsl:if test="$dName = $typeName">
             			<xsl:call-template name="elements"/>            
@@ -47,7 +47,7 @@
 
 	<xsl:if test="string-length($found)&lt;1">
 		<!-- Trying to find redefined sequence -->
-    		<xsl:for-each select="//module/asnTypes/defineds">
+    		<xsl:for-each select="//modules/asnTypes/defineds">
 			<xsl:variable name="dName"><xsl:call-template name="doMangleIdent"><xsl:with-param name='input' select="name"/></xsl:call-template></xsl:variable>
 			<xsl:if test="$dName = $typeName">
 				<xsl:call-template name="componentTypeName"><xsl:with-param name="typeName" select="typeName"/></xsl:call-template>

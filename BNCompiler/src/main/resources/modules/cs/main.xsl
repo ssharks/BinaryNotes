@@ -51,77 +51,77 @@
         <xsl:call-template name="footer"/>
     </xsl:template>
     
-    <xsl:template match="//module/moduleIdentifier" >
+    <xsl:template match="//modules/moduleIdentifier" >
         <xsl:call-template name="packageInfo"/>
         <xsl:apply-templates/>
     </xsl:template>
     
-    <xsl:template match="//module/asnTypes/choices">
+    <xsl:template match="//modules/asnTypes/choices">
         <xsl:call-template name="choice"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/sequenceSets">
+    <xsl:template match="//modules/asnTypes/sequenceSets">
         <xsl:call-template name="sequence"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/enums">
+    <xsl:template match="//modules/asnTypes/enums">
         <xsl:call-template name="enum"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/sequenceSetsOf">
+    <xsl:template match="//modules/asnTypes/sequenceSetsOf">
         <xsl:call-template name="boxedSequenceOfType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/characterStrings">
+    <xsl:template match="//modules/asnTypes/characterStrings">
         <xsl:call-template name="boxedStringType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/octetStrings">
+    <xsl:template match="//modules/asnTypes/octetStrings">
         <xsl:call-template name="boxedOctetStringType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/booleans">
+    <xsl:template match="//modules/asnTypes/booleans">
         <xsl:call-template name="boxedBooleanType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/bitStrings">
+    <xsl:template match="//modules/asnTypes/bitStrings">
         <xsl:call-template name="boxedBitStringType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/objectIdentifiers">
+    <xsl:template match="//modules/asnTypes/objectIdentifiers">
         <xsl:call-template name="boxedObjectIdentifierType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/integers">
+    <xsl:template match="//modules/asnTypes/integers">
         <xsl:call-template name="boxedIntegerType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/reals">
+    <xsl:template match="//modules/asnTypes/reals">
         <xsl:call-template name="boxedRealType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/taggeds">
+    <xsl:template match="//modules/asnTypes/taggeds">
         <xsl:call-template name="boxedType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/defineds">
+    <xsl:template match="//modules/asnTypes/defineds">
         <xsl:call-template name="boxedType"/>
         <xsl:apply-templates/>
     </xsl:template>
 
-    <xsl:template match="//module/asnTypes/nulls">
+    <xsl:template match="//modules/asnTypes/nulls">
         <xsl:call-template name="boxedNullType"/>
         <xsl:apply-templates/>
     </xsl:template>

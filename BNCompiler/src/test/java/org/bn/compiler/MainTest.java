@@ -29,8 +29,8 @@ public class MainTest {
         new Main().start(new String[] {
             "--moduleName", "java",
             "--outputDir", "testworkdir" + File.separator + "output", 
-            "--fileName", "src" + File.separator + "test" + File.separator + "resources" + File.separator + "test.asn",
-            "-ns", "test_asn"
+            "-ns", "test_asn",
+            "src" + File.separator + "test" + File.separator + "resources" + File.separator + "test.asn",
         });
     }
     
@@ -39,8 +39,8 @@ public class MainTest {
         new Main().start(new String[] {
             "--moduleName", "cs",
             "--outputDir", "testworkdir" + File.separator + "output-cs",
-            "--fileName", "src" + File.separator + "test" + File.separator + "resources" + File.separator + "test.asn",
-            "-ns", "test_asn"
+            "-ns", "test_asn",
+            "src" + File.separator + "test" + File.separator + "resources" + File.separator + "test.asn",
         });
     }
 }

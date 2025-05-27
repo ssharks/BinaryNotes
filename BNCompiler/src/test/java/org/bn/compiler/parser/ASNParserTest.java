@@ -35,7 +35,7 @@ public class ASNParserTest {
         parser.module_definition(module);
 
         ASN1Model model = new ASN1Model();
-        model.module = module;
+        model.modules.add(module);
         return model;
     }
 
@@ -57,12 +57,12 @@ public class ASNParserTest {
     @Test
     public void testModule_definition() throws Exception {
         ASN1Model model = createFromStream();
-
-        assertEquals("TEST_ASN", model.module.moduleIdentifier.name);
-        assertEquals(23, model.module.asnTypes.sequenceSets.size());
-        assertEquals(4, model.module.asnTypes.enums.size());
-        assertEquals(8, model.module.asnTypes.characterStrings.size());
-        assertEquals(1, model.module.asnTypes.octetStrings.size());
-        assertEquals(10, model.module.asnTypes.sequenceSetsOf.size());
+        ASNModule module = model.modules.get(0);
+        assertEquals("TEST_ASN", module.moduleIdentifier.name);
+        assertEquals(23, module.asnTypes.sequenceSets.size());
+        assertEquals(4, module.asnTypes.enums.size());
+        assertEquals(8, module.asnTypes.characterStrings.size());
+        assertEquals(1, module.asnTypes.octetStrings.size());
+        assertEquals(10, module.asnTypes.sequenceSetsOf.size());
     }
 }

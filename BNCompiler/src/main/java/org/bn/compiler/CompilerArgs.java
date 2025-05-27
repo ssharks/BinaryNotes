@@ -15,28 +15,16 @@
  */
 package org.bn.compiler;
 
-import org.lineargs.Option;
-import org.lineargs.constraints.RegexConstraint;
-
 public class CompilerArgs {
 
-    @Option(name = "--moduleName", shortName = "-m", description = "Binding module name ('cs' or 'java')")
-    @RegexConstraint(mask = ".+")
     private String moduleName = null;
 
-    @Option(name = "--outputDir", shortName = "-o", description = "Output directory name", isOptional = true)
-    @RegexConstraint(mask = ".+")
     private String outputDir = "output/";
 
-    @Option(name = "--fileName", shortName = "-f", description = "Input ASN.1 filename")
-    @RegexConstraint(mask = ".+")
-    private String inputFileName = null;
+    private String[] inputFileNames = null;
 
-    @Option(name = "--namespace", shortName = "-ns", description = "Generate classes with specified namespace/package name", isOptional = true)
-    @RegexConstraint(mask = ".+")
     private String namespace = null;
 
-    @Option(name = "--model-only", shortName = "-x", description = "Generate only the ASN.1 model (as XML)", isOptional = true)
     private Boolean generateModelOnly = false;
 
     public String getModuleName() {
@@ -55,12 +43,12 @@ public class CompilerArgs {
         this.outputDir = outputDir;
     }
 
-    public String getInputFileName() {
-        return inputFileName;
+    public String[] getInputFileNames() {
+        return inputFileNames;
     }
 
-    public void setInputFileName(String inputFileName) {
-        this.inputFileName = inputFileName;
+    public void setInputFileName(String[] inputFileNames) {
+        this.inputFileNames = inputFileNames;
     }
 
     public String getNamespace() {

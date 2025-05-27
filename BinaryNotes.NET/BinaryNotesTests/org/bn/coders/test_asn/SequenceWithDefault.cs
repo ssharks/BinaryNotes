@@ -319,7 +319,7 @@ namespace org.bn.coders.test_asn {
     WithEnumDefEnumType param_WithEnumDef =         
             
 				new WithEnumDefEnumType();
-				param_WithEnumDef.Value = WithEnumDefEnumType.EnumType.two;
+				param_WithEnumDef.Value = WithEnumDefEnumType.EnumType.Two;
         WithEnumDef = param_WithEnumDef;
     
         }

@@ -40,10 +40,10 @@
 			<xsl:when test="$typeName = 'false'">false</xsl:when>
 			<xsl:when test="$elementInfo/typeReference/isEnum = 'true'">
 				new <xsl:value-of select="$instElementType"/>();
-				param_<xsl:value-of select="$elementName"/>.Value = <xsl:value-of select="$instElementType"/>.EnumType.<xsl:value-of select="$typeName"/>
+				param_<xsl:value-of select="$elementName"/>.Value = <xsl:value-of select="$instElementType"/>.EnumType.<xsl:call-template name="toUpperFirstLetter"><xsl:with-param name="input" select="$typeName"/></xsl:call-template>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:for-each select="//module/asnValues">
+				<xsl:for-each select="//modules/asnValues">
 					<xsl:if test="name = $typeName">
 						<xsl:call-template name="elementDefaultValue">
 							<xsl:with-param name="elementName" select ="$elementName"/>

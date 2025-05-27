@@ -43,7 +43,7 @@
 				param_<xsl:value-of select="$elementName"/>.setValue(<xsl:value-of select="$instElementType"/>.EnumType.<xsl:value-of select="$typeName"/>)
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:for-each select="//module/asnValues">
+				<xsl:for-each select="//modules/asnValues">
 					<xsl:if test="name = $typeName">
 						<xsl:call-template name="elementDefaultValue">
 							<xsl:with-param name="elementName" select ="$elementName"/>

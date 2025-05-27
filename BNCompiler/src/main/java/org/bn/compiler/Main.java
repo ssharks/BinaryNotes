@@ -32,13 +32,14 @@ import org.bn.compiler.parser.ASNLexer;
 import org.bn.compiler.parser.ASNParser;
 import org.bn.compiler.parser.model.ASN1Model;
 import org.bn.compiler.parser.model.ASNModule;
-import org.lineargs.LineArgsParser;
+
+import org.apache.commons.cli.*;
 
 public class Main {
 
     private static final String VERSION = "1.6";
     
-    private CompilerArgs arguments = null;
+    private CompilerArgs arguments = new CompilerArgs();
 
     public static void main(String args[]) {
         try {
@@ -51,20 +52,84 @@ public class Main {
     }
 
     public void start(String[] args) throws Exception {
-        LineArgsParser parser = new LineArgsParser();
-        if (args.length > 0) {
-            arguments = parser.parse(CompilerArgs.class, args);
+        Options options = new Options();
+
+        Option moduleOption = Option.builder("m")
+                .longOpt("moduleName")
+                .hasArg()
+                .desc("Binding module name ('cs' or 'java')")
+                .required()
+                .build();
+        options.addOption(moduleOption);
+        Option outputDirOption = Option.builder("o")
+                .longOpt("outputDir")
+                .hasArg()
+                .desc("Output directory name")
+                .optionalArg(true)
+                .build();
+        options.addOption(outputDirOption);
+        Option namespaceOption = Option.builder("ns")
+                .longOpt("namespace")
+                .hasArg()
+                .desc("Generate classes with specified namespace/package name")
+                .optionalArg(true)
+                .build();
+        options.addOption(namespaceOption);
+        Option generateModelOnlyOption = Option.builder("x")
+                .longOpt("model-only")
+                .desc("Generate only the ASN.1 model (as XML)")
+                .optionalArg(true)
+                .build();
+        options.addOption(generateModelOnlyOption);
+        Option helpOption = Option.builder("h")
+                .longOpt("help")
+                .desc("Show help message")
+                .build();
+        options.addOption(helpOption);
+
+        CommandLineParser parser = new DefaultParser();
+        HelpFormatter formatter = new HelpFormatter();
+        String executable = "bncompiler-" + VERSION + ".jar";
+
+        try {
+            CommandLine cmd = parser.parse(options, args);
+             // Show help and exit if --help is used
+            if (cmd.hasOption("h")) {
+                printHelp(formatter, options, executable);
+                return;
+            }
+
+            arguments.setModuleName( cmd.getOptionValue("m") );
+            arguments.setOutputDir( cmd.getOptionValue("o") );
+            arguments.setNamespace( cmd.getOptionValue("ns") );
+            arguments.setGenerateModelOnly( cmd.hasOption("x") );
+            arguments.setInputFileName( cmd.getArgs() ); // Remaining arguments
+
+            if (arguments.getInputFileNames() == null || arguments.getInputFileNames().length == 0) {
+                throw new ParseException("No input files specified.");
+            }
+
             Module module = new Module(arguments.getModuleName(), arguments.getOutputDir());
             startForModule(module);
-        } else {
-            parser.printHelp(CompilerArgs.class, System.out);
+        } catch (ParseException e) {
+            System.err.println("Error: " + e.getMessage());
+            printHelp(formatter, options, executable);
+            System.exit(1);
         }
+    }
+
+    private static void printHelp(HelpFormatter formatter, Options options, String executable) {
+        String usage = executable + " --moduleName <cs|java> --outputDir <output_dir> -ns <namespace> <file1> [file2] ...";
+        String header = "\nParses a list of files for a specified animal type.\n\nOptions:";
+        String footer = "\nExample:\n  " + executable + "--moduleName cs --outputDir output_ns -ns test_asn test.asn\n\n"
+                + "  " + executable + " --moduleName java --outputDir output_java -ns test_asn test.asn\n";
+        formatter.printHelp(usage, header, options, footer, false);
     }
 
     private void startForModule(Module module) throws TransformerException, JAXBException, IOException, ANTLRException {
         if (!arguments.getGenerateModelOnly()) {
             System.out.println("Current directory: " + new File(".").getCanonicalPath());
-            System.out.println("Compiling file: " + arguments.getInputFileName());
+            System.out.println("Compiling file(s): " + String.join(", ", arguments.getInputFileNames()));
             
             ByteArrayOutputStream outputXml = new ByteArrayOutputStream(65535);
             createModel(outputXml, module);
@@ -81,7 +146,12 @@ public class Main {
             if (arguments.getNamespace() != null) {
                 model.moduleNS = arguments.getNamespace();
             } else {
-                model.moduleNS = model.module.moduleIdentifier.name.toLowerCase();
+                for (ASNModule m : model.modules) {
+                    if (m.moduleIdentifier != null && m.moduleIdentifier.name != null) {
+                        model.moduleNS = m.moduleIdentifier.name.toLowerCase();
+                        break;
+                    }
+                }
             }
         }
         
@@ -92,15 +162,19 @@ public class Main {
     }
 
     private ASN1Model createModelFromStream() throws FileNotFoundException, ANTLRException {
-        InputStream stream = new FileInputStream(arguments.getInputFileName());
-        ASNLexer lexer = new ASNLexer(stream);
-        ASNParser parser = new ASNParser(lexer);
-        
-        ASNModule module = new ASNModule();
-        parser.module_definition(module);
-
         ASN1Model model = new ASN1Model();
-        model.module = module;
+        model.modules = new java.util.ArrayList<>();
+        for (String inputFile : arguments.getInputFileNames()) {
+            InputStream stream = new FileInputStream(inputFile);
+            ASNLexer lexer = new ASNLexer(stream);
+            ASNParser parser = new ASNParser(lexer);
+
+            ASNModule module = new ASNModule();
+            parser.module_definition(module);
+
+            model.modules.add(module);    
+        }
+        
         return model;
     }
 }

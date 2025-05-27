@@ -31,7 +31,7 @@
 
 	<xsl:if test="definedValue/name">
 		<xsl:variable name="typeName" select="definedValue/name"/>
-    		<xsl:for-each select="//module/asnValues">
+    		<xsl:for-each select="//modules/asnValues">
 			<xsl:if test="name = $typeName">
 				<xsl:call-template name="doDeterminateEndValue"/>
 			</xsl:if>
