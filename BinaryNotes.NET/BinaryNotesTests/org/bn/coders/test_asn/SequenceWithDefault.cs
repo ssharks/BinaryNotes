@@ -191,11 +191,11 @@ namespace org.bn.coders.test_asn {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "one", HasTag = true , Tag = 1 )]
-            one , 
+            One , 
             [ASN1EnumItem ( Name = "two", HasTag = true , Tag = 2 )]
-            two , 
+            Two , 
             [ASN1EnumItem ( Name = "three", HasTag = true , Tag = 3 )]
-            three , 
+            Three , 
         }
         
         private EnumType val;

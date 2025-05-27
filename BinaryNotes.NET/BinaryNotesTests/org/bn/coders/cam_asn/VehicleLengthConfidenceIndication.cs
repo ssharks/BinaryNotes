@@ -21,15 +21,15 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "noTrailerPresent", HasTag = true , Tag = 0 )]
-            noTrailerPresent , 
+            NoTrailerPresent , 
             [ASN1EnumItem ( Name = "trailerPresentWithKnownLength", HasTag = true , Tag = 1 )]
-            trailerPresentWithKnownLength , 
+            TrailerPresentWithKnownLength , 
             [ASN1EnumItem ( Name = "trailerPresentWithUnknownLength", HasTag = true , Tag = 2 )]
-            trailerPresentWithUnknownLength , 
+            TrailerPresentWithUnknownLength , 
             [ASN1EnumItem ( Name = "trailerPresenceIsUnknown", HasTag = true , Tag = 3 )]
-            trailerPresenceIsUnknown , 
+            TrailerPresenceIsUnknown , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 4 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

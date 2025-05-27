@@ -23,35 +23,35 @@ namespace its.cam {
             [ASN1EnumItem ( Name = "default", HasTag = true , Tag = 0 )]
             Default , 
             [ASN1EnumItem ( Name = "publicTransport", HasTag = true , Tag = 1 )]
-            publicTransport , 
+            PublicTransport , 
             [ASN1EnumItem ( Name = "specialTransport", HasTag = true , Tag = 2 )]
-            specialTransport , 
+            SpecialTransport , 
             [ASN1EnumItem ( Name = "dangerousGoods", HasTag = true , Tag = 3 )]
-            dangerousGoods , 
+            DangerousGoods , 
             [ASN1EnumItem ( Name = "roadWork", HasTag = true , Tag = 4 )]
-            roadWork , 
+            RoadWork , 
             [ASN1EnumItem ( Name = "rescue", HasTag = true , Tag = 5 )]
-            rescue , 
+            Rescue , 
             [ASN1EnumItem ( Name = "emergency", HasTag = true , Tag = 6 )]
-            emergency , 
+            Emergency , 
             [ASN1EnumItem ( Name = "safetyCar", HasTag = true , Tag = 7 )]
-            safetyCar , 
+            SafetyCar , 
             [ASN1EnumItem ( Name = "agriculture", HasTag = true , Tag = 8 )]
-            agriculture , 
+            Agriculture , 
             [ASN1EnumItem ( Name = "commercial", HasTag = true , Tag = 9 )]
-            commercial , 
+            Commercial , 
             [ASN1EnumItem ( Name = "military", HasTag = true , Tag = 10 )]
-            military , 
+            Military , 
             [ASN1EnumItem ( Name = "roadOperator", HasTag = true , Tag = 11 )]
-            roadOperator , 
+            RoadOperator , 
             [ASN1EnumItem ( Name = "taxi", HasTag = true , Tag = 12 )]
-            taxi , 
+            Taxi , 
             [ASN1EnumItem ( Name = "reserved1", HasTag = true , Tag = 13 )]
-            reserved1 , 
+            Reserved1 , 
             [ASN1EnumItem ( Name = "reserved2", HasTag = true , Tag = 14 )]
-            reserved2 , 
+            Reserved2 , 
             [ASN1EnumItem ( Name = "reserved3", HasTag = true , Tag = 15 )]
-            reserved3 , 
+            Reserved3 , 
         }
         
         private EnumType val;

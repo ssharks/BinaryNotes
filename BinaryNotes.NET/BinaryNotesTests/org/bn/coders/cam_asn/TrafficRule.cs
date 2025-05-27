@@ -21,13 +21,13 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "noPassing", HasTag = true , Tag = 0 )]
-            noPassing , 
+            NoPassing , 
             [ASN1EnumItem ( Name = "noPassingForTrucks", HasTag = true , Tag = 1 )]
-            noPassingForTrucks , 
+            NoPassingForTrucks , 
             [ASN1EnumItem ( Name = "passToRight", HasTag = true , Tag = 2 )]
-            passToRight , 
+            PassToRight , 
             [ASN1EnumItem ( Name = "passToLeft", HasTag = true , Tag = 3 )]
-            passToLeft , 
+            PassToLeft , 
         }
         
         private EnumType val;

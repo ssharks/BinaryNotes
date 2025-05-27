@@ -21,11 +21,11 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "forward", HasTag = true , Tag = 0 )]
-            forward , 
+            Forward , 
             [ASN1EnumItem ( Name = "backward", HasTag = true , Tag = 1 )]
-            backward , 
+            Backward , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 2 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

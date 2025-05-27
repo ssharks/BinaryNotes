@@ -21,13 +21,13 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "lessThan1Minute", HasTag = true , Tag = 0 )]
-            lessThan1Minute , 
+            LessThan1Minute , 
             [ASN1EnumItem ( Name = "lessThan2Minutes", HasTag = true , Tag = 1 )]
-            lessThan2Minutes , 
+            LessThan2Minutes , 
             [ASN1EnumItem ( Name = "lessThan15Minutes", HasTag = true , Tag = 2 )]
-            lessThan15Minutes , 
+            LessThan15Minutes , 
             [ASN1EnumItem ( Name = "equalOrGreater15Minutes", HasTag = true , Tag = 3 )]
-            equalOrGreater15Minutes , 
+            EqualOrGreater15Minutes , 
         }
         
         private EnumType val;

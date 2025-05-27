@@ -21,9 +21,9 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "request", HasTag = true , Tag = 0 )]
-            request , 
+            Request , 
             [ASN1EnumItem ( Name = "response", HasTag = true , Tag = 1 )]
-            response , 
+            Response , 
         }
         
         private EnumType val;

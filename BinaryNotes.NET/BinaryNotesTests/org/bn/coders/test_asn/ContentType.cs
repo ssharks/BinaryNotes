@@ -21,25 +21,25 @@ namespace org.bn.coders.test_asn {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "text_any", HasTag = true , Tag = 100 )]
-            text_any , 
+            Text_any , 
             [ASN1EnumItem ( Name = "text_html", HasTag = true , Tag = 101 )]
-            text_html , 
+            Text_html , 
             [ASN1EnumItem ( Name = "text_plain", HasTag = true , Tag = 102 )]
-            text_plain , 
+            Text_plain , 
             [ASN1EnumItem ( Name = "audio_x_midi", HasTag = true , Tag = 306 )]
-            audio_x_midi , 
+            Audio_x_midi , 
             [ASN1EnumItem ( Name = "video_any", HasTag = true , Tag = 400 )]
-            video_any , 
+            Video_any , 
             [ASN1EnumItem ( Name = "video_mpeg", HasTag = true , Tag = 401 )]
-            video_mpeg , 
+            Video_mpeg , 
             [ASN1EnumItem ( Name = "video_avi", HasTag = true , Tag = 402 )]
-            video_avi , 
+            Video_avi , 
             [ASN1EnumItem ( Name = "video_quicktime", HasTag = true , Tag = 403 )]
-            video_quicktime , 
+            Video_quicktime , 
             [ASN1EnumItem ( Name = "video_x_msvideo", HasTag = true , Tag = 404 )]
-            video_x_msvideo , 
+            Video_x_msvideo , 
             [ASN1EnumItem ( Name = "application_smil", HasTag = true , Tag = 500 )]
-            application_smil , 
+            Application_smil , 
         }
         
         private EnumType val;

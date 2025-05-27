@@ -21,13 +21,13 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "urban-NoStructuralSeparationToOppositeLanes", HasTag = true , Tag = 0 )]
-            urban_NoStructuralSeparationToOppositeLanes , 
+            Urban_NoStructuralSeparationToOppositeLanes , 
             [ASN1EnumItem ( Name = "urban-WithStructuralSeparationToOppositeLanes", HasTag = true , Tag = 1 )]
-            urban_WithStructuralSeparationToOppositeLanes , 
+            Urban_WithStructuralSeparationToOppositeLanes , 
             [ASN1EnumItem ( Name = "nonUrban-NoStructuralSeparationToOppositeLanes", HasTag = true , Tag = 2 )]
-            nonUrban_NoStructuralSeparationToOppositeLanes , 
+            NonUrban_NoStructuralSeparationToOppositeLanes , 
             [ASN1EnumItem ( Name = "nonUrban-WithStructuralSeparationToOppositeLanes", HasTag = true , Tag = 3 )]
-            nonUrban_WithStructuralSeparationToOppositeLanes , 
+            NonUrban_WithStructuralSeparationToOppositeLanes , 
         }
         
         private EnumType val;

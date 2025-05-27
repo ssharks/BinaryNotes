@@ -27,6 +27,6 @@
         <xsl:template name="enumItem">
 	    <xsl:variable name="enumItemName"><xsl:call-template name="doMangleIdent"><xsl:with-param name='input' select="name"/></xsl:call-template></xsl:variable>
             [ASN1EnumItem ( Name = "<xsl:value-of select='name'/>", HasTag = <xsl:value-of select="isSignedNumber"/> <xsl:choose> <xsl:when test="isSignedNumber = 'true'"> , Tag = <xsl:value-of select="signedNumber/num"/> </xsl:when> </xsl:choose> )]
-            <xsl:value-of select="$enumItemName"/> <xsl:if test="following::namedNumbers"> , </xsl:if>
+            <xsl:call-template name="toUpperFirstLetter"><xsl:with-param name="input" select="$enumItemName"/></xsl:call-template> <xsl:if test="following::namedNumbers"> , </xsl:if>
         </xsl:template>  
 </xsl:stylesheet>

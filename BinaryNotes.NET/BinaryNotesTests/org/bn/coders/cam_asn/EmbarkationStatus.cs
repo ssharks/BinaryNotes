@@ -19,11 +19,11 @@ namespace its.cam {
     [ASN1BoxedType ( Name = "EmbarkationStatus") ]
     public class EmbarkationStatus: IASN1PreparedElement {
     
-            private bool? val = null;
+            private bool val;
 
             [ASN1Boolean ( Name = "EmbarkationStatus") ]            
             
-            public bool? Value
+            public bool Value
             {
                 get { return val; }
                 set { val = value; }

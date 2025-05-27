@@ -21,11 +21,11 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "yawRateUsed", HasTag = true , Tag = 0 )]
-            yawRateUsed , 
+            YawRateUsed , 
             [ASN1EnumItem ( Name = "yawRateNotUsed", HasTag = true , Tag = 1 )]
-            yawRateNotUsed , 
+            YawRateNotUsed , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 2 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

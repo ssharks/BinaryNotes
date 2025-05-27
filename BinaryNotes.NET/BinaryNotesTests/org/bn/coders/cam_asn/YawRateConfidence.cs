@@ -21,23 +21,23 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "degSec-000-01", HasTag = true , Tag = 0 )]
-            degSec_000_01 , 
+            DegSec_000_01 , 
             [ASN1EnumItem ( Name = "degSec-000-05", HasTag = true , Tag = 1 )]
-            degSec_000_05 , 
+            DegSec_000_05 , 
             [ASN1EnumItem ( Name = "degSec-000-10", HasTag = true , Tag = 2 )]
-            degSec_000_10 , 
+            DegSec_000_10 , 
             [ASN1EnumItem ( Name = "degSec-001-00", HasTag = true , Tag = 3 )]
-            degSec_001_00 , 
+            DegSec_001_00 , 
             [ASN1EnumItem ( Name = "degSec-005-00", HasTag = true , Tag = 4 )]
-            degSec_005_00 , 
+            DegSec_005_00 , 
             [ASN1EnumItem ( Name = "degSec-010-00", HasTag = true , Tag = 5 )]
-            degSec_010_00 , 
+            DegSec_010_00 , 
             [ASN1EnumItem ( Name = "degSec-100-00", HasTag = true , Tag = 6 )]
-            degSec_100_00 , 
+            DegSec_100_00 , 
             [ASN1EnumItem ( Name = "outOfRange", HasTag = true , Tag = 7 )]
-            outOfRange , 
+            OutOfRange , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 8 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

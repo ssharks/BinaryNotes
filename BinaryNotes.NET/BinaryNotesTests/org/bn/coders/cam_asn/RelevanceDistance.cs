@@ -21,21 +21,21 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "lessThan50m", HasTag = true , Tag = 0 )]
-            lessThan50m , 
+            LessThan50m , 
             [ASN1EnumItem ( Name = "lessThan100m", HasTag = true , Tag = 1 )]
-            lessThan100m , 
+            LessThan100m , 
             [ASN1EnumItem ( Name = "lessThan200m", HasTag = true , Tag = 2 )]
-            lessThan200m , 
+            LessThan200m , 
             [ASN1EnumItem ( Name = "lessThan500m", HasTag = true , Tag = 3 )]
-            lessThan500m , 
+            LessThan500m , 
             [ASN1EnumItem ( Name = "lessThan1000m", HasTag = true , Tag = 4 )]
-            lessThan1000m , 
+            LessThan1000m , 
             [ASN1EnumItem ( Name = "lessThan5km", HasTag = true , Tag = 5 )]
-            lessThan5km , 
+            LessThan5km , 
             [ASN1EnumItem ( Name = "lessThan10km", HasTag = true , Tag = 6 )]
-            lessThan10km , 
+            LessThan10km , 
             [ASN1EnumItem ( Name = "over10km", HasTag = true , Tag = 7 )]
-            over10km , 
+            Over10km , 
         }
         
         private EnumType val;

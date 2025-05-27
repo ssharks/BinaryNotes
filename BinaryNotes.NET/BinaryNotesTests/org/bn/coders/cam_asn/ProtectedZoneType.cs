@@ -21,7 +21,7 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "cenDsrcTolling", HasTag = true , Tag = 0 )]
-            cenDsrcTolling , 
+            CenDsrcTolling , 
         }
         
         private EnumType val;

@@ -387,11 +387,6 @@ namespace org.bn.coders.per
             cam.Cam.GenerationDeltaTime = new(1);
             cam.Cam.CamParameters = new();
             cam.Cam.CamParameters.BasicContainer = new()
-            cam.Cam.CamParameters.BasicContainer.StationType = new StationType(0);
-            cam.Cam.CamParameters.BasicContainer.ReferencePosition = new();
-            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Latitude = new(10);
-            cam.Cam.CamParameters.BasicContainer.ReferencePosition.Longitude = new(10);
-            cam.Cam.CamParameters.BasicContainer.ReferencePosition.PositionConfidenceEllipse = new()
             {
                 StationType = new StationType(0),
                 ReferencePosition = new()
@@ -409,7 +404,7 @@ namespace org.bn.coders.per
                 AltitudeValue = new(0),
                 AltitudeConfidence = new()
                 {
-                    Value = AltitudeConfidence.EnumType.alt_000_01
+                            Value = AltitudeConfidence.EnumType.Alt_000_01
                 }
                     }
                 }
@@ -431,7 +426,7 @@ namespace org.bn.coders.per
                     },
                     DriveDirection = new()
                     {
-                        Value = DriveDirection.EnumType.forward
+                        Value = DriveDirection.EnumType.Forward
                     },
                     VehicleLength = new()
                     {
@@ -439,7 +434,7 @@ namespace org.bn.coders.per
                         VehicleLengthConfidenceIndication =
                             new()
                             {
-                                Value = VehicleLengthConfidenceIndication.EnumType.noTrailerPresent
+                                Value = VehicleLengthConfidenceIndication.EnumType.NoTrailerPresent
                             }
                     },
                     VehicleWidth = new(1),
@@ -453,19 +448,19 @@ namespace org.bn.coders.per
                         CurvatureValue = new(0),
                         CurvatureConfidence = new()
                         {
-                            Value = CurvatureConfidence.EnumType.onePerMeter_0_00002
+                            Value = CurvatureConfidence.EnumType.OnePerMeter_0_00002
                         }
                     },
                     CurvatureCalculationMode = new()
                     {
-                        Value = CurvatureCalculationMode.EnumType.yawRateUsed
+                        Value = CurvatureCalculationMode.EnumType.YawRateUsed
                     },
                     YawRate = new()
                     {
                         YawRateValue = new(0),
                         YawRateConfidence = new()
                         {
-                            Value = YawRateConfidence.EnumType.degSec_000_01
+                            Value = YawRateConfidence.EnumType.DegSec_000_01
                         }
                     }
                 }

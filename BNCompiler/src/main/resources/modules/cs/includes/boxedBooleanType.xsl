@@ -36,7 +36,7 @@
     [ASN1BoxedType ( Name = "<xsl:value-of select='$boxedName'/>") ]
     public class <xsl:value-of select="$boxedName"/>: IASN1PreparedElement {
     
-            private bool val = null;
+            private bool val;
 
             [ASN1Boolean ( Name = "<xsl:value-of select='name'/>") ]            
             <xsl:for-each select="constraint">

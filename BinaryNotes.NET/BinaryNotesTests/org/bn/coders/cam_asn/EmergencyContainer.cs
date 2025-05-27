@@ -31,13 +31,13 @@ namespace its.cam {
         
                 
           
-	private CauseCodeClass incidentIndication_ ;
+	private CauseCode incidentIndication_ ;
 	
         private bool  incidentIndication_present = false ;
 	
         [ASN1Element ( Name = "incidentIndication", IsOptional =  true , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
-        public CauseCodeClass IncidentIndication
+        public CauseCode IncidentIndication
         {
             get { return incidentIndication_; }
             set { incidentIndication_ = value; incidentIndication_present = true;  }

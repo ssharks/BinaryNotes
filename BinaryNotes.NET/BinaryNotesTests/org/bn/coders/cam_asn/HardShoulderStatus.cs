@@ -21,11 +21,11 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "availableForStopping", HasTag = true , Tag = 0 )]
-            availableForStopping , 
+            AvailableForStopping , 
             [ASN1EnumItem ( Name = "closed", HasTag = true , Tag = 1 )]
-            closed , 
+            Closed , 
             [ASN1EnumItem ( Name = "availableForDriving", HasTag = true , Tag = 2 )]
-            availableForDriving , 
+            AvailableForDriving , 
         }
         
         private EnumType val;

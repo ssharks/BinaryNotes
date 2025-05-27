@@ -21,37 +21,37 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "alt-000-01", HasTag = true , Tag = 0 )]
-            alt_000_01 , 
+            Alt_000_01 , 
             [ASN1EnumItem ( Name = "alt-000-02", HasTag = true , Tag = 1 )]
-            alt_000_02 , 
+            Alt_000_02 , 
             [ASN1EnumItem ( Name = "alt-000-05", HasTag = true , Tag = 2 )]
-            alt_000_05 , 
+            Alt_000_05 , 
             [ASN1EnumItem ( Name = "alt-000-10", HasTag = true , Tag = 3 )]
-            alt_000_10 , 
+            Alt_000_10 , 
             [ASN1EnumItem ( Name = "alt-000-20", HasTag = true , Tag = 4 )]
-            alt_000_20 , 
+            Alt_000_20 , 
             [ASN1EnumItem ( Name = "alt-000-50", HasTag = true , Tag = 5 )]
-            alt_000_50 , 
+            Alt_000_50 , 
             [ASN1EnumItem ( Name = "alt-001-00", HasTag = true , Tag = 6 )]
-            alt_001_00 , 
+            Alt_001_00 , 
             [ASN1EnumItem ( Name = "alt-002-00", HasTag = true , Tag = 7 )]
-            alt_002_00 , 
+            Alt_002_00 , 
             [ASN1EnumItem ( Name = "alt-005-00", HasTag = true , Tag = 8 )]
-            alt_005_00 , 
+            Alt_005_00 , 
             [ASN1EnumItem ( Name = "alt-010-00", HasTag = true , Tag = 9 )]
-            alt_010_00 , 
+            Alt_010_00 , 
             [ASN1EnumItem ( Name = "alt-020-00", HasTag = true , Tag = 10 )]
-            alt_020_00 , 
+            Alt_020_00 , 
             [ASN1EnumItem ( Name = "alt-050-00", HasTag = true , Tag = 11 )]
-            alt_050_00 , 
+            Alt_050_00 , 
             [ASN1EnumItem ( Name = "alt-100-00", HasTag = true , Tag = 12 )]
-            alt_100_00 , 
+            Alt_100_00 , 
             [ASN1EnumItem ( Name = "alt-200-00", HasTag = true , Tag = 13 )]
-            alt_200_00 , 
+            Alt_200_00 , 
             [ASN1EnumItem ( Name = "outOfRange", HasTag = true , Tag = 14 )]
-            outOfRange , 
+            OutOfRange , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 15 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

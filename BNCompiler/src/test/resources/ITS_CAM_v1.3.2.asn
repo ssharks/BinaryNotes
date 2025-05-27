@@ -273,7 +273,7 @@ BEGIN
     } (0..4095)
     
     CauseCode ::= SEQUENCE {
-	causeCode    CauseCodeType,
+	causeCodeT    CauseCodeType,
 	subCauseCode SubCauseCodeType
     }
     

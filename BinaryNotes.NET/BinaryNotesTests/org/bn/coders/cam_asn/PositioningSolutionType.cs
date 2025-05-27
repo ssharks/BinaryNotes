@@ -21,17 +21,17 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "noPositioningSolution", HasTag = true , Tag = 0 )]
-            noPositioningSolution , 
+            NoPositioningSolution , 
             [ASN1EnumItem ( Name = "sGNSS", HasTag = true , Tag = 1 )]
-            sGNSS , 
+            SGNSS , 
             [ASN1EnumItem ( Name = "dGNSS", HasTag = true , Tag = 2 )]
-            dGNSS , 
+            DGNSS , 
             [ASN1EnumItem ( Name = "sGNSSplusDR", HasTag = true , Tag = 3 )]
-            sGNSSplusDR , 
+            SGNSSplusDR , 
             [ASN1EnumItem ( Name = "dGNSSplusDR", HasTag = true , Tag = 4 )]
-            dGNSSplusDR , 
+            DGNSSplusDR , 
             [ASN1EnumItem ( Name = "dR", HasTag = true , Tag = 5 )]
-            dR , 
+            DR , 
         }
         
         private EnumType val;

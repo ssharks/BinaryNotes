@@ -21,17 +21,17 @@ namespace org.bn.coders.test_asn {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "multipart_any", HasTag = true , Tag = 110 )]
-            multipart_any , 
+            Multipart_any , 
             [ASN1EnumItem ( Name = "multipart_mixed", HasTag = true , Tag = 111 )]
-            multipart_mixed , 
+            Multipart_mixed , 
             [ASN1EnumItem ( Name = "multipart_form_data", HasTag = true , Tag = 112 )]
-            multipart_form_data , 
+            Multipart_form_data , 
             [ASN1EnumItem ( Name = "multipart_byteranges", HasTag = true , Tag = 113 )]
-            multipart_byteranges , 
+            Multipart_byteranges , 
             [ASN1EnumItem ( Name = "multipart_alternative", HasTag = true , Tag = 114 )]
-            multipart_alternative , 
+            Multipart_alternative , 
             [ASN1EnumItem ( Name = "multipart_related", HasTag = true , Tag = 175 )]
-            multipart_related , 
+            Multipart_related , 
         }
         
         private EnumType val;

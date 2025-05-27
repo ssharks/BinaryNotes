@@ -21,9 +21,9 @@ namespace org.bn.coders.test_asn {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "permanentCenDsrcTolling", HasTag = true , Tag = 0 )]
-            permanentCenDsrcTolling , 
+            PermanentCenDsrcTolling , 
             [ASN1EnumItem ( Name = "temporaryCenDsrcTolling", HasTag = true , Tag = 1 )]
-            temporaryCenDsrcTolling , 
+            TemporaryCenDsrcTolling , 
         }
         
         private EnumType val;

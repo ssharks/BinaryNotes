@@ -42,7 +42,7 @@ namespace org.bn.coders
 		public virtual ContentSchema createEnum()
 		{
 			ContentSchema schema = new ContentSchema();
-			schema.Value = (ContentSchema.EnumType.multipart_mixed);
+			schema.Value = (ContentSchema.EnumType.Multipart_mixed);
 			return schema;
 		}
 		public abstract byte[] createEnumBytes();
@@ -50,7 +50,7 @@ namespace org.bn.coders
         public virtual MixedEnumType createMixedEnum()
         {
             MixedEnumType schema = new MixedEnumType();
-            schema.Value = (MixedEnumType.EnumType.high);
+            schema.Value = (MixedEnumType.EnumType.High);
             return schema;
         }
         public abstract byte[] createMixedEnumBytes();
@@ -332,7 +332,7 @@ namespace org.bn.coders
             result.WithSeqOf2 = new TestPRN[] {new TestPRN("cc"), new TestPRN("ee")};
             result.WithSeqOf3 = new StringArray() { Value = new String[] {"fff", "ggg"} };
             result.WithEnumDef = new SequenceWithDefault.WithEnumDefEnumType();
-            result.WithEnumDef.Value = SequenceWithDefault.WithEnumDefEnumType.EnumType.two;
+            result.WithEnumDef.Value = SequenceWithDefault.WithEnumDefEnumType.EnumType.Two;
             return result;
         }
         public SequenceWithDefault createSequenceWithUntouchedDefaultValues()
@@ -643,7 +643,7 @@ namespace org.bn.coders
         {
             ExtendedEnumSeq seq = new ExtendedEnumSeq();
             seq.Prot = new();
-            seq.Prot.Value = ProtectedZoneType.EnumType.permanentCenDsrcTolling;
+            seq.Prot.Value = ProtectedZoneType.EnumType.PermanentCenDsrcTolling;
             seq.Tail = 0x19;
             return seq;
         }
@@ -654,7 +654,7 @@ namespace org.bn.coders
         {
             ExtendedEnumSeq seq = new ExtendedEnumSeq();
             seq.Prot = new();
-            seq.Prot.Value = ProtectedZoneType.EnumType.temporaryCenDsrcTolling;
+            seq.Prot.Value = ProtectedZoneType.EnumType.TemporaryCenDsrcTolling;
             seq.Tail = 0x19;
             return seq;
         }

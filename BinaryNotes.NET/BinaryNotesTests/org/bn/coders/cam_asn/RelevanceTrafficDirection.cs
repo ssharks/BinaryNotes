@@ -21,13 +21,13 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "allTrafficDirections", HasTag = true , Tag = 0 )]
-            allTrafficDirections , 
+            AllTrafficDirections , 
             [ASN1EnumItem ( Name = "upstreamTraffic", HasTag = true , Tag = 1 )]
-            upstreamTraffic , 
+            UpstreamTraffic , 
             [ASN1EnumItem ( Name = "downstreamTraffic", HasTag = true , Tag = 2 )]
-            downstreamTraffic , 
+            DownstreamTraffic , 
             [ASN1EnumItem ( Name = "oppositeTraffic", HasTag = true , Tag = 3 )]
-            oppositeTraffic , 
+            OppositeTraffic , 
         }
         
         private EnumType val;

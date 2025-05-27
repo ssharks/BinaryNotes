@@ -17,17 +17,19 @@ namespace its.cam {
 
     [ASN1PreparedElement]
     [ASN1Sequence ( Name = "CauseCode", IsExtensible = false, IsSet = false)]
-    public class CauseCodeClass : IASN1PreparedElement {
+    public class CauseCode : IASN1PreparedElement {
                 
-	private CauseCodeType causeCode_ ;
+	private CauseCodeType causeCodeT_ ;
 	
-        [ASN1Element ( Name = "causeCode", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
+        [ASN1Element ( Name = "causeCodeT", IsOptional =  false , IsExtended =  false , HasTag =  false  , HasDefaultValue =  false )  ]
     
-        public CauseCodeType CauseCode
+        public CauseCodeType CauseCodeT
         {
-            get { return causeCode_; }
-            set { causeCode_ = value;  }
+            get { return causeCodeT_; }
+            set { causeCodeT_ = value;  }
         }
+        
+                
           
 	private SubCauseCodeType subCauseCode_ ;
 	
@@ -47,7 +49,7 @@ namespace its.cam {
         }
 
 
-        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(CauseCodeClass));
+        private static IASN1PreparedElementData preparedData = CoderFactory.getInstance().newPreparedElementData(typeof(CauseCode));
             public IASN1PreparedElementData PreparedData {
             get { return preparedData; }
         }

@@ -21,11 +21,11 @@ namespace org.bn.coders.test_asn {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "low", HasTag = true , Tag = 3 )]
-            low , 
+            Low , 
             [ASN1EnumItem ( Name = "mid", HasTag = true , Tag = 8 )]
-            mid , 
+            Mid , 
             [ASN1EnumItem ( Name = "high", HasTag = true , Tag = 101 )]
-            high , 
+            High , 
         }
         
         private EnumType val;

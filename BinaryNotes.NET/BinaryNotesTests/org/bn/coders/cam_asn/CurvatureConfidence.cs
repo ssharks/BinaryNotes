@@ -21,21 +21,21 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "onePerMeter-0-00002", HasTag = true , Tag = 0 )]
-            onePerMeter_0_00002 , 
+            OnePerMeter_0_00002 , 
             [ASN1EnumItem ( Name = "onePerMeter-0-0001", HasTag = true , Tag = 1 )]
-            onePerMeter_0_0001 , 
+            OnePerMeter_0_0001 , 
             [ASN1EnumItem ( Name = "onePerMeter-0-0005", HasTag = true , Tag = 2 )]
-            onePerMeter_0_0005 , 
+            OnePerMeter_0_0005 , 
             [ASN1EnumItem ( Name = "onePerMeter-0-002", HasTag = true , Tag = 3 )]
-            onePerMeter_0_002 , 
+            OnePerMeter_0_002 , 
             [ASN1EnumItem ( Name = "onePerMeter-0-01", HasTag = true , Tag = 4 )]
-            onePerMeter_0_01 , 
+            OnePerMeter_0_01 , 
             [ASN1EnumItem ( Name = "onePerMeter-0-1", HasTag = true , Tag = 5 )]
-            onePerMeter_0_1 , 
+            OnePerMeter_0_1 , 
             [ASN1EnumItem ( Name = "outOfRange", HasTag = true , Tag = 6 )]
-            outOfRange , 
+            OutOfRange , 
             [ASN1EnumItem ( Name = "unavailable", HasTag = true , Tag = 7 )]
-            unavailable , 
+            Unavailable , 
         }
         
         private EnumType val;

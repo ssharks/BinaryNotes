@@ -21,45 +21,45 @@ namespace its.cam {
         public enum EnumType {
             
             [ASN1EnumItem ( Name = "explosives1", HasTag = true , Tag = 0 )]
-            explosives1 , 
+            Explosives1 , 
             [ASN1EnumItem ( Name = "explosives2", HasTag = true , Tag = 1 )]
-            explosives2 , 
+            Explosives2 , 
             [ASN1EnumItem ( Name = "explosives3", HasTag = true , Tag = 2 )]
-            explosives3 , 
+            Explosives3 , 
             [ASN1EnumItem ( Name = "explosives4", HasTag = true , Tag = 3 )]
-            explosives4 , 
+            Explosives4 , 
             [ASN1EnumItem ( Name = "explosives5", HasTag = true , Tag = 4 )]
-            explosives5 , 
+            Explosives5 , 
             [ASN1EnumItem ( Name = "explosives6", HasTag = true , Tag = 5 )]
-            explosives6 , 
+            Explosives6 , 
             [ASN1EnumItem ( Name = "flammableGases", HasTag = true , Tag = 6 )]
-            flammableGases , 
+            FlammableGases , 
             [ASN1EnumItem ( Name = "nonFlammableGases", HasTag = true , Tag = 7 )]
-            nonFlammableGases , 
+            NonFlammableGases , 
             [ASN1EnumItem ( Name = "toxicGases", HasTag = true , Tag = 8 )]
-            toxicGases , 
+            ToxicGases , 
             [ASN1EnumItem ( Name = "flammableLiquids", HasTag = true , Tag = 9 )]
-            flammableLiquids , 
+            FlammableLiquids , 
             [ASN1EnumItem ( Name = "flammableSolids", HasTag = true , Tag = 10 )]
-            flammableSolids , 
+            FlammableSolids , 
             [ASN1EnumItem ( Name = "substancesLiableToSpontaneousCombustion", HasTag = true , Tag = 11 )]
-            substancesLiableToSpontaneousCombustion , 
+            SubstancesLiableToSpontaneousCombustion , 
             [ASN1EnumItem ( Name = "substancesEmittingFlammableGasesUponContactWithWater", HasTag = true , Tag = 12 )]
-            substancesEmittingFlammableGasesUponContactWithWater , 
+            SubstancesEmittingFlammableGasesUponContactWithWater , 
             [ASN1EnumItem ( Name = "oxidizingSubstances", HasTag = true , Tag = 13 )]
-            oxidizingSubstances , 
+            OxidizingSubstances , 
             [ASN1EnumItem ( Name = "organicPeroxides", HasTag = true , Tag = 14 )]
-            organicPeroxides , 
+            OrganicPeroxides , 
             [ASN1EnumItem ( Name = "toxicSubstances", HasTag = true , Tag = 15 )]
-            toxicSubstances , 
+            ToxicSubstances , 
             [ASN1EnumItem ( Name = "infectiousSubstances", HasTag = true , Tag = 16 )]
-            infectiousSubstances , 
+            InfectiousSubstances , 
             [ASN1EnumItem ( Name = "radioactiveMaterial", HasTag = true , Tag = 17 )]
-            radioactiveMaterial , 
+            RadioactiveMaterial , 
             [ASN1EnumItem ( Name = "corrosiveSubstances", HasTag = true , Tag = 18 )]
-            corrosiveSubstances , 
+            CorrosiveSubstances , 
             [ASN1EnumItem ( Name = "miscellaneousDangerousSubstances", HasTag = true , Tag = 19 )]
-            miscellaneousDangerousSubstances , 
+            MiscellaneousDangerousSubstances , 
         }
         
         private EnumType val;
