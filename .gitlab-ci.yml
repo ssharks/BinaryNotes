@@ -13,3 +13,7 @@ build:
   stage: build
   script:
     - mvn $MAVEN_CLI_OPTS package --file pom.xml
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/binarynotes/Dist/target/binarynotes-dist-1.6.zip
+
