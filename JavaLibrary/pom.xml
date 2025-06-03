@@ -66,7 +66,7 @@
                         <configuration>
                             <mainClass>org.bn.compiler.Main</mainClass>
                             <classpathScope>compile</classpathScope>
-                            <commandlineArgs>-m java -o ${project.build.directory}/generated-test-sources/bncompiler/org/bn/coders/test_asn -ns org.bn.coders.test_asn -f ${basedir}/../BNCompiler/src/test/resources/test.asn</commandlineArgs>
+                            <commandlineArgs>-m java -o ${project.build.directory}/generated-test-sources/bncompiler/org/bn/coders/test_asn -ns org.bn.coders.test_asn ${basedir}/../BNCompiler/src/test/resources/test.asn</commandlineArgs>
                         </configuration>
                     </execution>
                 </executions>
