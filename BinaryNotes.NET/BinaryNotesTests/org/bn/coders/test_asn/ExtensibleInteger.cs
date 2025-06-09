@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "ExtensibleInteger" )]
     public class ExtensibleInteger: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "ExtensibleInteger" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 63L, IsExtensible = true) ]
 	    

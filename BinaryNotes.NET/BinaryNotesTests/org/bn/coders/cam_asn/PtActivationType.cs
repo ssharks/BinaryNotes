@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PtActivationType" )]
     public class PtActivationType: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PtActivationType UndefinedCodingType = new(0);
+            public static readonly PtActivationType R09_16CodingType = new(1);
+            public static readonly PtActivationType Vdv_50149CodingType = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "PtActivationType" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

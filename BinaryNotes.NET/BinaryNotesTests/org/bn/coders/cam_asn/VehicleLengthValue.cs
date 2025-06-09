@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "VehicleLengthValue" )]
     public class VehicleLengthValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly VehicleLengthValue TenCentimeters = new(1);
+            public static readonly VehicleLengthValue OutOfRange = new(1022);
+            public static readonly VehicleLengthValue Unavailable = new(1023);
+
+            private int val;
+
             [ASN1Integer( Name = "VehicleLengthValue" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 1023L, IsExtensible = false) ]
 	    

@@ -18,9 +18,21 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AdverseWeatherCondition_AdhesionSubCauseCode" )]
     public class AdverseWeatherCondition_AdhesionSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode Unavailable = new(0);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode HeavyFrostOnRoad = new(1);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode FuelOnRoad = new(2);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode MudOnRoad = new(3);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode SnowOnRoad = new(4);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode IceOnRoad = new(5);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode BlackIceOnRoad = new(6);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode OilOnRoad = new(7);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode LooseChippings = new(8);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode InstantBlackIce = new(9);
+            public static readonly AdverseWeatherCondition_AdhesionSubCauseCode RoadsSalted = new(10);
+
+            private int val;
+
             [ASN1Integer( Name = "AdverseWeatherCondition-AdhesionSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

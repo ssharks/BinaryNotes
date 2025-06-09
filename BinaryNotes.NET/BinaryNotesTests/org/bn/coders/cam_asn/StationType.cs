@@ -18,9 +18,23 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "StationType" )]
     public class StationType: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly StationType Unknown = new(0);
+            public static readonly StationType Pedestrian = new(1);
+            public static readonly StationType Cyclist = new(2);
+            public static readonly StationType Moped = new(3);
+            public static readonly StationType Motorcycle = new(4);
+            public static readonly StationType PassengerCar = new(5);
+            public static readonly StationType Bus = new(6);
+            public static readonly StationType LightTruck = new(7);
+            public static readonly StationType HeavyTruck = new(8);
+            public static readonly StationType Trailer = new(9);
+            public static readonly StationType SpecialVehicles = new(10);
+            public static readonly StationType Tram = new(11);
+            public static readonly StationType RoadSideUnit = new(15);
+
+            private int val;
+
             [ASN1Integer( Name = "StationType" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

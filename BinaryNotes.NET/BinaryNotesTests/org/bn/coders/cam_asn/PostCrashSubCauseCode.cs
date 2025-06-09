@@ -18,9 +18,15 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PostCrashSubCauseCode" )]
     public class PostCrashSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PostCrashSubCauseCode Unavailable = new(0);
+            public static readonly PostCrashSubCauseCode AccidentWithoutECallTriggered = new(1);
+            public static readonly PostCrashSubCauseCode AccidentWithECallManuallyTriggered = new(2);
+            public static readonly PostCrashSubCauseCode AccidentWithECallAutomaticallyTriggered = new(3);
+            public static readonly PostCrashSubCauseCode AccidentWithECallTriggeredWithoutAccessToCellularNetwork = new(4);
+
+            private int val;
+
             [ASN1Integer( Name = "PostCrashSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

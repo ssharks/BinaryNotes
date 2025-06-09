@@ -18,9 +18,16 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HazardousLocation_DangerousCurveSubCauseCode" )]
     public class HazardousLocation_DangerousCurveSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode Unavailable = new(0);
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode DangerousLeftTurnCurve = new(1);
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode DangerousRightTurnCurve = new(2);
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode MultipleCurvesStartingWithUnknownTurningDirection = new(3);
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode MultipleCurvesStartingWithLeftTurn = new(4);
+            public static readonly HazardousLocation_DangerousCurveSubCauseCode MultipleCurvesStartingWithRightTurn = new(5);
+
+            private int val;
+
             [ASN1Integer( Name = "HazardousLocation-DangerousCurveSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "LongitudinalAccelerationValue" )]
     public class LongitudinalAccelerationValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly LongitudinalAccelerationValue PointOneMeterPerSecSquaredForward = new(1);
+            public static readonly LongitudinalAccelerationValue PointOneMeterPerSecSquaredBackward = new(-1);
+            public static readonly LongitudinalAccelerationValue Unavailable = new(161);
+
+            private int val;
+
             [ASN1Integer( Name = "LongitudinalAccelerationValue" )]
             [ASN1ValueRangeConstraint ( Min = -160L, Max = 161L, IsExtensible = false) ]
 	    

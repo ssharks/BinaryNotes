@@ -18,9 +18,16 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "StationaryVehicleSubCauseCode" )]
     public class StationaryVehicleSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly StationaryVehicleSubCauseCode Unavailable = new(0);
+            public static readonly StationaryVehicleSubCauseCode HumanProblem = new(1);
+            public static readonly StationaryVehicleSubCauseCode VehicleBreakdown = new(2);
+            public static readonly StationaryVehicleSubCauseCode PostCrash = new(3);
+            public static readonly StationaryVehicleSubCauseCode PublicTransportStop = new(4);
+            public static readonly StationaryVehicleSubCauseCode CarryingDangerousGoods = new(5);
+
+            private int val;
+
             [ASN1Integer( Name = "StationaryVehicleSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

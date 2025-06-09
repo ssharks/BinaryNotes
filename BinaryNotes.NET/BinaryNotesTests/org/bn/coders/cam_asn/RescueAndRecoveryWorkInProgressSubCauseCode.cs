@@ -18,9 +18,16 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "RescueAndRecoveryWorkInProgressSubCauseCode" )]
     public class RescueAndRecoveryWorkInProgressSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode Unavailable = new(0);
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode EmergencyVehicles = new(1);
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode RescueHelicopterLanding = new(2);
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode PoliceActivityOngoing = new(3);
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode MedicalEmergencyOngoing = new(4);
+            public static readonly RescueAndRecoveryWorkInProgressSubCauseCode ChildAbductionInProgress = new(5);
+
+            private int val;
+
             [ASN1Integer( Name = "RescueAndRecoveryWorkInProgressSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

@@ -18,9 +18,11 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PathDeltaTime" )]
     public class PathDeltaTime: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PathDeltaTime TenMilliSecondsInPast = new(1);
+
+            private int val;
+
             [ASN1Integer( Name = "PathDeltaTime" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 65535L, IsExtensible = true) ]
 	    

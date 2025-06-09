@@ -40,13 +40,13 @@ def run_compiler(namespace, asn_path, output_path):
         '-m', 'cs',
         '-ns', namespace, 
         '-o', output_path,
-        "-f", asn_path
     ]
+    bn_compiler_args.extend(asn_path if isinstance(asn_path, list) else [asn_path])
     
     cmd.extend(bn_compiler_args)
 
     result = subprocess.run(cmd, capture_output=True, text=True)
-    #result = subprocess.run(cmd + ["-x"], capture_output=True, text=True)
+    result = subprocess.run(cmd + ["-x"], capture_output=True, text=True)
     print(result.stdout)
     print(result.stderr)
 

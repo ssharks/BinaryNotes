@@ -18,9 +18,11 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "ProtectedZoneRadius" )]
     public class ProtectedZoneRadius: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly ProtectedZoneRadius OneMeter = new(1);
+
+            private int val;
+
             [ASN1Integer( Name = "ProtectedZoneRadius" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 255L, IsExtensible = true) ]
 	    

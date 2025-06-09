@@ -2,7 +2,7 @@
 <asn1Model>
     <outputDirectory>testworkdir\output</outputDirectory>
     <moduleNS>test_asn</moduleNS>
-    <module>
+    <modules>
         <asnTypes>
             <bitStrings>
                 <BUILTINTYPE>BIT STRING</BUILTINTYPE>
@@ -7598,5 +7598,5 @@
         </moduleIdentifier>
         <tag>true</tag>
         <tagDefault>IMPLICIT</tagDefault>
-    </module>
+    </modules>
 </asn1Model>

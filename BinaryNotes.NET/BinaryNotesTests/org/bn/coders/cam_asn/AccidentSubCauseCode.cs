@@ -18,9 +18,19 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AccidentSubCauseCode" )]
     public class AccidentSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AccidentSubCauseCode Unavailable = new(0);
+            public static readonly AccidentSubCauseCode MultiVehicleAccident = new(1);
+            public static readonly AccidentSubCauseCode HeavyAccident = new(2);
+            public static readonly AccidentSubCauseCode AccidentInvolvingLorry = new(3);
+            public static readonly AccidentSubCauseCode AccidentInvolvingBus = new(4);
+            public static readonly AccidentSubCauseCode AccidentInvolvingHazardousMaterials = new(5);
+            public static readonly AccidentSubCauseCode AccidentOnOppositeLane = new(6);
+            public static readonly AccidentSubCauseCode UnsecuredAccident = new(7);
+            public static readonly AccidentSubCauseCode AssistanceRequested = new(8);
+
+            private int val;
+
             [ASN1Integer( Name = "AccidentSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

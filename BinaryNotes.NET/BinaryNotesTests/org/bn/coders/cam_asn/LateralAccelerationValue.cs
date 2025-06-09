@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "LateralAccelerationValue" )]
     public class LateralAccelerationValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly LateralAccelerationValue PointOneMeterPerSecSquaredToRight = new(-1);
+            public static readonly LateralAccelerationValue PointOneMeterPerSecSquaredToLeft = new(1);
+            public static readonly LateralAccelerationValue Unavailable = new(161);
+
+            private int val;
+
             [ASN1Integer( Name = "LateralAccelerationValue" )]
             [ASN1ValueRangeConstraint ( Min = -160L, Max = 161L, IsExtensible = false) ]
 	    

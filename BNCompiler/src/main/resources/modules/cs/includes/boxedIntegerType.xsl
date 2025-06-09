@@ -36,9 +36,13 @@
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "<xsl:value-of select='$boxedName'/>" )]
     public class <xsl:value-of select="$boxedName"/>: IASN1PreparedElement {
-    
+            <xsl:for-each select="namedNumberList/namedNumbers">
+            <xsl:variable name="name"><xsl:call-template name="toUpperFirstLetter"><xsl:with-param name="input" select="name"/></xsl:call-template></xsl:variable>
+            <xsl:variable name="value"><xsl:call-template name="doDeterminateEndValue"/></xsl:variable>
+            public static readonly <xsl:value-of select="$boxedName"/><xsl:text> </xsl:text><xsl:value-of select="$name"/> = new(<xsl:value-of select='$value'/>);</xsl:for-each>
+
             private <xsl:call-template name="integerTypeDecl"/> val;
-            
+
             [ASN1Integer( Name = "<xsl:value-of select='name'/>" )]
             <xsl:for-each select="constraint">
                 <xsl:call-template name="constraint"/>

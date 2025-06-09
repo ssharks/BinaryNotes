@@ -18,9 +18,18 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HazardousLocation_ObstacleOnTheRoadSubCauseCode" )]
     public class HazardousLocation_ObstacleOnTheRoadSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode Unavailable = new(0);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode ShedLoad = new(1);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode PartsOfVehicles = new(2);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode PartsOfTyres = new(3);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode BigObjects = new(4);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode FallenTrees = new(5);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode HubCaps = new(6);
+            public static readonly HazardousLocation_ObstacleOnTheRoadSubCauseCode WaitingVehicles = new(7);
+
+            private int val;
+
             [ASN1Integer( Name = "HazardousLocation-ObstacleOnTheRoadSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

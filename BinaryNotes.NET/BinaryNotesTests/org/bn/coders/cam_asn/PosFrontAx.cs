@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PosFrontAx" )]
     public class PosFrontAx: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PosFrontAx TenCentimeters = new(1);
+            public static readonly PosFrontAx Unavailable = new(20);
+
+            private int val;
+
             [ASN1Integer( Name = "PosFrontAx" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 20L, IsExtensible = false) ]
 	    

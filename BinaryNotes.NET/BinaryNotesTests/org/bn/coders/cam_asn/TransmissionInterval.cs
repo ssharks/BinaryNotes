@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TransmissionInterval" )]
     public class TransmissionInterval: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly TransmissionInterval OneMilliSecond = new(1);
+            public static readonly TransmissionInterval TenSeconds = new(10000);
+
+            private int val;
+
             [ASN1Integer( Name = "TransmissionInterval" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 10000L, IsExtensible = false) ]
 	    

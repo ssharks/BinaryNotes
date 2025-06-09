@@ -18,9 +18,10 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "ProtectedZoneID" )]
     public class ProtectedZoneID: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "ProtectedZoneID" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 134217727L, IsExtensible = false) ]
 	    

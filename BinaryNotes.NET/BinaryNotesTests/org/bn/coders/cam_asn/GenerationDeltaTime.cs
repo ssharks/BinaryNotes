@@ -18,9 +18,11 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "GenerationDeltaTime" )]
     public class GenerationDeltaTime: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly GenerationDeltaTime OneMilliSec = new(1);
+
+            private int val;
+
             [ASN1Integer( Name = "GenerationDeltaTime" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 65535L, IsExtensible = false) ]
 	    

@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "LanePosition" )]
     public class LanePosition: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly LanePosition OffTheRoad = new(-1);
+            public static readonly LanePosition HardShoulder = new(0);
+            public static readonly LanePosition OutermostDrivingLane = new(1);
+            public static readonly LanePosition SecondLaneFromOutside = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "LanePosition" )]
             [ASN1ValueRangeConstraint ( Min = -1L, Max = 14L, IsExtensible = false) ]
 	    

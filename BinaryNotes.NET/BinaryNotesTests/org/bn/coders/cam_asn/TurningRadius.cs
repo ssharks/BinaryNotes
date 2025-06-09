@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TurningRadius" )]
     public class TurningRadius: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly TurningRadius Point4Meters = new(1);
+            public static readonly TurningRadius Unavailable = new(255);
+
+            private int val;
+
             [ASN1Integer( Name = "TurningRadius" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 255L, IsExtensible = false) ]
 	    

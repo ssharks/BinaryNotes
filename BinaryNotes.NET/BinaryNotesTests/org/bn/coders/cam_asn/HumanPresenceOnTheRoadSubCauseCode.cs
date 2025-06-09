@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HumanPresenceOnTheRoadSubCauseCode" )]
     public class HumanPresenceOnTheRoadSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HumanPresenceOnTheRoadSubCauseCode Unavailable = new(0);
+            public static readonly HumanPresenceOnTheRoadSubCauseCode ChildrenOnRoadway = new(1);
+            public static readonly HumanPresenceOnTheRoadSubCauseCode CyclistOnRoadway = new(2);
+            public static readonly HumanPresenceOnTheRoadSubCauseCode MotorcyclistOnRoadway = new(3);
+
+            private int val;
+
             [ASN1Integer( Name = "HumanPresenceOnTheRoadSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

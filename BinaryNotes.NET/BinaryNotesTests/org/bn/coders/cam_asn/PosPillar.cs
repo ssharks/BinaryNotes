@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PosPillar" )]
     public class PosPillar: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PosPillar TenCentimeters = new(1);
+            public static readonly PosPillar Unavailable = new(30);
+
+            private int val;
+
             [ASN1Integer( Name = "PosPillar" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 30L, IsExtensible = false) ]
 	    

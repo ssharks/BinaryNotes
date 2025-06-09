@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TestI" )]
     public class TestI: IASN1PreparedElement {
-    
-            private long val;
             
+
+            private long val;
+
             [ASN1Integer( Name = "TestI" )]
             
             public long Value

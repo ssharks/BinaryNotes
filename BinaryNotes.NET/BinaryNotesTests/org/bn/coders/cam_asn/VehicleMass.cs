@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "VehicleMass" )]
     public class VehicleMass: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly VehicleMass HundredKg = new(1);
+            public static readonly VehicleMass Unavailable = new(1024);
+
+            private int val;
+
             [ASN1Integer( Name = "VehicleMass" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 1024L, IsExtensible = false) ]
 	    

@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HeadingConfidence" )]
     public class HeadingConfidence: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HeadingConfidence EqualOrWithinZeroPointOneDegree = new(1);
+            public static readonly HeadingConfidence EqualOrWithinOneDegree = new(10);
+            public static readonly HeadingConfidence OutOfRange = new(126);
+            public static readonly HeadingConfidence Unavailable = new(127);
+
+            private int val;
+
             [ASN1Integer( Name = "HeadingConfidence" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 127L, IsExtensible = false) ]
 	    

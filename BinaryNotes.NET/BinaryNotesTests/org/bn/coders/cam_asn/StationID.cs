@@ -18,9 +18,10 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "StationID" )]
     public class StationID: IASN1PreparedElement {
-    
-            private long val;
             
+
+            private long val;
+
             [ASN1Integer( Name = "StationID" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 4294967295L, IsExtensible = false) ]
 	    

@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "Latitude" )]
     public class Latitude: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly Latitude OneMicrodegreeNorth = new(10);
+            public static readonly Latitude OneMicrodegreeSouth = new(-10);
+            public static readonly Latitude Unavailable = new(900000001);
+
+            private int val;
+
             [ASN1Integer( Name = "Latitude" )]
             [ASN1ValueRangeConstraint ( Min = -900000000L, Max = 900000001L, IsExtensible = false) ]
 	    

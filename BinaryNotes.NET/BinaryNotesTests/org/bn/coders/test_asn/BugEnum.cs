@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "BugEnum" )]
     public class BugEnum: IASN1PreparedElement {
-    
-            private long val;
             
+
+            private long val;
+
             [ASN1Integer( Name = "BugEnum" )]
             
             public long Value

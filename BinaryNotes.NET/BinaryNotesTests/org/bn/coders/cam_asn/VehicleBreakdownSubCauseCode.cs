@@ -18,9 +18,19 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "VehicleBreakdownSubCauseCode" )]
     public class VehicleBreakdownSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly VehicleBreakdownSubCauseCode Unavailable = new(0);
+            public static readonly VehicleBreakdownSubCauseCode LackOfFuel = new(1);
+            public static readonly VehicleBreakdownSubCauseCode LackOfBatteryPower = new(2);
+            public static readonly VehicleBreakdownSubCauseCode EngineProblem = new(3);
+            public static readonly VehicleBreakdownSubCauseCode TransmissionProblem = new(4);
+            public static readonly VehicleBreakdownSubCauseCode EngineCoolingProblem = new(5);
+            public static readonly VehicleBreakdownSubCauseCode BrakingSystemProblem = new(6);
+            public static readonly VehicleBreakdownSubCauseCode SteeringProblem = new(7);
+            public static readonly VehicleBreakdownSubCauseCode TyrePuncture = new(8);
+
+            private int val;
+
             [ASN1Integer( Name = "VehicleBreakdownSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

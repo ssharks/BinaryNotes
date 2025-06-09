@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "ValidityDuration" )]
     public class ValidityDuration: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly ValidityDuration TimeOfDetection = new(0);
+            public static readonly ValidityDuration OneSecondAfterDetection = new(1);
+
+            private int val;
+
             [ASN1Integer( Name = "ValidityDuration" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 86400L, IsExtensible = false) ]
 	    

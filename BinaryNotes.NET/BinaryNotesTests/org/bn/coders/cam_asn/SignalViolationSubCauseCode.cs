@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SignalViolationSubCauseCode" )]
     public class SignalViolationSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SignalViolationSubCauseCode Unavailable = new(0);
+            public static readonly SignalViolationSubCauseCode StopSignViolation = new(1);
+            public static readonly SignalViolationSubCauseCode TrafficLightViolation = new(2);
+            public static readonly SignalViolationSubCauseCode TurningRegulationViolation = new(3);
+
+            private int val;
+
             [ASN1Integer( Name = "SignalViolationSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

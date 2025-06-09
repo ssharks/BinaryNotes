@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HeightLonCarr" )]
     public class HeightLonCarr: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HeightLonCarr OneCentimeter = new(1);
+            public static readonly HeightLonCarr Unavailable = new(100);
+
+            private int val;
+
             [ASN1Integer( Name = "HeightLonCarr" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 100L, IsExtensible = false) ]
 	    

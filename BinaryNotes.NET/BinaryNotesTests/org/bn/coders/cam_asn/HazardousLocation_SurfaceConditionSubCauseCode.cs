@@ -18,9 +18,20 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HazardousLocation_SurfaceConditionSubCauseCode" )]
     public class HazardousLocation_SurfaceConditionSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode Unavailable = new(0);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode Rockfalls = new(1);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode EarthquakeDamage = new(2);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode SewerCollapse = new(3);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode Subsidence = new(4);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode SnowDrifts = new(5);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode StormDamage = new(6);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode BurstPipe = new(7);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode VolcanoEruption = new(8);
+            public static readonly HazardousLocation_SurfaceConditionSubCauseCode FallingIce = new(9);
+
+            private int val;
+
             [ASN1Integer( Name = "HazardousLocation-SurfaceConditionSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

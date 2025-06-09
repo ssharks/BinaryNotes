@@ -18,9 +18,17 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "RoadworksSubCauseCode" )]
     public class RoadworksSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly RoadworksSubCauseCode Unavailable = new(0);
+            public static readonly RoadworksSubCauseCode MajorRoadworks = new(1);
+            public static readonly RoadworksSubCauseCode RoadMarkingWork = new(2);
+            public static readonly RoadworksSubCauseCode SlowMovingRoadMaintenance = new(3);
+            public static readonly RoadworksSubCauseCode ShortTermStationaryRoadworks = new(4);
+            public static readonly RoadworksSubCauseCode StreetCleaning = new(5);
+            public static readonly RoadworksSubCauseCode WinterService = new(6);
+
+            private int val;
+
             [ASN1Integer( Name = "RoadworksSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

@@ -18,9 +18,35 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "CauseCodeType" )]
     public class CauseCodeType: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly CauseCodeType Reserved = new(0);
+            public static readonly CauseCodeType TrafficCondition = new(1);
+            public static readonly CauseCodeType Accident = new(2);
+            public static readonly CauseCodeType Roadworks = new(3);
+            public static readonly CauseCodeType AdverseWeatherCondition_Adhesion = new(6);
+            public static readonly CauseCodeType HazardousLocation_SurfaceCondition = new(9);
+            public static readonly CauseCodeType HazardousLocation_ObstacleOnTheRoad = new(10);
+            public static readonly CauseCodeType HazardousLocation_AnimalOnTheRoad = new(11);
+            public static readonly CauseCodeType HumanPresenceOnTheRoad = new(12);
+            public static readonly CauseCodeType WrongWayDriving = new(14);
+            public static readonly CauseCodeType RescueAndRecoveryWorkInProgress = new(15);
+            public static readonly CauseCodeType AdverseWeatherCondition_ExtremeWeatherCondition = new(17);
+            public static readonly CauseCodeType AdverseWeatherCondition_Visibility = new(18);
+            public static readonly CauseCodeType AdverseWeatherCondition_Precipitation = new(19);
+            public static readonly CauseCodeType SlowVehicle = new(26);
+            public static readonly CauseCodeType DangerousEndOfQueue = new(27);
+            public static readonly CauseCodeType VehicleBreakdown = new(91);
+            public static readonly CauseCodeType PostCrash = new(92);
+            public static readonly CauseCodeType HumanProblem = new(93);
+            public static readonly CauseCodeType StationaryVehicle = new(94);
+            public static readonly CauseCodeType EmergencyVehicleApproaching = new(95);
+            public static readonly CauseCodeType HazardousLocation_DangerousCurve = new(96);
+            public static readonly CauseCodeType CollisionRisk = new(97);
+            public static readonly CauseCodeType SignalViolation = new(98);
+            public static readonly CauseCodeType DangerousSituation = new(99);
+
+            private int val;
+
             [ASN1Integer( Name = "CauseCodeType" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

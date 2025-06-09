@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "WrongWayDrivingSubCauseCode" )]
     public class WrongWayDrivingSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly WrongWayDrivingSubCauseCode Unavailable = new(0);
+            public static readonly WrongWayDrivingSubCauseCode WrongLane = new(1);
+            public static readonly WrongWayDrivingSubCauseCode WrongDirection = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "WrongWayDrivingSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

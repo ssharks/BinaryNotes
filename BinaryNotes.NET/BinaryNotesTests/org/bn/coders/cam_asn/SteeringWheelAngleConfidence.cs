@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SteeringWheelAngleConfidence" )]
     public class SteeringWheelAngleConfidence: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SteeringWheelAngleConfidence EqualOrWithinOnePointFiveDegree = new(1);
+            public static readonly SteeringWheelAngleConfidence OutOfRange = new(126);
+            public static readonly SteeringWheelAngleConfidence Unavailable = new(127);
+
+            private int val;
+
             [ASN1Integer( Name = "SteeringWheelAngleConfidence" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 127L, IsExtensible = false) ]
 	    

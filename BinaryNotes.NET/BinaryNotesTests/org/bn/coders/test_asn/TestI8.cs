@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TestI8" )]
     public class TestI8: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "TestI8" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

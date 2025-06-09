@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SpeedValue" )]
     public class SpeedValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SpeedValue Standstill = new(0);
+            public static readonly SpeedValue OneCentimeterPerSec = new(1);
+            public static readonly SpeedValue Unavailable = new(16383);
+
+            private int val;
+
             [ASN1Integer( Name = "SpeedValue" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 16383L, IsExtensible = false) ]
 	    

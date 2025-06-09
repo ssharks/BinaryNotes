@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "YawRateValue" )]
     public class YawRateValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly YawRateValue Straight = new(0);
+            public static readonly YawRateValue DegSec_000_01ToRight = new(-1);
+            public static readonly YawRateValue DegSec_000_01ToLeft = new(1);
+            public static readonly YawRateValue Unavailable = new(32767);
+
+            private int val;
+
             [ASN1Integer( Name = "YawRateValue" )]
             [ASN1ValueRangeConstraint ( Min = -32766L, Max = 32767L, IsExtensible = false) ]
 	    

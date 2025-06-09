@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "NumberOfOccupants" )]
     public class NumberOfOccupants: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly NumberOfOccupants OneOccupant = new(1);
+            public static readonly NumberOfOccupants Unavailable = new(127);
+
+            private int val;
+
             [ASN1Integer( Name = "NumberOfOccupants" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 127L, IsExtensible = false) ]
 	    

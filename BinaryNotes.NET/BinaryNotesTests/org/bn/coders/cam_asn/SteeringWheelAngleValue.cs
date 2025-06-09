@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SteeringWheelAngleValue" )]
     public class SteeringWheelAngleValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SteeringWheelAngleValue Straight = new(0);
+            public static readonly SteeringWheelAngleValue OnePointFiveDegreesToRight = new(-1);
+            public static readonly SteeringWheelAngleValue OnePointFiveDegreesToLeft = new(1);
+            public static readonly SteeringWheelAngleValue Unavailable = new(512);
+
+            private int val;
+
             [ASN1Integer( Name = "SteeringWheelAngleValue" )]
             [ASN1ValueRangeConstraint ( Min = -511L, Max = 512L, IsExtensible = false) ]
 	    

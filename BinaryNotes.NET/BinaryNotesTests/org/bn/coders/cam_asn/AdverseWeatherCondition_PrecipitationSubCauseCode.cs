@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AdverseWeatherCondition_PrecipitationSubCauseCode" )]
     public class AdverseWeatherCondition_PrecipitationSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AdverseWeatherCondition_PrecipitationSubCauseCode Unavailable = new(0);
+            public static readonly AdverseWeatherCondition_PrecipitationSubCauseCode HeavyRain = new(1);
+            public static readonly AdverseWeatherCondition_PrecipitationSubCauseCode HeavySnowfall = new(2);
+            public static readonly AdverseWeatherCondition_PrecipitationSubCauseCode SoftHail = new(3);
+
+            private int val;
+
             [ASN1Integer( Name = "AdverseWeatherCondition-PrecipitationSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

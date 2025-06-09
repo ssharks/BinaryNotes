@@ -18,9 +18,19 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TrafficConditionSubCauseCode" )]
     public class TrafficConditionSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly TrafficConditionSubCauseCode Unavailable = new(0);
+            public static readonly TrafficConditionSubCauseCode IncreasedVolumeOfTraffic = new(1);
+            public static readonly TrafficConditionSubCauseCode TrafficJamSlowlyIncreasing = new(2);
+            public static readonly TrafficConditionSubCauseCode TrafficJamIncreasing = new(3);
+            public static readonly TrafficConditionSubCauseCode TrafficJamStronglyIncreasing = new(4);
+            public static readonly TrafficConditionSubCauseCode TrafficStationary = new(5);
+            public static readonly TrafficConditionSubCauseCode TrafficJamSlightlyDecreasing = new(6);
+            public static readonly TrafficConditionSubCauseCode TrafficJamDecreasing = new(7);
+            public static readonly TrafficConditionSubCauseCode TrafficJamStronglyDecreasing = new(8);
+
+            private int val;
+
             [ASN1Integer( Name = "TrafficConditionSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

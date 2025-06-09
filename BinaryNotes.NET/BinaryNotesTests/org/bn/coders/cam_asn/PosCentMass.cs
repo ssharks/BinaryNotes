@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PosCentMass" )]
     public class PosCentMass: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PosCentMass TenCentimeters = new(1);
+            public static readonly PosCentMass Unavailable = new(63);
+
+            private int val;
+
             [ASN1Integer( Name = "PosCentMass" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 63L, IsExtensible = false) ]
 	    

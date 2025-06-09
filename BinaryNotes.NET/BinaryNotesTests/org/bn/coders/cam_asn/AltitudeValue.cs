@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AltitudeValue" )]
     public class AltitudeValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AltitudeValue ReferenceEllipsoidSurface = new(0);
+            public static readonly AltitudeValue OneCentimeter = new(1);
+            public static readonly AltitudeValue Unavailable = new(800001);
+
+            private int val;
+
             [ASN1Integer( Name = "AltitudeValue" )]
             [ASN1ValueRangeConstraint ( Min = -100000L, Max = 800001L, IsExtensible = false) ]
 	    

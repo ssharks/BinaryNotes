@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "InformationQuality" )]
     public class InformationQuality: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly InformationQuality Unavailable = new(0);
+            public static readonly InformationQuality Lowest = new(1);
+            public static readonly InformationQuality Highest = new(7);
+
+            private int val;
+
             [ASN1Integer( Name = "InformationQuality" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 7L, IsExtensible = false) ]
 	    

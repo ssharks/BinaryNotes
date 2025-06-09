@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "WheelBaseVehicle" )]
     public class WheelBaseVehicle: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly WheelBaseVehicle TenCentimeters = new(1);
+            public static readonly WheelBaseVehicle Unavailable = new(127);
+
+            private int val;
+
             [ASN1Integer( Name = "WheelBaseVehicle" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 127L, IsExtensible = false) ]
 	    

@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SubInteger" )]
     public class SubInteger: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "SubInteger" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 63L, IsExtensible = false) ]
 	    

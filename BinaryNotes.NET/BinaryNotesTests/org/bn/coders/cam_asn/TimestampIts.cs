@@ -18,9 +18,12 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TimestampIts" )]
     public class TimestampIts: IASN1PreparedElement {
-    
-            private long val;
             
+            public static readonly TimestampIts UtcStartOf2004 = new(0);
+            public static readonly TimestampIts OneMillisecAfterUTCStartOf2004 = new(1);
+
+            private long val;
+
             [ASN1Integer( Name = "TimestampIts" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 4398046511103L, IsExtensible = false) ]
 	    

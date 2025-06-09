@@ -18,9 +18,15 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HeadingValue" )]
     public class HeadingValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HeadingValue Wgs84North = new(0);
+            public static readonly HeadingValue Wgs84East = new(900);
+            public static readonly HeadingValue Wgs84South = new(1800);
+            public static readonly HeadingValue Wgs84West = new(2700);
+            public static readonly HeadingValue Unavailable = new(3601);
+
+            private int val;
+
             [ASN1Integer( Name = "HeadingValue" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 3601L, IsExtensible = false) ]
 	    

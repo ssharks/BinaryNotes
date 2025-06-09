@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "Temperature" )]
     public class Temperature: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly Temperature EqualOrSmallerThanMinus60Deg = new(-60);
+            public static readonly Temperature OneDegreeCelsius = new(1);
+            public static readonly Temperature EqualOrGreaterThan67Deg = new(67);
+
+            private int val;
+
             [ASN1Integer( Name = "Temperature" )]
             [ASN1ValueRangeConstraint ( Min = -60L, Max = 67L, IsExtensible = false) ]
 	    

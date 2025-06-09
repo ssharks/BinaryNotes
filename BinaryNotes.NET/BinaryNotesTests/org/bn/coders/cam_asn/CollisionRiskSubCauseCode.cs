@@ -18,9 +18,15 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "CollisionRiskSubCauseCode" )]
     public class CollisionRiskSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly CollisionRiskSubCauseCode Unavailable = new(0);
+            public static readonly CollisionRiskSubCauseCode LongitudinalCollisionRisk = new(1);
+            public static readonly CollisionRiskSubCauseCode CrossingCollisionRisk = new(2);
+            public static readonly CollisionRiskSubCauseCode LateralCollisionRisk = new(3);
+            public static readonly CollisionRiskSubCauseCode VulnerableRoadUser = new(4);
+
+            private int val;
+
             [ASN1Integer( Name = "CollisionRiskSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

@@ -18,9 +18,19 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SlowVehicleSubCauseCode" )]
     public class SlowVehicleSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SlowVehicleSubCauseCode Unavailable = new(0);
+            public static readonly SlowVehicleSubCauseCode MaintenanceVehicle = new(1);
+            public static readonly SlowVehicleSubCauseCode VehiclesSlowingToLookAtAccident = new(2);
+            public static readonly SlowVehicleSubCauseCode AbnormalLoad = new(3);
+            public static readonly SlowVehicleSubCauseCode AbnormalWideLoad = new(4);
+            public static readonly SlowVehicleSubCauseCode Convoy = new(5);
+            public static readonly SlowVehicleSubCauseCode Snowplough = new(6);
+            public static readonly SlowVehicleSubCauseCode Deicing = new(7);
+            public static readonly SlowVehicleSubCauseCode SaltingVehicles = new(8);
+
+            private int val;
+
             [ASN1Integer( Name = "SlowVehicleSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

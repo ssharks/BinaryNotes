@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SpeedConfidence" )]
     public class SpeedConfidence: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SpeedConfidence EqualOrWithinOneCentimeterPerSec = new(1);
+            public static readonly SpeedConfidence EqualOrWithinOneMeterPerSec = new(100);
+            public static readonly SpeedConfidence OutOfRange = new(126);
+            public static readonly SpeedConfidence Unavailable = new(127);
+
+            private int val;
+
             [ASN1Integer( Name = "SpeedConfidence" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 127L, IsExtensible = false) ]
 	    

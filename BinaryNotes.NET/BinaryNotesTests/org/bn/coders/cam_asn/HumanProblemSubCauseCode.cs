@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HumanProblemSubCauseCode" )]
     public class HumanProblemSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HumanProblemSubCauseCode Unavailable = new(0);
+            public static readonly HumanProblemSubCauseCode GlycemiaProblem = new(1);
+            public static readonly HumanProblemSubCauseCode HeartProblem = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "HumanProblemSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

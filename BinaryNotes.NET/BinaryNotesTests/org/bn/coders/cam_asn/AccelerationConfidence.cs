@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AccelerationConfidence" )]
     public class AccelerationConfidence: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AccelerationConfidence PointOneMeterPerSecSquared = new(1);
+            public static readonly AccelerationConfidence OutOfRange = new(101);
+            public static readonly AccelerationConfidence Unavailable = new(102);
+
+            private int val;
+
             [ASN1Integer( Name = "AccelerationConfidence" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 102L, IsExtensible = false) ]
 	    

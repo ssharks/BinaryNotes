@@ -395,17 +395,17 @@ namespace org.bn.coders.per
                     Longitude = new(10),
                     PositionConfidenceEllipse = new()
                     {
-                SemiMajorConfidence = new(1),
-                SemiMinorConfidence = new(1),
-                SemiMajorOrientation = new(0)
+                        SemiMajorConfidence = new(1),
+                        SemiMinorConfidence = new(1),
+                        SemiMajorOrientation = new(0)
                     },
                     Altitude = new()
-            {
-                AltitudeValue = new(0),
-                AltitudeConfidence = new()
-                {
+                    {
+                        AltitudeValue = new(0),
+                        AltitudeConfidence = new()
+                        {
                             Value = AltitudeConfidence.EnumType.Alt_000_01
-                }
+                        }
                     }
                 }
             };

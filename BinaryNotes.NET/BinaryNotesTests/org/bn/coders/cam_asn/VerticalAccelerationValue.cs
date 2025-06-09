@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "VerticalAccelerationValue" )]
     public class VerticalAccelerationValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly VerticalAccelerationValue PointOneMeterPerSecSquaredUp = new(1);
+            public static readonly VerticalAccelerationValue PointOneMeterPerSecSquaredDown = new(-1);
+            public static readonly VerticalAccelerationValue Unavailable = new(161);
+
+            private int val;
+
             [ASN1Integer( Name = "VerticalAccelerationValue" )]
             [ASN1ValueRangeConstraint ( Min = -160L, Max = 161L, IsExtensible = false) ]
 	    

@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SemiAxisLength" )]
     public class SemiAxisLength: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly SemiAxisLength OneCentimeter = new(1);
+            public static readonly SemiAxisLength OutOfRange = new(4094);
+            public static readonly SemiAxisLength Unavailable = new(4095);
+
+            private int val;
+
             [ASN1Integer( Name = "SemiAxisLength" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 4095L, IsExtensible = false) ]
 	    

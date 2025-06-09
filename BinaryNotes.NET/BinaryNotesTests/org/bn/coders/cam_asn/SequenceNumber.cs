@@ -18,9 +18,10 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "SequenceNumber" )]
     public class SequenceNumber: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "SequenceNumber" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 65535L, IsExtensible = false) ]
 	    

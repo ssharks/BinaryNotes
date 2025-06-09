@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "PerformanceClass" )]
     public class PerformanceClass: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly PerformanceClass Unavailable = new(0);
+            public static readonly PerformanceClass PerformanceClassA = new(1);
+            public static readonly PerformanceClass PerformanceClassB = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "PerformanceClass" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 7L, IsExtensible = false) ]
 	    

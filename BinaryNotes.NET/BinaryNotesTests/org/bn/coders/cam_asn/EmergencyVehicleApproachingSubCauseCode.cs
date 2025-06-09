@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "EmergencyVehicleApproachingSubCauseCode" )]
     public class EmergencyVehicleApproachingSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly EmergencyVehicleApproachingSubCauseCode Unavailable = new(0);
+            public static readonly EmergencyVehicleApproachingSubCauseCode EmergencyVehicleApproaching = new(1);
+            public static readonly EmergencyVehicleApproachingSubCauseCode PrioritizedVehicleApproaching = new(2);
+
+            private int val;
+
             [ASN1Integer( Name = "EmergencyVehicleApproachingSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

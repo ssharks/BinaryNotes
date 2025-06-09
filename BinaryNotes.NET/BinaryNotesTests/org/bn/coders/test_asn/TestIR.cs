@@ -18,9 +18,10 @@ namespace org.bn.coders.test_asn {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "TestIR" )]
     public class TestIR: IASN1PreparedElement {
-    
-            private int val;
             
+
+            private int val;
+
             [ASN1Integer( Name = "TestIR" )]
             [ASN1ValueRangeConstraint ( Min = 1L, Max = 5L, IsExtensible = false) ]
 	    

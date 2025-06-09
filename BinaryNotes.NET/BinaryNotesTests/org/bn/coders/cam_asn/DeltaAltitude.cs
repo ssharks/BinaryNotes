@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "DeltaAltitude" )]
     public class DeltaAltitude: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly DeltaAltitude OneCentimeterUp = new(1);
+            public static readonly DeltaAltitude OneCentimeterDown = new(-1);
+            public static readonly DeltaAltitude Unavailable = new(12800);
+
+            private int val;
+
             [ASN1Integer( Name = "DeltaAltitude" )]
             [ASN1ValueRangeConstraint ( Min = -12700L, Max = 12800L, IsExtensible = false) ]
 	    

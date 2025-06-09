@@ -18,9 +18,15 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "HazardousLocation_AnimalOnTheRoadSubCauseCode" )]
     public class HazardousLocation_AnimalOnTheRoadSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly HazardousLocation_AnimalOnTheRoadSubCauseCode Unavailable = new(0);
+            public static readonly HazardousLocation_AnimalOnTheRoadSubCauseCode WildAnimals = new(1);
+            public static readonly HazardousLocation_AnimalOnTheRoadSubCauseCode HerdOfAnimals = new(2);
+            public static readonly HazardousLocation_AnimalOnTheRoadSubCauseCode SmallAnimals = new(3);
+            public static readonly HazardousLocation_AnimalOnTheRoadSubCauseCode LargeAnimals = new(4);
+
+            private int val;
+
             [ASN1Integer( Name = "HazardousLocation-AnimalOnTheRoadSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

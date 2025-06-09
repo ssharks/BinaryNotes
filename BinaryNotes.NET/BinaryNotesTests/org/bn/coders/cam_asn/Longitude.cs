@@ -18,9 +18,13 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "Longitude" )]
     public class Longitude: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly Longitude OneMicrodegreeEast = new(10);
+            public static readonly Longitude OneMicrodegreeWest = new(-10);
+            public static readonly Longitude Unavailable = new(1800000001);
+
+            private int val;
+
             [ASN1Integer( Name = "Longitude" )]
             [ASN1ValueRangeConstraint ( Min = -1800000000L, Max = 1800000001L, IsExtensible = false) ]
 	    

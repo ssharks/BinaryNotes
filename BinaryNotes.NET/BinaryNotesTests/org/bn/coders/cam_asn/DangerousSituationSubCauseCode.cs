@@ -18,9 +18,18 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "DangerousSituationSubCauseCode" )]
     public class DangerousSituationSubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly DangerousSituationSubCauseCode Unavailable = new(0);
+            public static readonly DangerousSituationSubCauseCode EmergencyElectronicBrakeEngaged = new(1);
+            public static readonly DangerousSituationSubCauseCode PreCrashSystemEngaged = new(2);
+            public static readonly DangerousSituationSubCauseCode EspEngaged = new(3);
+            public static readonly DangerousSituationSubCauseCode AbsEngaged = new(4);
+            public static readonly DangerousSituationSubCauseCode AebEngaged = new(5);
+            public static readonly DangerousSituationSubCauseCode BrakeWarningEngaged = new(6);
+            public static readonly DangerousSituationSubCauseCode CollisionRiskWarningEngaged = new(7);
+
+            private int val;
+
             [ASN1Integer( Name = "DangerousSituationSubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    

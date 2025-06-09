@@ -18,9 +18,14 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "CurvatureValue" )]
     public class CurvatureValue: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly CurvatureValue Straight = new(0);
+            public static readonly CurvatureValue ReciprocalOf1MeterRadiusToRight = new(-30000);
+            public static readonly CurvatureValue ReciprocalOf1MeterRadiusToLeft = new(30000);
+            public static readonly CurvatureValue Unavailable = new(30001);
+
+            private int val;
+
             [ASN1Integer( Name = "CurvatureValue" )]
             [ASN1ValueRangeConstraint ( Min = -30000L, Max = 30001L, IsExtensible = false) ]
 	    

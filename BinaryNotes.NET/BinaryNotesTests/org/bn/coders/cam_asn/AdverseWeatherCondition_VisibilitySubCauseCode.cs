@@ -18,9 +18,19 @@ namespace its.cam {
     [ASN1PreparedElement]
     [ASN1BoxedType ( Name = "AdverseWeatherCondition_VisibilitySubCauseCode" )]
     public class AdverseWeatherCondition_VisibilitySubCauseCode: IASN1PreparedElement {
-    
-            private int val;
             
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode Unavailable = new(0);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode Fog = new(1);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode Smoke = new(2);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode HeavySnowfall = new(3);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode HeavyRain = new(4);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode HeavyHail = new(5);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode LowSunGlare = new(6);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode Sandstorms = new(7);
+            public static readonly AdverseWeatherCondition_VisibilitySubCauseCode SwarmsOfInsects = new(8);
+
+            private int val;
+
             [ASN1Integer( Name = "AdverseWeatherCondition-VisibilitySubCauseCode" )]
             [ASN1ValueRangeConstraint ( Min = 0L, Max = 255L, IsExtensible = false) ]
 	    
